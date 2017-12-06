@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Using dplyr for data analysis</title>
+  <meta name="description" content="An introductory course for working with tabular data in R">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Using dplyr for data analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="An introductory course for working with tabular data in R" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Using dplyr for data analysis" />
+  
+  <meta name="twitter:description" content="An introductory course for working with tabular data in R" />
+  
+
+<meta name="author" content="Dan MacLean">
+
+
+<meta name="date" content="2017-12-06">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="dplyr-and-ggplot.html">
+<link rel="next" href="loading-data-from-files.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i><b>1.1</b> Installing R</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-r-packages-in-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing R packages in RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i><b>2</b> Motivation</a><ul>
+<li class="chapter" data-level="2.1" data-path="motivation.html"><a href="motivation.html#tidy-data-analysis"><i class="fa fa-check"></i><b>2.1</b> Tidy data analysis</a></li>
+<li class="chapter" data-level="2.2" data-path="motivation.html"><a href="motivation.html#aim-of-this-book"><i class="fa fa-check"></i><b>2.2</b> Aim of this book</a></li>
+<li class="chapter" data-level="2.3" data-path="motivation.html"><a href="motivation.html#organization-of-this-book"><i class="fa fa-check"></i><b>2.3</b> Organization of this book</a></li>
+<li class="chapter" data-level="2.4" data-path="motivation.html"><a href="motivation.html#external-resources"><i class="fa fa-check"></i><b>2.4</b> External Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-fundamentals.html"><a href="r-fundamentals.html"><i class="fa fa-check"></i><b>3</b> R Fundamentals</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-fundamentals.html"><a href="r-fundamentals.html#about-this-chapter"><i class="fa fa-check"></i><b>3.1</b> About this chapter</a></li>
+<li class="chapter" data-level="3.2" data-path="r-fundamentals.html"><a href="r-fundamentals.html#working-with-r"><i class="fa fa-check"></i><b>3.2</b> Working with R</a></li>
+<li class="chapter" data-level="3.3" data-path="r-fundamentals.html"><a href="r-fundamentals.html#variables"><i class="fa fa-check"></i><b>3.3</b> Variables</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="r-fundamentals.html"><a href="r-fundamentals.html#using-objects-and-functions"><i class="fa fa-check"></i><b>3.3.1</b> Using objects and functions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="r-fundamentals.html"><a href="r-fundamentals.html#quiz"><i class="fa fa-check"></i><b>3.4</b> Quiz</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>4</b> Tidy Data</a><ul>
+<li class="chapter" data-level="4.1" data-path="tidy-data.html"><a href="tidy-data.html#about-this-chapter-1"><i class="fa fa-check"></i><b>4.1</b> About this chapter</a></li>
+<li class="chapter" data-level="4.2" data-path="tidy-data.html"><a href="tidy-data.html#tidy-data-1"><i class="fa fa-check"></i><b>4.2</b> Tidy data</a></li>
+<li class="chapter" data-level="4.3" data-path="tidy-data.html"><a href="tidy-data.html#a-sample-tidy-data-set"><i class="fa fa-check"></i><b>4.3</b> A sample tidy data set</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="tidy-data.html"><a href="tidy-data.html#class"><i class="fa fa-check"></i><b>4.3.1</b> Class</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="tidy-data.html"><a href="tidy-data.html#quiz-1"><i class="fa fa-check"></i><b>4.4</b> Quiz</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html"><i class="fa fa-check"></i><b>5</b> dplyr Verbs</a><ul>
+<li class="chapter" data-level="5.1" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#about-this-chapter-2"><i class="fa fa-check"></i><b>5.1</b> About this chapter</a></li>
+<li class="chapter" data-level="5.2" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#dplyr"><i class="fa fa-check"></i><b>5.2</b> dplyr</a></li>
+<li class="chapter" data-level="5.3" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#pipe-syntax"><i class="fa fa-check"></i><b>5.3</b> Pipe Syntax</a></li>
+<li class="chapter" data-level="5.4" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#select"><i class="fa fa-check"></i><b>5.4</b> select()</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#rename"><i class="fa fa-check"></i><b>5.4.1</b> rename()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#filter"><i class="fa fa-check"></i><b>5.5</b> filter()</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#comparisons"><i class="fa fa-check"></i><b>5.5.1</b> Comparisons</a></li>
+<li class="chapter" data-level="5.5.2" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#logical-operators"><i class="fa fa-check"></i><b>5.5.2</b> Logical operators</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#mutate"><i class="fa fa-check"></i><b>5.6</b> mutate()</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#functions-in-mutate"><i class="fa fa-check"></i><b>5.6.1</b> Functions in mutate()</a></li>
+<li class="chapter" data-level="5.6.2" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#if_else"><i class="fa fa-check"></i><b>5.6.2</b> if_else()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#summarize-and-group_by"><i class="fa fa-check"></i><b>5.7</b> summarize() and group_by()</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#helpful-summarize-functions"><i class="fa fa-check"></i><b>5.7.1</b> Helpful summarize() functions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#arrange"><i class="fa fa-check"></i><b>5.8</b> arrange()</a></li>
+<li class="chapter" data-level="5.9" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#missing-values"><i class="fa fa-check"></i><b>5.9</b> Missing Values</a></li>
+<li class="chapter" data-level="5.10" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#quiz-2"><i class="fa fa-check"></i><b>5.10</b> Quiz</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="combining-datasets.html"><a href="combining-datasets.html"><i class="fa fa-check"></i><b>6</b> Combining Datasets</a><ul>
+<li class="chapter" data-level="6.1" data-path="combining-datasets.html"><a href="combining-datasets.html#about-this-chapter-3"><i class="fa fa-check"></i><b>6.1</b> About this chapter</a></li>
+<li class="chapter" data-level="6.2" data-path="combining-datasets.html"><a href="combining-datasets.html#joining"><i class="fa fa-check"></i><b>6.2</b> Joining</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="combining-datasets.html"><a href="combining-datasets.html#key-columns"><i class="fa fa-check"></i><b>6.2.1</b> Key columns</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="combining-datasets.html"><a href="combining-datasets.html#join-functions"><i class="fa fa-check"></i><b>6.3</b> Join functions</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="combining-datasets.html"><a href="combining-datasets.html#left_join"><i class="fa fa-check"></i><b>6.3.1</b> left_join()</a></li>
+<li class="chapter" data-level="6.3.2" data-path="combining-datasets.html"><a href="combining-datasets.html#right_join"><i class="fa fa-check"></i><b>6.3.2</b> right_join()</a></li>
+<li class="chapter" data-level="6.3.3" data-path="combining-datasets.html"><a href="combining-datasets.html#inner_join"><i class="fa fa-check"></i><b>6.3.3</b> inner_join()</a></li>
+<li class="chapter" data-level="6.3.4" data-path="combining-datasets.html"><a href="combining-datasets.html#full_join"><i class="fa fa-check"></i><b>6.3.4</b> full_join()</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="combining-datasets.html"><a href="combining-datasets.html#binding-operations"><i class="fa fa-check"></i><b>6.4</b> Binding operations</a></li>
+<li class="chapter" data-level="6.5" data-path="combining-datasets.html"><a href="combining-datasets.html#quiz-3"><i class="fa fa-check"></i><b>6.5</b> Quiz</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="dplyr-and-ggplot.html"><a href="dplyr-and-ggplot.html"><i class="fa fa-check"></i><b>7</b> dplyr and ggplot</a><ul>
+<li class="chapter" data-level="7.1" data-path="dplyr-and-ggplot.html"><a href="dplyr-and-ggplot.html#piping-to-ggplot"><i class="fa fa-check"></i><b>7.1</b> Piping to <code>ggplot()</code></a><ul>
+<li class="chapter" data-level="7.1.1" data-path="dplyr-and-ggplot.html"><a href="dplyr-and-ggplot.html#quick-bar-charts"><i class="fa fa-check"></i><b>7.1.1</b> Quick bar charts</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="tidying-data.html"><a href="tidying-data.html"><i class="fa fa-check"></i><b>8</b> Tidying data</a><ul>
+<li class="chapter" data-level="8.1" data-path="tidying-data.html"><a href="tidying-data.html#about-this-chapter-4"><i class="fa fa-check"></i><b>8.1</b> About this chapter</a></li>
+<li class="chapter" data-level="8.2" data-path="tidying-data.html"><a href="tidying-data.html#tidyr"><i class="fa fa-check"></i><b>8.2</b> tidyr</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="tidying-data.html"><a href="tidying-data.html#sample-tidy-datasets"><i class="fa fa-check"></i><b>8.2.1</b> Sample tidy datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="tidying-data.html"><a href="tidying-data.html#gather"><i class="fa fa-check"></i><b>8.3</b> gather()</a></li>
+<li class="chapter" data-level="8.4" data-path="tidying-data.html"><a href="tidying-data.html#spread"><i class="fa fa-check"></i><b>8.4</b> spread()</a></li>
+<li class="chapter" data-level="8.5" data-path="tidying-data.html"><a href="tidying-data.html#separate"><i class="fa fa-check"></i><b>8.5</b> separate()</a></li>
+<li class="chapter" data-level="8.6" data-path="tidying-data.html"><a href="tidying-data.html#unite"><i class="fa fa-check"></i><b>8.6</b> unite()</a></li>
+<li class="chapter" data-level="8.7" data-path="tidying-data.html"><a href="tidying-data.html#quiz-4"><i class="fa fa-check"></i><b>8.7</b> Quiz</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html"><i class="fa fa-check"></i><b>9</b> Loading data from files</a><ul>
+<li class="chapter" data-level="9.1" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#readr"><i class="fa fa-check"></i><b>9.1</b> readr</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#read_csv"><i class="fa fa-check"></i><b>9.1.1</b> read_csv()</a></li>
+<li class="chapter" data-level="9.1.2" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#parser-functions"><i class="fa fa-check"></i><b>9.1.2</b> Parser functions</a></li>
+<li class="chapter" data-level="9.1.3" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#headers-and-column-names"><i class="fa fa-check"></i><b>9.1.3</b> Headers and column names</a></li>
+<li class="chapter" data-level="9.1.4" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#missing-values-1"><i class="fa fa-check"></i><b>9.1.4</b> Missing values</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#readxl"><i class="fa fa-check"></i><b>9.2</b> readxl</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#read_excel"><i class="fa fa-check"></i><b>9.2.1</b> read_excel()</a></li>
+<li class="chapter" data-level="9.2.2" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#writing-files"><i class="fa fa-check"></i><b>9.2.2</b> Writing Files</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Using dplyr for data analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tidying-data" class="section level1">
+<h1><span class="header-section-number">Topic 8</span> Tidying data</h1>
+<div id="about-this-chapter-4" class="section level2">
+<h2><span class="header-section-number">8.1</span> About this chapter</h2>
+<ol style="list-style-type: decimal">
+<li>Questions:</li>
+</ol>
+<ul>
+<li>How do I go from non-tidy to tidy data structures?</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Objectives:</li>
+</ol>
+<ul>
+<li>Manipulating dataframes with the <code>tidyr</code> verbs</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Keypoints:</li>
+</ol>
+<ul>
+<li>The <code>tidyr</code> package contains functions that affect the layout and structure of dataframes.</li>
+</ul>
+</div>
+<div id="tidyr" class="section level2">
+<h2><span class="header-section-number">8.2</span> tidyr</h2>
+<p>tidyr is a tool for manipulating layout of datasets. As part of the tidyverse it is loaded when you use <code>library(tidyverse)</code> but can be loaded on its own with <code>library(tidyr)</code>. tidyr has two main functions - <code>spread()</code> and <code>gather()</code>.</p>
+<div id="sample-tidy-datasets" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> Sample tidy datasets</h3>
+<p>Let’s look at five sample tables that show the same data in different ways, only one of which counts as tidy.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table1</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##       country  year  cases population
+##         &lt;chr&gt; &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3      Brazil  1999  37737  172006362
+## 4      Brazil  2000  80488  174504898
+## 5       China  1999 212258 1272915272
+## 6       China  2000 213766 1280428583</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table2</code></pre></div>
+<pre><code>## # A tibble: 12 x 4
+##        country  year       type      count
+##          &lt;chr&gt; &lt;int&gt;      &lt;chr&gt;      &lt;int&gt;
+##  1 Afghanistan  1999      cases        745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000      cases       2666
+##  4 Afghanistan  2000 population   20595360
+##  5      Brazil  1999      cases      37737
+##  6      Brazil  1999 population  172006362
+##  7      Brazil  2000      cases      80488
+##  8      Brazil  2000 population  174504898
+##  9       China  1999      cases     212258
+## 10       China  1999 population 1272915272
+## 11       China  2000      cases     213766
+## 12       China  2000 population 1280428583</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table3</code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##       country  year              rate
+## *       &lt;chr&gt; &lt;int&gt;             &lt;chr&gt;
+## 1 Afghanistan  1999      745/19987071
+## 2 Afghanistan  2000     2666/20595360
+## 3      Brazil  1999   37737/172006362
+## 4      Brazil  2000   80488/174504898
+## 5       China  1999 212258/1272915272
+## 6       China  2000 213766/1280428583</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table4a</code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##       country `1999` `2000`
+## *       &lt;chr&gt;  &lt;int&gt;  &lt;int&gt;
+## 1 Afghanistan    745   2666
+## 2      Brazil  37737  80488
+## 3       China 212258 213766</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table4b</code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##       country     `1999`     `2000`
+## *       &lt;chr&gt;      &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan   19987071   20595360
+## 2      Brazil  172006362  174504898
+## 3       China 1272915272 1280428583</code></pre>
+<p>The tidy data is in <code>table1</code>.</p>
+<ul>
+<li><code>table2</code> is not tidy because not every variable has its own column. The <code>count</code> column has values for <code>cases</code> and <code>population</code> and these are two different things. The <code>type</code> column <em>could</em> be a variable on its own, but as used here its a way to mix up the count variable unneccesarily.</li>
+<li><code>table3</code> is not tidy because <code>rate</code> is currently a function of two variables - literally its printed as <code>cases/population</code>. The column <code>rate</code> should contain the result of <code>cases/population</code> and if we wanted to retain the <code>case</code> and <code>population</code> information it should be in its own column, like in <code>table1</code></li>
+<li><code>table4a</code> and <code>table4b</code> aren’t tidy, because the data are split over two tables and in each table the values of the <code>year</code> variable are split over multiple columns.</li>
+</ul>
+<p>Let’s work with each of these non-tidy datasets in turn to get them tidy.</p>
+</div>
+</div>
+<div id="gather" class="section level2">
+<h2><span class="header-section-number">8.3</span> gather()</h2>
+<p>The most common problem is that in <code>table4a</code>, where the values of a variable are split over multiple columns.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table4a</code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##       country `1999` `2000`
+## *       &lt;chr&gt;  &lt;int&gt;  &lt;int&gt;
+## 1 Afghanistan    745   2666
+## 2      Brazil  37737  80488
+## 3       China 212258 213766</code></pre>
+<p>To tidy this, we need to use <code>gather()</code>, which needs three bits of information</p>
+<ol style="list-style-type: decimal">
+<li>The names of the columns that represent values, i.e. the year value columns</li>
+<li>The name of the new variable to create, this is known as the <code>key</code></li>
+<li>The name of the variable to put all the values from the table cells into. This is known as the <code>value</code>.</li>
+</ol>
+<p>The function call goes like this</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table4a <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;1999&#39;</span>, <span class="st">&#39;2000&#39;</span>, <span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;cases&quot;</span>)</code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##       country  year  cases
+##         &lt;chr&gt; &lt;chr&gt;  &lt;int&gt;
+## 1 Afghanistan  1999    745
+## 2      Brazil  1999  37737
+## 3       China  1999 212258
+## 4 Afghanistan  2000   2666
+## 5      Brazil  2000  80488
+## 6       China  2000 213766</code></pre>
+<p>Note how the columns we ‘gathered’ (<code>1999</code> and <code>2000</code>) have been dropped from the table completely. This little table is now tidy. We can do the same with <code>table4b</code> but this one has the value <code>population</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table4b <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;1999&#39;</span>, <span class="st">&#39;2000&#39;</span>, <span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;population&quot;</span>)</code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##       country  year population
+##         &lt;chr&gt; &lt;chr&gt;      &lt;int&gt;
+## 1 Afghanistan  1999   19987071
+## 2      Brazil  1999  172006362
+## 3       China  1999 1272915272
+## 4 Afghanistan  2000   20595360
+## 5      Brazil  2000  174504898
+## 6       China  2000 1280428583</code></pre>
+<p>To combine these together we can use <code>left_join()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t4a &lt;-<span class="st"> </span>table4a <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;1999&#39;</span>, <span class="st">&#39;2000&#39;</span>, <span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;cases&quot;</span>)
+t4b &lt;-<span class="st"> </span>table4b <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;1999&#39;</span>, <span class="st">&#39;2000&#39;</span>, <span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;population&quot;</span>)
+
+<span class="kw">left_join</span>(t4a, t4b)</code></pre></div>
+<pre><code>## Joining, by = c(&quot;country&quot;, &quot;year&quot;)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##       country  year  cases population
+##         &lt;chr&gt; &lt;chr&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2      Brazil  1999  37737  172006362
+## 3       China  1999 212258 1272915272
+## 4 Afghanistan  2000   2666   20595360
+## 5      Brazil  2000  80488  174504898
+## 6       China  2000 213766 1280428583</code></pre>
+<p>Note we don’t need to specify the <code>by.x</code> and <code>by.y</code>, since the two tables have column names in common - <code>left_join()</code> works that out and does the join automatically.</p>
+</div>
+<div id="spread" class="section level2">
+<h2><span class="header-section-number">8.4</span> spread()</h2>
+<p>The complementary function to <code>gather()</code> is <code>spread()</code> which takes variables squashed into one column and puts them into more as appropriate. This is useful for dealing with the <code>table2</code> case. <code>spread()</code> needs two bits of information</p>
+<ul>
+<li>The column with the variable name, again the <code>key</code> column</li>
+<li>The column that contains the values, again the <code>value</code> column</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table2 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> type, <span class="dt">value =</span> count)</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##       country  year  cases population
+## *       &lt;chr&gt; &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3      Brazil  1999  37737  172006362
+## 4      Brazil  2000  80488  174504898
+## 5       China  1999 212258 1272915272
+## 6       China  2000 213766 1280428583</code></pre>
+</div>
+<div id="separate" class="section level2">
+<h2><span class="header-section-number">8.5</span> separate()</h2>
+<p>The <code>seperate()</code> function turns one column into many by splitting the value whenever a particular character appears. Remember <code>table3</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table3</code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##       country  year              rate
+## *       &lt;chr&gt; &lt;int&gt;             &lt;chr&gt;
+## 1 Afghanistan  1999      745/19987071
+## 2 Afghanistan  2000     2666/20595360
+## 3      Brazil  1999   37737/172006362
+## 4      Brazil  2000   80488/174504898
+## 5       China  1999 212258/1272915272
+## 6       China  2000 213766/1280428583</code></pre>
+<p>We can separate that <code>rate</code> column into two - <code>cases</code> and <code>population</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table3 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>))</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##       country  year  cases population
+## *       &lt;chr&gt; &lt;int&gt;  &lt;chr&gt;      &lt;chr&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3      Brazil  1999  37737  172006362
+## 4      Brazil  2000  80488  174504898
+## 5       China  1999 212258 1272915272
+## 6       China  2000 213766 1280428583</code></pre>
+<p>By default <code>separate()</code> splits things on any non-numeric character. But we can be explicit with the <code>sep</code> argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table3 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##       country  year  cases population
+## *       &lt;chr&gt; &lt;int&gt;  &lt;chr&gt;      &lt;chr&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3      Brazil  1999  37737  172006362
+## 4      Brazil  2000  80488  174504898
+## 5       China  1999 212258 1272915272
+## 6       China  2000 213766 1280428583</code></pre>
+<p>This works just as well, but is useful if the computer makes a bad guess.</p>
+<p>Note the column types of <code>cases</code> and <code>population</code>, they’re down as <code>chr</code>. By default the type of the parent column is retained, but you can make <code>separate()</code> guess what type the new column is with the <code>convert</code> argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table3 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##       country  year  cases population
+## *       &lt;chr&gt; &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3      Brazil  1999  37737  172006362
+## 4      Brazil  2000  80488  174504898
+## 5       China  1999 212258 1272915272
+## 6       China  2000 213766 1280428583</code></pre>
+<p>And now, we’re back to tidy data.</p>
+</div>
+<div id="unite" class="section level2">
+<h2><span class="header-section-number">8.6</span> unite()</h2>
+<p>The <code>unite()</code> function is the inverse of <code>separate()</code>, and combines multiple columns into a single one.</p>
+<p>To demonstrate <code>unite()</code> we can make a new table, <code>table5</code> by using the <code>separate()</code> function on the <code>year</code> column in <code>table3</code>. Passing <code>sep</code> a number, tells it just to split that many characters into the string</p>
+<p>Here’s <code>table5</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table5 &lt;-<span class="st"> </span>table3 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">separate</span>(year, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;century&quot;</span>, <span class="st">&quot;year&quot;</span>), <span class="dt">sep =</span> <span class="dv">2</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)
+table5</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##       country century  year              rate
+## *       &lt;chr&gt;   &lt;int&gt; &lt;int&gt;             &lt;chr&gt;
+## 1 Afghanistan      19    99      745/19987071
+## 2 Afghanistan      20     0     2666/20595360
+## 3      Brazil      19    99   37737/172006362
+## 4      Brazil      20     0   80488/174504898
+## 5       China      19    99 212258/1272915272
+## 6       China      20     0 213766/1280428583</code></pre>
+<p>We can now re- <code>unite()</code> <code>table5</code>. The arguments for this function are just the name of the new column, and the columns to join</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table5 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unite</span>(new, century, year)</code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##       country   new              rate
+## *       &lt;chr&gt; &lt;chr&gt;             &lt;chr&gt;
+## 1 Afghanistan 19_99      745/19987071
+## 2 Afghanistan  20_0     2666/20595360
+## 3      Brazil 19_99   37737/172006362
+## 4      Brazil  20_0   80488/174504898
+## 5       China 19_99 212258/1272915272
+## 6       China  20_0 213766/1280428583</code></pre>
+<p>Here the default is to use an underscore <code>_</code> to join the values, but we can be explicit and use nothing with the <code>sep</code> argument</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table5 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unite</span>(new, century, year, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##       country   new              rate
+## *       &lt;chr&gt; &lt;chr&gt;             &lt;chr&gt;
+## 1 Afghanistan  1999      745/19987071
+## 2 Afghanistan   200     2666/20595360
+## 3      Brazil  1999   37737/172006362
+## 4      Brazil   200   80488/174504898
+## 5       China  1999 212258/1272915272
+## 6       China   200 213766/1280428583</code></pre>
+</div>
+<div id="quiz-4" class="section level2">
+<h2><span class="header-section-number">8.7</span> Quiz</h2>
+<p>Tidying data is hard! And it needs you to know your data quite well, which naturally takes time. Rather than quiz questions here, a worked example will give good benefit, so let’s try one of those. Do the Case Study on page 163 of R for Data Science. If you don’t have the print edition it is available online here <a href="http://r4ds.had.co.nz/tidy-data.html#case-study">Case Study for Tidy Data</a>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dplyr-and-ggplot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="loading-data-from-files.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

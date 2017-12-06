@@ -1,0 +1,6 @@
+book_filename: "dplyr"
+chapter_name: "Topic "
+output_dir: docs
+clean: ["docs", "dplyr.md"]
+rmd_files: ["index.Rmd", "motivation.Rmd", "r-fundamentals.Rmd", "tidy-data.Rmd", "dplyr-verbs.Rmd", "joining.Rmd", "dplyr-ggplot.Rmd", "tidyr.Rmd", "readr.Rmd"]
+new_session: yes

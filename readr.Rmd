@@ -1,0 +1,194 @@
+# Loading data from files
+
+## About this chapter
+
+1. Questions:
+- How do I get my data into R?
+2. Objectives:
+- Loading a '.csv' file
+- Checking column contents
+- Dealing with headers and column names
+- Loading a specific sheet from a '.xlsx' file.
+3. Keypoints:
+- The `readr` and `readxl` packages contain functions for loading data from .csv and .xslx files. These functions help you to ensure that your data is loaded as you expect. 
+
+## readr
+
+readr is a tool for loading data into R. As part of the tidyverse it is loaded when you use `library(tidyverse)` but can be loaded on its own with `library(readr)`. We will use `readr` to load in data from a 'flat' `.csv` file. Most 
+
+
+### read_csv()
+
+The main function is `read_csv()` which can read a standard comma seperated values file from disk into an R dataframe. There are a few variants of `read_csv()` which may be appropriate for different sorts of `.csv` file, but they all work the same.
+
+  * `read_csv2()` - reads semi-colon delimited files, which are commonly used where a comma is used as a decimal separator
+  * `read_tsv()` - reads tab delimited files
+  * `read_delim()` - reads files delimited by an arbitrary character
+  
+The first argument to `read_csv()` is the path to the file to read. Here I'll read a file on my Desktop that contains the diamonds data we've been using.
+
+```{r,echo = FALSE, message=FALSE, warning=FALSE}
+library(readr)
+```
+
+```{r}
+read_csv("~/Desktop/diamonds.csv")
+```
+
+On loading we see a column specification, `read_csv()` has guessed at what the columns should be and made those types. Its fine for the most part, but some of those columns we'd prefer to be factors. We can set our own column specification to force the column types on loading. We only have to do the ones that `read_csv()` gets wrong. Specifically, lets fix `cut` and `color` to a `factor`. We can do that with the `col_types` argument.
+
+```{r}
+read_csv("~/Desktop/diamonds.csv",
+    col_types = cols(
+      cut = col_factor(NULL),
+      color = col_factor(NULL)
+    )
+)
+
+```
+
+### Parser functions
+
+This works by assigning a parser function that returns a specific type to each column, here it's `col_factor()`.  There are parser functions for all types of data, and all of them can be used if `read_csv()` doesn't guess your data properly. We won't go into detail of all of them, just remember that if your numbers or dates or stuff won't load properly, there's a parser function that can help.
+
+
+The parser functions all have their own arguments, so we can manipulate those. We can see the `NULL` argument being passed to `col_factor()` above, which means 'all values found should be used as levels of the factor'. This is a great default setting, but if we have a large file, it won't help us find unexpected values. 
+
+Consider a situation where we are certain we should only have the values `Fair`, `Good` and `Very Good` for `cut` in our `diamonds` data. We can make the parser function check this for us and give a warning if it finds anything else. 
+
+```{r}
+read_csv("~/Desktop/diamonds.csv",
+    col_types = cols(
+      cut = col_factor(levels = c( "Fair" ,"Good", "Very Good")),
+      color = col_factor(NULL)
+    )
+)
+```
+This time, we get a large number of warnings. Though the output is quite cryptic at first glance, `read_csv()` is complaining that it found values for cut that were not in the list we passed to the parser function. 
+
+Hence we can use parsers to ensure we are loading in the data we expect and generate errors if not.
+
+
+### Headers and column names
+
+By default `read_csv()` uses the first line of the file for column names. Consider this toy example.
+
+```{r}
+toy_csv <- 
+"a,b,c
+1,2,3
+4,5,6"
+read_csv(toy_csv)
+```
+
+The first line of the toy file becomes the column headings. This may not be appropriate, since there could be some metadata in the file
+
+```{r}
+toy_csv <- 
+"some info about stuff
+a,b,c
+1,2,3
+4,5,6"
+read_csv(toy_csv)
+```
+
+The loaded data gets really messed up, so we can skip a set number of lines if needed
+
+```{r}
+toy_csv <- 
+"some info about stuff
+a,b,c
+1,2,3
+4,5,6"
+read_csv(toy_csv, skip = 1)
+```
+
+Alternatively, you might have comments that begin with a particular character. You can use the `comment` argument to skip those lines
+
+```{r}
+toy_csv <- 
+"#some info about stuff
+#some more info
+#goodness, lots of INFO
+a,b,c
+1,2,3
+4,5,6"
+read_csv(toy_csv, comment = "#")
+```
+
+The data might not have any column names at all, the first row may data. This situation is handled with `col_names` argument
+
+```{r}
+toy_csv <- 
+"1,2,3
+4,5,6"
+read_csv(toy_csv, col_names = FALSE)
+```
+
+So, `read_csv()` sets up arbitrary column names. We can specify column names if we wish
+
+```{r}
+toy_csv <- 
+"a,b,c
+1,2,3
+4,5,6"
+read_csv(toy_csv, col_names = c("x", "y", "z"))
+```
+
+### Missing values
+
+There are many different ways of encoding missing values, you can tell `read_csv()` which character represents a missing value explicitly with the `na` argument. These values will all be loaded as proper `NA`. 
+
+```{r}
+toy_csv <- 
+"a,b,c
+1,_,3
+4,5,_"
+read_csv(toy_csv, na = "_")
+```
+
+## Writing Files
+
+A complementary functionto `read_csv()` `write_csv()` allows you to write a dataframe out to a '.csv' file. The convention is straightforward, you need the name of the dataframe and the name of the file and path to write to.
+
+```{r, eval=FALSE}
+write_csv(diamonds, "~/Desktop/my_data.csv")
+```
+
+
+## readxl
+
+The `readxl` package is installed as part of the tidyvers `install.packages()` command, but it is not part of the core, so `library(tidyverse)` does not load it. You must do it explicitly with `library(readxl)`. 
+
+### read_excel()
+
+The main function is `read_excel()`, it's similar to `read_csv()`. 
+
+```{r}
+library(readxl)
+read_excel("~/Desktop/datasets.xls")
+```
+
+By default it loads the first worksheet, you can examine the sheets available with `excel_sheets()`
+
+```{r}
+excel_sheets("~/Desktop/datasets.xls")
+```
+
+Then load in the one you want.
+
+```{r}
+read_excel("~/Desktop/datasets.xls", sheet = "chickwts")
+```
+
+Loading then follows the same pattern as for `read_csv()`, with a difference in the column specifications - in this package its much simpler. You can only specify type columnwise and the specification can only be one of "skip", "guess", "logical", "numeric", "date", "text" or "list" - meaning you can't do the advanced parsing as for `read_csv()`.
+
+A sample spec might look like
+
+```{r}
+read_excel(
+  "~/Desktop/datasets.xls", 
+  sheet = "chickwts",
+  col_types = c("numeric", "text")
+  )
+```
