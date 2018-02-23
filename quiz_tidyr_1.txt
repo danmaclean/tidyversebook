@@ -1,0 +1,52 @@
+Quiz 1.
+
+1. 
+
+install.packages(nycflights)
+library(nycflights)
+
+
+2. 
+
+flights %>%
++ group_by(tailnum) %>%
++ summarize(av_delay = mean(arr_delay)) %>%
++ arrange(av_delay)
+
+(NAs appear lower in table, not all answers are messed up, not all tailnums have NAs)
+
+
+
+3. 
+
+
+flights %>% 
+group_by(hour) %>% 
+summarize(av_delay = mean(arr_delay ))
+
+(appears not to work - all hours have some NA)
+
+flights %>% 
+group_by(hour) %>% 
+summarize(av_delay = mean(arr_delay, na.rm = TRUE ))
+
+4. 
+
+flights %>%
++ group_by(dest) %>%
++ summarize(total_delay = sum(arr_delay, na.rm = TRUE))
+
+5. 
+
+flights %>% 
+select(tailnum, flight, year, month, day, dep_time, origin, dest, air_time, distance)  %>% 
+mutate(av_speed = distance / air_time ) %>% 
+arrange(desc(av_speed))
+
+
+6.
+
+> flights %>% 
++ group_by(dest) %>% 
++ summarize( n_carriers = n_distinct(carrier) ) %>%
++ filter(n_carriers >= 2 )
