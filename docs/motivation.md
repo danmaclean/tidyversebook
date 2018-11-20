@@ -5,7 +5,7 @@ Working with data is pretty much the foundation of all science. Every field, lab
 If you've ever needed to work with any non-trivial data sets, or even tried to re-analyse an old one, you'll know that working with data is a massive ... 
 
 <div class="figure">
-<img src="assets/matador.jpg" alt="A significant pain in the ..." width="482" />
+<img src="assets/matador.jpg" alt="A significant pain in the ..."  />
 <p class="caption">(\#fig:unnamed-chunk-1)A significant pain in the ...</p>
 </div>
 
@@ -16,7 +16,7 @@ The aim of this book is to introduce you to some tools that can reduce the pain 
 The techniques themselves take a bit of getting used to - there is a learning curve. But over all they're a much smaller pain and are worth it especially if you're going to re-analyse growing datasets or do similar analysis over again.
 
 <div class="figure">
-<img src="assets/baby_bull.jpg" alt="A smaller pain in the ..." width="1060" />
+<img src="assets/baby_bull.jpg" alt="A smaller pain in the ..."  />
 <p class="caption">(\#fig:unnamed-chunk-2)A smaller pain in the ...</p>
 </div>
 

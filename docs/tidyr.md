@@ -29,14 +29,14 @@ table1
 
 ```
 ## # A tibble: 6 x 4
-##       country  year  cases population
-##         <chr> <int>  <int>      <int>
+##   country      year  cases population
+##   <chr>       <int>  <int>      <int>
 ## 1 Afghanistan  1999    745   19987071
 ## 2 Afghanistan  2000   2666   20595360
-## 3      Brazil  1999  37737  172006362
-## 4      Brazil  2000  80488  174504898
-## 5       China  1999 212258 1272915272
-## 6       China  2000 213766 1280428583
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583
 ```
 
 ```r
@@ -45,20 +45,20 @@ table2
 
 ```
 ## # A tibble: 12 x 4
-##        country  year       type      count
-##          <chr> <int>      <chr>      <int>
-##  1 Afghanistan  1999      cases        745
+##    country      year type            count
+##    <chr>       <int> <chr>           <int>
+##  1 Afghanistan  1999 cases             745
 ##  2 Afghanistan  1999 population   19987071
-##  3 Afghanistan  2000      cases       2666
+##  3 Afghanistan  2000 cases            2666
 ##  4 Afghanistan  2000 population   20595360
-##  5      Brazil  1999      cases      37737
-##  6      Brazil  1999 population  172006362
-##  7      Brazil  2000      cases      80488
-##  8      Brazil  2000 population  174504898
-##  9       China  1999      cases     212258
-## 10       China  1999 population 1272915272
-## 11       China  2000      cases     213766
-## 12       China  2000 population 1280428583
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+## 11 China        2000 cases          213766
+## 12 China        2000 population 1280428583
 ```
 
 ```r
@@ -67,14 +67,14 @@ table3
 
 ```
 ## # A tibble: 6 x 3
-##       country  year              rate
-## *       <chr> <int>             <chr>
-## 1 Afghanistan  1999      745/19987071
-## 2 Afghanistan  2000     2666/20595360
-## 3      Brazil  1999   37737/172006362
-## 4      Brazil  2000   80488/174504898
-## 5       China  1999 212258/1272915272
-## 6       China  2000 213766/1280428583
+##   country      year rate             
+## * <chr>       <int> <chr>            
+## 1 Afghanistan  1999 745/19987071     
+## 2 Afghanistan  2000 2666/20595360    
+## 3 Brazil       1999 37737/172006362  
+## 4 Brazil       2000 80488/174504898  
+## 5 China        1999 212258/1272915272
+## 6 China        2000 213766/1280428583
 ```
 
 ```r
@@ -83,11 +83,11 @@ table4a
 
 ```
 ## # A tibble: 3 x 3
-##       country `1999` `2000`
-## *       <chr>  <int>  <int>
+##   country     `1999` `2000`
+## * <chr>        <int>  <int>
 ## 1 Afghanistan    745   2666
-## 2      Brazil  37737  80488
-## 3       China 212258 213766
+## 2 Brazil       37737  80488
+## 3 China       212258 213766
 ```
 
 ```r
@@ -96,11 +96,11 @@ table4b
 
 ```
 ## # A tibble: 3 x 3
-##       country     `1999`     `2000`
-## *       <chr>      <int>      <int>
+##   country         `1999`     `2000`
+## * <chr>            <int>      <int>
 ## 1 Afghanistan   19987071   20595360
-## 2      Brazil  172006362  174504898
-## 3       China 1272915272 1280428583
+## 2 Brazil       172006362  174504898
+## 3 China       1272915272 1280428583
 ```
 
 The tidy data is in `table1`. 
@@ -122,11 +122,11 @@ table4a
 
 ```
 ## # A tibble: 3 x 3
-##       country `1999` `2000`
-## *       <chr>  <int>  <int>
+##   country     `1999` `2000`
+## * <chr>        <int>  <int>
 ## 1 Afghanistan    745   2666
-## 2      Brazil  37737  80488
-## 3       China 212258 213766
+## 2 Brazil       37737  80488
+## 3 China       212258 213766
 ```
 
 To tidy this, we need to use `gather()`, which needs three bits of information
@@ -145,14 +145,14 @@ table4a %>%
 
 ```
 ## # A tibble: 6 x 3
-##       country  year  cases
-##         <chr> <chr>  <int>
-## 1 Afghanistan  1999    745
-## 2      Brazil  1999  37737
-## 3       China  1999 212258
-## 4 Afghanistan  2000   2666
-## 5      Brazil  2000  80488
-## 6       China  2000 213766
+##   country     year   cases
+##   <chr>       <chr>  <int>
+## 1 Afghanistan 1999     745
+## 2 Brazil      1999   37737
+## 3 China       1999  212258
+## 4 Afghanistan 2000    2666
+## 5 Brazil      2000   80488
+## 6 China       2000  213766
 ```
 Note how the columns we 'gathered' (`1999` and `2000`) have been dropped from the table completely. This little table is now tidy. 
 We can do the same with `table4b` but this one has the value `population`
@@ -165,14 +165,14 @@ table4b %>%
 
 ```
 ## # A tibble: 6 x 3
-##       country  year population
-##         <chr> <chr>      <int>
-## 1 Afghanistan  1999   19987071
-## 2      Brazil  1999  172006362
-## 3       China  1999 1272915272
-## 4 Afghanistan  2000   20595360
-## 5      Brazil  2000  174504898
-## 6       China  2000 1280428583
+##   country     year  population
+##   <chr>       <chr>      <int>
+## 1 Afghanistan 1999    19987071
+## 2 Brazil      1999   172006362
+## 3 China       1999  1272915272
+## 4 Afghanistan 2000    20595360
+## 5 Brazil      2000   174504898
+## 6 China       2000  1280428583
 ```
 
 To combine these together we can use `left_join()`.
@@ -192,14 +192,14 @@ left_join(t4a, t4b)
 
 ```
 ## # A tibble: 6 x 4
-##       country  year  cases population
-##         <chr> <chr>  <int>      <int>
-## 1 Afghanistan  1999    745   19987071
-## 2      Brazil  1999  37737  172006362
-## 3       China  1999 212258 1272915272
-## 4 Afghanistan  2000   2666   20595360
-## 5      Brazil  2000  80488  174504898
-## 6       China  2000 213766 1280428583
+##   country     year   cases population
+##   <chr>       <chr>  <int>      <int>
+## 1 Afghanistan 1999     745   19987071
+## 2 Brazil      1999   37737  172006362
+## 3 China       1999  212258 1272915272
+## 4 Afghanistan 2000    2666   20595360
+## 5 Brazil      2000   80488  174504898
+## 6 China       2000  213766 1280428583
 ```
 
 Note we don't need to specify the `by.x` and `by.y`, since the two tables have column names in common - `left_join()` works that out and does the join automatically.
@@ -220,14 +220,14 @@ table2 %>%
 
 ```
 ## # A tibble: 6 x 4
-##       country  year  cases population
-## *       <chr> <int>  <int>      <int>
+##   country      year  cases population
+##   <chr>       <int>  <int>      <int>
 ## 1 Afghanistan  1999    745   19987071
 ## 2 Afghanistan  2000   2666   20595360
-## 3      Brazil  1999  37737  172006362
-## 4      Brazil  2000  80488  174504898
-## 5       China  1999 212258 1272915272
-## 6       China  2000 213766 1280428583
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583
 ```
 
 ## separate()
@@ -241,14 +241,14 @@ table3
 
 ```
 ## # A tibble: 6 x 3
-##       country  year              rate
-## *       <chr> <int>             <chr>
-## 1 Afghanistan  1999      745/19987071
-## 2 Afghanistan  2000     2666/20595360
-## 3      Brazil  1999   37737/172006362
-## 4      Brazil  2000   80488/174504898
-## 5       China  1999 212258/1272915272
-## 6       China  2000 213766/1280428583
+##   country      year rate             
+## * <chr>       <int> <chr>            
+## 1 Afghanistan  1999 745/19987071     
+## 2 Afghanistan  2000 2666/20595360    
+## 3 Brazil       1999 37737/172006362  
+## 4 Brazil       2000 80488/174504898  
+## 5 China        1999 212258/1272915272
+## 6 China        2000 213766/1280428583
 ```
 
 We can separate that `rate` column into two - `cases` and `population`
@@ -261,14 +261,14 @@ table3 %>%
 
 ```
 ## # A tibble: 6 x 4
-##       country  year  cases population
-## *       <chr> <int>  <chr>      <chr>
-## 1 Afghanistan  1999    745   19987071
-## 2 Afghanistan  2000   2666   20595360
-## 3      Brazil  1999  37737  172006362
-## 4      Brazil  2000  80488  174504898
-## 5       China  1999 212258 1272915272
-## 6       China  2000 213766 1280428583
+##   country      year cases  population
+## * <chr>       <int> <chr>  <chr>     
+## 1 Afghanistan  1999 745    19987071  
+## 2 Afghanistan  2000 2666   20595360  
+## 3 Brazil       1999 37737  172006362 
+## 4 Brazil       2000 80488  174504898 
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583
 ```
 
 By default `separate()` splits things on any non-numeric character. But we can be explicit with the `sep` argument.
@@ -281,14 +281,14 @@ table3 %>%
 
 ```
 ## # A tibble: 6 x 4
-##       country  year  cases population
-## *       <chr> <int>  <chr>      <chr>
-## 1 Afghanistan  1999    745   19987071
-## 2 Afghanistan  2000   2666   20595360
-## 3      Brazil  1999  37737  172006362
-## 4      Brazil  2000  80488  174504898
-## 5       China  1999 212258 1272915272
-## 6       China  2000 213766 1280428583
+##   country      year cases  population
+## * <chr>       <int> <chr>  <chr>     
+## 1 Afghanistan  1999 745    19987071  
+## 2 Afghanistan  2000 2666   20595360  
+## 3 Brazil       1999 37737  172006362 
+## 4 Brazil       2000 80488  174504898 
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583
 ```
 
 This works just as well, but is useful if the computer makes a bad guess.
@@ -303,14 +303,14 @@ table3 %>%
 
 ```
 ## # A tibble: 6 x 4
-##       country  year  cases population
-## *       <chr> <int>  <int>      <int>
+##   country      year  cases population
+## * <chr>       <int>  <int>      <int>
 ## 1 Afghanistan  1999    745   19987071
 ## 2 Afghanistan  2000   2666   20595360
-## 3      Brazil  1999  37737  172006362
-## 4      Brazil  2000  80488  174504898
-## 5       China  1999 212258 1272915272
-## 6       China  2000 213766 1280428583
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583
 ```
 And now, we're back to tidy data.
 
@@ -332,14 +332,14 @@ table5
 
 ```
 ## # A tibble: 6 x 4
-##       country century  year              rate
-## *       <chr>   <int> <int>             <chr>
-## 1 Afghanistan      19    99      745/19987071
-## 2 Afghanistan      20     0     2666/20595360
-## 3      Brazil      19    99   37737/172006362
-## 4      Brazil      20     0   80488/174504898
-## 5       China      19    99 212258/1272915272
-## 6       China      20     0 213766/1280428583
+##   country     century  year rate             
+## * <chr>         <int> <int> <chr>            
+## 1 Afghanistan      19    99 745/19987071     
+## 2 Afghanistan      20     0 2666/20595360    
+## 3 Brazil           19    99 37737/172006362  
+## 4 Brazil           20     0 80488/174504898  
+## 5 China            19    99 212258/1272915272
+## 6 China            20     0 213766/1280428583
 ```
 
 We can now re- `unite()` `table5`. The arguments for this function are just the name of the new column, and the columns to join
@@ -352,14 +352,14 @@ table5 %>%
 
 ```
 ## # A tibble: 6 x 3
-##       country   new              rate
-## *       <chr> <chr>             <chr>
-## 1 Afghanistan 19_99      745/19987071
-## 2 Afghanistan  20_0     2666/20595360
-## 3      Brazil 19_99   37737/172006362
-## 4      Brazil  20_0   80488/174504898
-## 5       China 19_99 212258/1272915272
-## 6       China  20_0 213766/1280428583
+##   country     new   rate             
+##   <chr>       <chr> <chr>            
+## 1 Afghanistan 19_99 745/19987071     
+## 2 Afghanistan 20_0  2666/20595360    
+## 3 Brazil      19_99 37737/172006362  
+## 4 Brazil      20_0  80488/174504898  
+## 5 China       19_99 212258/1272915272
+## 6 China       20_0  213766/1280428583
 ```
 
 Here the default is to use an underscore `_` to join the values, but we can be explicit and use nothing with the `sep` argument
@@ -372,14 +372,14 @@ table5 %>%
 
 ```
 ## # A tibble: 6 x 3
-##       country   new              rate
-## *       <chr> <chr>             <chr>
-## 1 Afghanistan  1999      745/19987071
-## 2 Afghanistan   200     2666/20595360
-## 3      Brazil  1999   37737/172006362
-## 4      Brazil   200   80488/174504898
-## 5       China  1999 212258/1272915272
-## 6       China   200 213766/1280428583
+##   country     new   rate             
+##   <chr>       <chr> <chr>            
+## 1 Afghanistan 1999  745/19987071     
+## 2 Afghanistan 200   2666/20595360    
+## 3 Brazil      1999  37737/172006362  
+## 4 Brazil      200   80488/174504898  
+## 5 China       1999  212258/1272915272
+## 6 China       200   213766/1280428583
 ```
 
 ## Quiz

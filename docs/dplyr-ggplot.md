@@ -92,13 +92,13 @@ diamonds %>%
 
 ```
 ## # A tibble: 5 x 3
-##         cut mean_price sd_price
-##       <ord>      <dbl>    <dbl>
-## 1      Fair   4358.758 3560.387
-## 2      Good   3928.864 3681.590
-## 3 Very Good   3981.760 3935.862
-## 4   Premium   4584.258 4349.205
-## 5     Ideal   3457.542 3808.401
+##   cut       mean_price sd_price
+##   <ord>          <dbl>    <dbl>
+## 1 Fair           4359.    3560.
+## 2 Good           3929.    3682.
+## 3 Very Good      3982.    3936.
+## 4 Premium        4584.    4349.
+## 5 Ideal          3458.    3808.
 ```
 
 The `dplyr` `group_by()` and `summarise()` returns a table with two new columns. These are the values `ggplot` uses. The `mean_price` for the bar height, the `mean_price - sd_price` for the lower extent of each error bar, and `mean_price + sd_price` for the higher extent of each error bar.
@@ -118,13 +118,13 @@ diamonds %>%
 
 ```
 ## # A tibble: 5 x 3
-##         cut mean_price se_price
-##       <ord>      <dbl>    <dbl>
-## 1      Fair   4358.758 88.73281
-## 2      Good   3928.864 52.56197
-## 3 Very Good   3981.760 35.80721
-## 4   Premium   4584.258 37.03497
-## 5     Ideal   3457.542 25.94233
+##   cut       mean_price se_price
+##   <ord>          <dbl>    <dbl>
+## 1 Fair           4359.     88.7
+## 2 Good           3929.     52.6
+## 3 Very Good      3982.     35.8
+## 4 Premium        4584.     37.0
+## 5 Ideal          3458.     25.9
 ```
 
 These can be worked with as before

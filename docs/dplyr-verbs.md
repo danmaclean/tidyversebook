@@ -85,14 +85,14 @@ diamonds %>%
 
 ```
 ## # A tibble: 6 x 2
-##   carat       cut
-##   <dbl>     <ord>
-## 1  0.23     Ideal
-## 2  0.21   Premium
-## 3  0.23      Good
-## 4  0.29   Premium
-## 5  0.31      Good
-## 6  0.24 Very Good
+##   carat cut      
+##   <dbl> <ord>    
+## 1 0.23  Ideal    
+## 2 0.21  Premium  
+## 3 0.23  Good     
+## 4 0.290 Premium  
+## 5 0.31  Good     
+## 6 0.24  Very Good
 ```
 
 Shorthands include the `:` which lets you choose a range and `-` which can be read as `except` so leaves out the columns you state
@@ -125,14 +125,14 @@ diamonds %>%
 
 ```
 ## # A tibble: 6 x 7
-##   carat       cut color clarity depth table price
-##   <dbl>     <ord> <ord>   <ord> <dbl> <dbl> <int>
-## 1  0.23     Ideal     E     SI2  61.5    55   326
-## 2  0.21   Premium     E     SI1  59.8    61   326
-## 3  0.23      Good     E     VS1  56.9    65   327
-## 4  0.29   Premium     I     VS2  62.4    58   334
-## 5  0.31      Good     J     SI2  63.3    58   335
-## 6  0.24 Very Good     J    VVS2  62.8    57   336
+##   carat cut       color clarity depth table price
+##   <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int>
+## 1 0.23  Ideal     E     SI2      61.5    55   326
+## 2 0.21  Premium   E     SI1      59.8    61   326
+## 3 0.23  Good      E     VS1      56.9    65   327
+## 4 0.290 Premium   I     VS2      62.4    58   334
+## 5 0.31  Good      J     SI2      63.3    58   335
+## 6 0.24  Very Good J     VVS2     62.8    57   336
 ```
 
 You can select columns with helpers, 
@@ -153,14 +153,14 @@ diamonds %>%
 
 ```
 ## # A tibble: 6 x 4
-##   carat       cut color clarity
-##   <dbl>     <ord> <ord>   <ord>
-## 1  0.23     Ideal     E     SI2
-## 2  0.21   Premium     E     SI1
-## 3  0.23      Good     E     VS1
-## 4  0.29   Premium     I     VS2
-## 5  0.31      Good     J     SI2
-## 6  0.24 Very Good     J    VVS2
+##   carat cut       color clarity
+##   <dbl> <ord>     <ord> <ord>  
+## 1 0.23  Ideal     E     SI2    
+## 2 0.21  Premium   E     SI1    
+## 3 0.23  Good      E     VS1    
+## 4 0.290 Premium   I     VS2    
+## 5 0.31  Good      J     SI2    
+## 6 0.24  Very Good J     VVS2
 ```
 
 ```r
@@ -190,13 +190,13 @@ diamonds %>%
 ```
 ## # A tibble: 6 x 3
 ##   color clarity table
-##   <ord>   <ord> <dbl>
-## 1     E     SI2    55
-## 2     E     SI1    61
-## 3     E     VS1    65
-## 4     I     VS2    58
-## 5     J     SI2    58
-## 6     J    VVS2    57
+##   <ord> <ord>   <dbl>
+## 1 E     SI2        55
+## 2 E     SI1        61
+## 3 E     VS1        65
+## 4 I     VS2        58
+## 5 J     SI2        58
+## 6 J     VVS2       57
 ```
 ### rename()
 
@@ -211,14 +211,14 @@ diamonds %>%
 
 ```
 ## # A tibble: 6 x 10
-##   carat       cut colour clarity depth table price     x     y     z
-##   <dbl>     <ord>  <ord>   <ord> <dbl> <dbl> <int> <dbl> <dbl> <dbl>
-## 1  0.23     Ideal      E     SI2  61.5    55   326  3.95  3.98  2.43
-## 2  0.21   Premium      E     SI1  59.8    61   326  3.89  3.84  2.31
-## 3  0.23      Good      E     VS1  56.9    65   327  4.05  4.07  2.31
-## 4  0.29   Premium      I     VS2  62.4    58   334  4.20  4.23  2.63
-## 5  0.31      Good      J     SI2  63.3    58   335  4.34  4.35  2.75
-## 6  0.24 Very Good      J    VVS2  62.8    57   336  3.94  3.96  2.48
+##   carat cut       colour clarity depth table price     x     y     z
+##   <dbl> <ord>     <ord>  <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
+## 1 0.23  Ideal     E      SI2      61.5    55   326  3.95  3.98  2.43
+## 2 0.21  Premium   E      SI1      59.8    61   326  3.89  3.84  2.31
+## 3 0.23  Good      E      VS1      56.9    65   327  4.05  4.07  2.31
+## 4 0.290 Premium   I      VS2      62.4    58   334  4.2   4.23  2.63
+## 5 0.31  Good      J      SI2      63.3    58   335  4.34  4.35  2.75
+## 6 0.24  Very Good J      VVS2     62.8    57   336  3.94  3.96  2.48
 ```
 ## filter()
 
@@ -233,14 +233,14 @@ diamonds %>%
 
 ```
 ## # A tibble: 6 x 10
-##   carat       cut color clarity depth table price     x     y     z
-##   <dbl>     <ord> <ord>   <ord> <dbl> <dbl> <int> <dbl> <dbl> <dbl>
-## 1  0.23 Very Good     G    VVS2  60.4    58   354  3.97  4.01  2.41
-## 2  0.23     Ideal     G     VS1  61.9    54   404  3.93  3.95  2.44
-## 3  0.28     Ideal     G    VVS2  61.4    56   553  4.19  4.22  2.58
-## 4  0.31 Very Good     G     SI1  63.3    57   553  4.33  4.30  2.73
-## 5  0.31   Premium     G     SI1  61.8    58   553  4.35  4.32  2.68
-## 6  0.24   Premium     G    VVS1  62.3    59   554  3.95  3.92  2.45
+##   carat cut       color clarity depth table price     x     y     z
+##   <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
+## 1  0.23 Very Good G     VVS2     60.4    58   354  3.97  4.01  2.41
+## 2  0.23 Ideal     G     VS1      61.9    54   404  3.93  3.95  2.44
+## 3  0.28 Ideal     G     VVS2     61.4    56   553  4.19  4.22  2.58
+## 4  0.31 Very Good G     SI1      63.3    57   553  4.33  4.3   2.73
+## 5  0.31 Premium   G     SI1      61.8    58   553  4.35  4.32  2.68
+## 6  0.24 Premium   G     VVS1     62.3    59   554  3.95  3.92  2.45
 ```
 
 The syntax is fairly clear, just pass the column you want to think about and the condition to keep the rows. Multiple conditions can be used and all must be true to keep a row.  
@@ -255,14 +255,14 @@ diamonds %>%
 
 ```
 ## # A tibble: 6 x 10
-##   carat   cut color clarity depth table price     x     y     z
-##   <dbl> <ord> <ord>   <ord> <dbl> <dbl> <int> <dbl> <dbl> <dbl>
-## 1  0.23 Ideal     G     VS1  61.9    54   404  3.93  3.95  2.44
-## 2  0.28 Ideal     G    VVS2  61.4    56   553  4.19  4.22  2.58
-## 3  0.70 Ideal     G     VS2  61.6    56  2757  5.70  5.67  3.50
-## 4  0.74 Ideal     G     SI1  61.6    55  2760  5.80  5.85  3.59
-## 5  0.75 Ideal     G     SI1  62.2    55  2760  5.87  5.80  3.63
-## 6  0.71 Ideal     G     VS2  62.4    54  2762  5.72  5.76  3.58
+##   carat cut   color clarity depth table price     x     y     z
+##   <dbl> <ord> <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
+## 1  0.23 Ideal G     VS1      61.9    54   404  3.93  3.95  2.44
+## 2  0.28 Ideal G     VVS2     61.4    56   553  4.19  4.22  2.58
+## 3  0.7  Ideal G     VS2      61.6    56  2757  5.7   5.67  3.5 
+## 4  0.74 Ideal G     SI1      61.6    55  2760  5.8   5.85  3.59
+## 5  0.75 Ideal G     SI1      62.2    55  2760  5.87  5.8   3.63
+## 6  0.71 Ideal G     VS2      62.4    54  2762  5.72  5.76  3.58
 ```
 
 To make more complex queries, you'll need to combine comparisons and logical operators.
@@ -310,14 +310,14 @@ diamonds %>%
 
 ```
 ## # A tibble: 6 x 10
-##   carat       cut color clarity depth table price     x     y     z
-##   <dbl>     <ord> <ord>   <ord> <dbl> <dbl> <int> <dbl> <dbl> <dbl>
-## 1  0.23     Ideal     E     SI2  61.5    55   326  3.95  3.98  2.43
-## 2  0.23     Ideal     J     VS1  62.8    56   340  3.93  3.90  2.46
-## 3  0.31     Ideal     J     SI2  62.2    54   344  4.35  4.37  2.71
-## 4  0.30     Ideal     I     SI2  62.0    54   348  4.31  4.34  2.68
-## 5  0.23 Very Good     G    VVS2  60.4    58   354  3.97  4.01  2.41
-## 6  0.33     Ideal     I     SI2  61.8    55   403  4.49  4.51  2.78
+##   carat cut       color clarity depth table price     x     y     z
+##   <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
+## 1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+## 2  0.23 Ideal     J     VS1      62.8    56   340  3.93  3.9   2.46
+## 3  0.31 Ideal     J     SI2      62.2    54   344  4.35  4.37  2.71
+## 4  0.3  Ideal     I     SI2      62      54   348  4.31  4.34  2.68
+## 5  0.23 Very Good G     VVS2     60.4    58   354  3.97  4.01  2.41
+## 6  0.33 Ideal     I     SI2      61.8    55   403  4.49  4.51  2.78
 ```
 
 Note that the computer doesn't read this like it's English. Consider this
@@ -340,14 +340,14 @@ diamonds %>%
 
 ```
 ## # A tibble: 6 x 10
-##   carat       cut color clarity depth table price     x     y     z
-##   <dbl>     <ord> <ord>   <ord> <dbl> <dbl> <int> <dbl> <dbl> <dbl>
-## 1  0.22   Premium     F     SI1  60.4    61   342  3.88  3.84  2.33
-## 2  0.23 Very Good     G    VVS2  60.4    58   354  3.97  4.01  2.41
-## 3  0.23 Very Good     F     VS1  60.9    57   357  3.96  3.99  2.42
-## 4  0.23 Very Good     F     VS1  60.0    57   402  4.00  4.03  2.41
-## 5  0.23 Very Good     F     VS1  59.8    57   402  4.04  4.06  2.42
-## 6  0.23      Good     F     VS1  58.2    59   402  4.06  4.08  2.37
+##   carat cut       color clarity depth table price     x     y     z
+##   <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
+## 1  0.22 Premium   F     SI1      60.4    61   342  3.88  3.84  2.33
+## 2  0.23 Very Good G     VVS2     60.4    58   354  3.97  4.01  2.41
+## 3  0.23 Very Good F     VS1      60.9    57   357  3.96  3.99  2.42
+## 4  0.23 Very Good F     VS1      60      57   402  4     4.03  2.41
+## 5  0.23 Very Good F     VS1      59.8    57   402  4.04  4.06  2.42
+## 6  0.23 Good      F     VS1      58.2    59   402  4.06  4.08  2.37
 ```
 
 Which can be cumbersome if you want to filter on one of many possible values. For that reason we have `%in%` , which works like
@@ -361,14 +361,14 @@ diamonds %>%
 
 ```
 ## # A tibble: 6 x 10
-##   carat       cut color clarity depth table price     x     y     z
-##   <dbl>     <ord> <ord>   <ord> <dbl> <dbl> <int> <dbl> <dbl> <dbl>
-## 1  0.22   Premium     F     SI1  60.4    61   342  3.88  3.84  2.33
-## 2  0.23 Very Good     G    VVS2  60.4    58   354  3.97  4.01  2.41
-## 3  0.23 Very Good     F     VS1  60.9    57   357  3.96  3.99  2.42
-## 4  0.23 Very Good     F     VS1  60.0    57   402  4.00  4.03  2.41
-## 5  0.23 Very Good     F     VS1  59.8    57   402  4.04  4.06  2.42
-## 6  0.23      Good     F     VS1  58.2    59   402  4.06  4.08  2.37
+##   carat cut       color clarity depth table price     x     y     z
+##   <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
+## 1  0.22 Premium   F     SI1      60.4    61   342  3.88  3.84  2.33
+## 2  0.23 Very Good G     VVS2     60.4    58   354  3.97  4.01  2.41
+## 3  0.23 Very Good F     VS1      60.9    57   357  3.96  3.99  2.42
+## 4  0.23 Very Good F     VS1      60      57   402  4     4.03  2.41
+## 5  0.23 Very Good F     VS1      59.8    57   402  4.04  4.06  2.42
+## 6  0.23 Good      F     VS1      58.2    59   402  4.06  4.08  2.37
 ```
 
 You can select anything not in a list given to `%in%` with a judicious `!` (not), again this is a bit weird if you translate directly from English, as the not goes first. 
@@ -381,14 +381,14 @@ diamonds %>%
 
 ```
 ## # A tibble: 6 x 10
-##   carat       cut color clarity depth table price     x     y     z
-##   <dbl>     <ord> <ord>   <ord> <dbl> <dbl> <int> <dbl> <dbl> <dbl>
-## 1  0.23     Ideal     E     SI2  61.5    55   326  3.95  3.98  2.43
-## 2  0.21   Premium     E     SI1  59.8    61   326  3.89  3.84  2.31
-## 3  0.23      Good     E     VS1  56.9    65   327  4.05  4.07  2.31
-## 4  0.29   Premium     I     VS2  62.4    58   334  4.20  4.23  2.63
-## 5  0.31      Good     J     SI2  63.3    58   335  4.34  4.35  2.75
-## 6  0.24 Very Good     J    VVS2  62.8    57   336  3.94  3.96  2.48
+##   carat cut       color clarity depth table price     x     y     z
+##   <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
+## 1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+## 2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+## 3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+## 4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+## 5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+## 6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
 ```
 
 ## mutate()
@@ -407,12 +407,12 @@ diamonds %>%
 ## # A tibble: 6 x 3
 ##   price carat price_per_carat
 ##   <int> <dbl>           <dbl>
-## 1   326  0.23        1417.391
-## 2   326  0.21        1552.381
-## 3   327  0.23        1421.739
-## 4   334  0.29        1151.724
-## 5   335  0.31        1080.645
-## 6   336  0.24        1400.000
+## 1   326 0.23            1417.
+## 2   326 0.21            1552.
+## 3   327 0.23            1422.
+## 4   334 0.290           1152.
+## 5   335 0.31            1081.
+## 6   336 0.24            1400
 ```
 
 You can refer to columns straight after creating them, so you can minimise `mutate()`s
@@ -430,12 +430,12 @@ diamonds %>%
 ## # A tibble: 6 x 2
 ##   depth_per_ppc price_per_carat
 ##           <dbl>           <dbl>
-## 1    0.04338957        1417.391
-## 2    0.03852147        1552.381
-## 3    0.04002141        1421.739
-## 4    0.05417964        1151.724
-## 5    0.05857612        1080.645
-## 6    0.04485714        1400.000
+## 1        0.0434           1417.
+## 2        0.0385           1552.
+## 3        0.0400           1422.
+## 4        0.0542           1152.
+## 5        0.0586           1081.
+## 6        0.0449           1400
 ```
 
 ### Functions in mutate()
@@ -452,14 +452,14 @@ diamonds %>%
 
 ```
 ## # A tibble: 6 x 8
-##   carat       cut color clarity depth table price log_price
-##   <dbl>     <ord> <ord>   <ord> <dbl> <dbl> <int>     <dbl>
-## 1  0.23     Ideal     E     SI2  61.5    55   326  5.786897
-## 2  0.21   Premium     E     SI1  59.8    61   326  5.786897
-## 3  0.23      Good     E     VS1  56.9    65   327  5.789960
-## 4  0.29   Premium     I     VS2  62.4    58   334  5.811141
-## 5  0.31      Good     J     SI2  63.3    58   335  5.814131
-## 6  0.24 Very Good     J    VVS2  62.8    57   336  5.817111
+##   carat cut       color clarity depth table price log_price
+##   <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int>     <dbl>
+## 1 0.23  Ideal     E     SI2      61.5    55   326      5.79
+## 2 0.21  Premium   E     SI1      59.8    61   326      5.79
+## 3 0.23  Good      E     VS1      56.9    65   327      5.79
+## 4 0.290 Premium   I     VS2      62.4    58   334      5.81
+## 5 0.31  Good      J     SI2      63.3    58   335      5.81
+## 6 0.24  Very Good J     VVS2     62.8    57   336      5.82
 ```
 
 
@@ -472,14 +472,14 @@ diamonds %>%
 
 ```
 ## # A tibble: 6 x 8
-##   carat       cut color clarity depth table price total_price
-##   <dbl>     <ord> <ord>   <ord> <dbl> <dbl> <int>       <int>
-## 1  0.23     Ideal     E     SI2  61.5    55   326   212135217
-## 2  0.21   Premium     E     SI1  59.8    61   326   212135217
-## 3  0.23      Good     E     VS1  56.9    65   327   212135217
-## 4  0.29   Premium     I     VS2  62.4    58   334   212135217
-## 5  0.31      Good     J     SI2  63.3    58   335   212135217
-## 6  0.24 Very Good     J    VVS2  62.8    57   336   212135217
+##   carat cut       color clarity depth table price total_price
+##   <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int>       <int>
+## 1 0.23  Ideal     E     SI2      61.5    55   326   212135217
+## 2 0.21  Premium   E     SI1      59.8    61   326   212135217
+## 3 0.23  Good      E     VS1      56.9    65   327   212135217
+## 4 0.290 Premium   I     VS2      62.4    58   334   212135217
+## 5 0.31  Good      J     SI2      63.3    58   335   212135217
+## 6 0.24  Very Good J     VVS2     62.8    57   336   212135217
 ```
 
 Observe how the same number is in all the rows in the last example, this highlights how this 'vectorized' function idea works. 
@@ -522,18 +522,18 @@ diamonds %>%
 
 ```
 ## # A tibble: 53,940 x 8
-##    carat       cut color clarity depth table price  cost
-##    <dbl>     <ord> <ord>   <ord> <dbl> <dbl> <int> <chr>
-##  1  0.23     Ideal     E     SI2  61.5    55   326   low
-##  2  0.21   Premium     E     SI1  59.8    61   326   low
-##  3  0.23      Good     E     VS1  56.9    65   327   low
-##  4  0.29   Premium     I     VS2  62.4    58   334   low
-##  5  0.31      Good     J     SI2  63.3    58   335   low
-##  6  0.24 Very Good     J    VVS2  62.8    57   336  high
-##  7  0.24 Very Good     I    VVS1  62.3    57   336  high
-##  8  0.26 Very Good     H     SI1  61.9    55   337  high
-##  9  0.22      Fair     E     VS2  65.1    61   337  high
-## 10  0.23 Very Good     H     VS1  59.4    61   338  high
+##    carat cut       color clarity depth table price cost 
+##    <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <chr>
+##  1 0.23  Ideal     E     SI2      61.5    55   326 low  
+##  2 0.21  Premium   E     SI1      59.8    61   326 low  
+##  3 0.23  Good      E     VS1      56.9    65   327 low  
+##  4 0.290 Premium   I     VS2      62.4    58   334 low  
+##  5 0.31  Good      J     SI2      63.3    58   335 low  
+##  6 0.24  Very Good J     VVS2     62.8    57   336 high 
+##  7 0.24  Very Good I     VVS1     62.3    57   336 high 
+##  8 0.26  Very Good H     SI1      61.9    55   337 high 
+##  9 0.22  Fair      E     VS2      65.1    61   337 high 
+## 10 0.23  Very Good H     VS1      59.4    61   338 high 
 ## # ... with 53,930 more rows
 ```
 
@@ -553,7 +553,7 @@ diamonds %>%
 ## # A tibble: 1 x 1
 ##   mean_price
 ##        <dbl>
-## 1     3932.8
+## 1      3933.
 ```
 
 `summarize()` is best used with `group_by()` which helps split dataframes into subsets. The `summarize()` function will run once for each subset created by `group_by()`. Let's find the mean price for every colour of diamonds. We'll do this by grouping the `diamonds` dataframe on `color`, then summarising.
@@ -569,13 +569,13 @@ diamonds %>%
 ## # A tibble: 7 x 2
 ##   color mean_price
 ##   <ord>      <dbl>
-## 1     D   3169.954
-## 2     E   3076.752
-## 3     F   3724.886
-## 4     G   3999.136
-## 5     H   4486.669
-## 6     I   5091.875
-## 7     J   5323.818
+## 1 D          3170.
+## 2 E          3077.
+## 3 F          3725.
+## 4 G          3999.
+## 5 H          4487.
+## 6 I          5092.
+## 7 J          5324.
 ```
 
 This is where the power of dplyr starts to be obvious. Once we've got our dataframe into shape with the `select()`, `filter()` and `mutate()` functions, we can start to compute new information with `group_by()` and `summarize()` and some of the helper functions.
@@ -595,18 +595,18 @@ diamonds %>%
 ```
 ## # A tibble: 35 x 4
 ## # Groups:   color [?]
-##    color       cut mean_price       sd
-##    <ord>     <ord>      <dbl>    <dbl>
-##  1     D      Fair   4291.061 3286.114
-##  2     D      Good   3405.382 3175.149
-##  3     D Very Good   3470.467 3523.753
-##  4     D   Premium   3631.293 3711.634
-##  5     D     Ideal   2629.095 3001.070
-##  6     E      Fair   3682.312 2976.652
-##  7     E      Good   3423.644 3330.702
-##  8     E Very Good   3214.652 3408.024
-##  9     E   Premium   3538.914 3794.987
-## 10     E     Ideal   2597.550 2956.007
+##    color cut       mean_price    sd
+##    <ord> <ord>          <dbl> <dbl>
+##  1 D     Fair           4291. 3286.
+##  2 D     Good           3405. 3175.
+##  3 D     Very Good      3470. 3524.
+##  4 D     Premium        3631. 3712.
+##  5 D     Ideal          2629. 3001.
+##  6 E     Fair           3682. 2977.
+##  7 E     Good           3424. 3331.
+##  8 E     Very Good      3215. 3408.
+##  9 E     Premium        3539. 3795.
+## 10 E     Ideal          2598. 2956.
 ## # ... with 25 more rows
 ```
 
@@ -631,13 +631,13 @@ diamonds %>%
 ## # A tibble: 7 x 2
 ##   color count
 ##   <ord> <int>
-## 1     D  6775
-## 2     E  9797
-## 3     F  9542
-## 4     G 11292
-## 5     H  8304
-## 6     I  5422
-## 7     J  2808
+## 1 D      6775
+## 2 E      9797
+## 3 F      9542
+## 4 G     11292
+## 5 H      8304
+## 6 I      5422
+## 7 J      2808
 ```
 
 Related is `n_distinct()` which counts the number of unique values in a group. This one needs to know which column of things you want to use. Let's see how many observations there are for each `cut` and how many different `color`s are observed in each `cut`
@@ -654,13 +654,13 @@ diamonds %>%
 
 ```
 ## # A tibble: 5 x 3
-##         cut items unique_colors
-##       <ord> <int>         <int>
-## 1      Fair  1610             7
-## 2      Good  4906             7
+##   cut       items unique_colors
+##   <ord>     <int>         <int>
+## 1 Fair       1610             7
+## 2 Good       4906             7
 ## 3 Very Good 12082             7
-## 4   Premium 13791             7
-## 5     Ideal 21551             7
+## 4 Premium   13791             7
+## 5 Ideal     21551             7
 ```
 
 There are other helpful summary functions, here's a non-exhaustive list
@@ -684,14 +684,14 @@ diamonds %>%
 
 ```
 ## # A tibble: 6 x 10
-##   carat       cut color clarity depth table price     x     y     z
-##   <dbl>     <ord> <ord>   <ord> <dbl> <dbl> <int> <dbl> <dbl> <dbl>
-## 1  0.23     Ideal     E     SI2  61.5    55   326  3.95  3.98  2.43
-## 2  0.21   Premium     E     SI1  59.8    61   326  3.89  3.84  2.31
-## 3  0.23      Good     E     VS1  56.9    65   327  4.05  4.07  2.31
-## 4  0.29   Premium     I     VS2  62.4    58   334  4.20  4.23  2.63
-## 5  0.31      Good     J     SI2  63.3    58   335  4.34  4.35  2.75
-## 6  0.24 Very Good     J    VVS2  62.8    57   336  3.94  3.96  2.48
+##   carat cut       color clarity depth table price     x     y     z
+##   <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
+## 1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+## 2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+## 3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+## 4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+## 5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+## 6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
 ```
 
 To sort biggest first, use `desc()`
@@ -705,14 +705,14 @@ diamonds %>%
 
 ```
 ## # A tibble: 6 x 10
-##   carat       cut color clarity depth table price     x     y     z
-##   <dbl>     <ord> <ord>   <ord> <dbl> <dbl> <int> <dbl> <dbl> <dbl>
-## 1  2.29   Premium     I     VS2  60.8    60 18823  8.50  8.47  5.16
-## 2  2.00 Very Good     G     SI1  63.5    56 18818  7.90  7.97  5.04
-## 3  1.51     Ideal     G      IF  61.7    55 18806  7.37  7.41  4.56
-## 4  2.07     Ideal     G     SI2  62.5    55 18804  8.20  8.13  5.11
-## 5  2.00 Very Good     H     SI1  62.8    57 18803  7.95  8.00  5.01
-## 6  2.29   Premium     I     SI1  61.8    59 18797  8.52  8.45  5.24
+##   carat cut       color clarity depth table price     x     y     z
+##   <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
+## 1  2.29 Premium   I     VS2      60.8    60 18823  8.5   8.47  5.16
+## 2  2    Very Good G     SI1      63.5    56 18818  7.9   7.97  5.04
+## 3  1.51 Ideal     G     IF       61.7    55 18806  7.37  7.41  4.56
+## 4  2.07 Ideal     G     SI2      62.5    55 18804  8.2   8.13  5.11
+## 5  2    Very Good H     SI1      62.8    57 18803  7.95  8     5.01
+## 6  2.29 Premium   I     SI1      61.8    59 18797  8.52  8.45  5.24
 ```
 
 ## Missing Values
@@ -748,11 +748,11 @@ incomplete %>%
 
 ```
 ## # A tibble: 3 x 2
-##    group mean_size
-##   <fctr>     <dbl>
-## 1      A       8.2
-## 2      B        NA
-## 3      C        NA
+##   group mean_size
+##   <fct>     <dbl>
+## 1 A           8.2
+## 2 B          NA  
+## 3 C          NA
 ```
 
 The groups with any `NA` can't be calculated. We need to tell our helper function to remove `NA` before we work with it.
@@ -766,11 +766,11 @@ incomplete %>%
 
 ```
 ## # A tibble: 3 x 2
-##    group mean_size
-##   <fctr>     <dbl>
-## 1      A       8.2
-## 2      B       NaN
-## 3      C       8.0
+##   group mean_size
+##   <fct>     <dbl>
+## 1 A           8.2
+## 2 B         NaN  
+## 3 C           8
 ```
 
 This works! Though because the group `B` only had `NA` in it the formula for mean fails because we can't divide by `0` and we get `NaN` (not a number). 
@@ -787,7 +787,7 @@ incomplete %>%
 
 ```
 ## # A tibble: 0 x 2
-## # ... with 2 variables: group <fctr>, mean_size <dbl>
+## # ... with 2 variables: group <fct>, mean_size <dbl>
 ```
 
 By definition `NA` means `Not available`, which is a nice way of saying `don't know`, so, strictly, `x == NA` means "is `x` equal to something we don't know the value of?" To which the answer can only be `don't know`, for which R uses `NA`.  The result is that any comparison with `NA` in it is `NA`. `filter()` doesn't know whether any row passes so throws it out. You get no rows for `group_by()` to group.
@@ -804,10 +804,10 @@ incomplete %>%
 
 ```
 ## # A tibble: 2 x 2
-##    group mean_size
-##   <fctr>     <dbl>
-## 1      A       8.2
-## 2      C       8.0
+##   group mean_size
+##   <fct>     <dbl>
+## 1 A           8.2
+## 2 C           8
 ```
 
 
@@ -827,11 +827,11 @@ incomplete %>%
 
 ```
 ## # A tibble: 3 x 3
-##    group mean_size sample_size
-##   <fctr>     <dbl>       <int>
-## 1      A       8.2           2
-## 2      B       NaN           2
-## 3      C       8.0           2
+##   group mean_size sample_size
+##   <fct>     <dbl>       <int>
+## 1 A           8.2           2
+## 2 B         NaN             2
+## 3 C           8             2
 ```
 
 ```r
@@ -846,10 +846,10 @@ incomplete %>%
 
 ```
 ## # A tibble: 2 x 3
-##    group mean_size sample_size
-##   <fctr>     <dbl>       <int>
-## 1      A       8.2           2
-## 2      C       8.0           1
+##   group mean_size sample_size
+##   <fct>     <dbl>       <int>
+## 1 A           8.2           2
+## 2 C           8             1
 ```
 
 With a more complicated call, you can explicitly get the number of `NA`s. 
@@ -867,11 +867,11 @@ incomplete %>%
 
 ```
 ## # A tibble: 3 x 4
-##    group mean_size sample_size   nas
-##   <fctr>     <dbl>       <int> <int>
-## 1      A       8.2           2     0
-## 2      B       NaN           2     2
-## 3      C       8.0           2     1
+##   group mean_size sample_size   nas
+##   <fct>     <dbl>       <int> <int>
+## 1 A           8.2           2     0
+## 2 B         NaN             2     2
+## 3 C           8             2     1
 ```
 
 ## Quiz
@@ -882,10 +882,8 @@ incomplete %>%
 
 3. What time of day should you fly to avoid delays as much as possible?
 
-4. For each destination compute the total minutes of delay?
+4. For each destination compute the total minutes of delay? 
 
-5. Look at each destination. Can you find flights that are suspicously fast? I.E flights that might have a data entry error. 
-
-6. Find all destinations that have at least two carriers. 
+5. Find all destinations that have at least two carriers. 
 
 (These exercises are taken from pg 75 of [R for Data Science](http://r4ds.had.co.nz/) - check there for more challenges.)

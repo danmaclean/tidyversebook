@@ -27,11 +27,11 @@ band_members
 
 ```
 ## # A tibble: 3 x 2
-##    name    band
-##   <chr>   <chr>
-## 1  Mick  Stones
-## 2  John Beatles
-## 3  Paul Beatles
+##   name  band   
+##   <chr> <chr>  
+## 1 Mick  Stones 
+## 2 John  Beatles
+## 3 Paul  Beatles
 ```
 
 ```r
@@ -40,10 +40,10 @@ band_instruments
 
 ```
 ## # A tibble: 3 x 2
-##    name  plays
-##   <chr>  <chr>
-## 1  John guitar
-## 2  Paul   bass
+##   name  plays 
+##   <chr> <chr> 
+## 1 John  guitar
+## 2 Paul  bass  
 ## 3 Keith guitar
 ```
 
@@ -76,11 +76,11 @@ left_join( band_members, band_instruments, by.x = name, by.y = artist )
 
 ```
 ## # A tibble: 3 x 3
-##    name    band  plays
-##   <chr>   <chr>  <chr>
-## 1  Mick  Stones   <NA>
-## 2  John Beatles guitar
-## 3  Paul Beatles   bass
+##   name  band    plays 
+##   <chr> <chr>   <chr> 
+## 1 Mick  Stones  <NA>  
+## 2 John  Beatles guitar
+## 3 Paul  Beatles bass
 ```
 
 Note how the `band_member` `Keith` goes missing because it isn't in the `x` (left) dataframe. Note also how the key column name has come from the `x` dataframe.
@@ -100,11 +100,11 @@ right_join( band_members, band_instruments, by.x = name, by.y = artist)
 
 ```
 ## # A tibble: 3 x 3
-##    name    band  plays
-##   <chr>   <chr>  <chr>
-## 1  John Beatles guitar
-## 2  Paul Beatles   bass
-## 3 Keith    <NA> guitar
+##   name  band    plays 
+##   <chr> <chr>   <chr> 
+## 1 John  Beatles guitar
+## 2 Paul  Beatles bass  
+## 3 Keith <NA>    guitar
 ```
 
 See how this time `Keith` is retained as we're joining to the right table, but as he has no entry in the left table, an `NA` is used to fill the missing value.
@@ -124,10 +124,10 @@ inner_join( band_members, band_instruments, by.x = name, by.y = artist)
 
 ```
 ## # A tibble: 2 x 3
-##    name    band  plays
-##   <chr>   <chr>  <chr>
-## 1  John Beatles guitar
-## 2  Paul Beatles   bass
+##   name  band    plays 
+##   <chr> <chr>   <chr> 
+## 1 John  Beatles guitar
+## 2 Paul  Beatles bass
 ```
 
 ### full_join()
@@ -145,12 +145,12 @@ full_join( band_members, band_instruments, by.x = name, by.y = artist)
 
 ```
 ## # A tibble: 4 x 3
-##    name    band  plays
-##   <chr>   <chr>  <chr>
-## 1  Mick  Stones   <NA>
-## 2  John Beatles guitar
-## 3  Paul Beatles   bass
-## 4 Keith    <NA> guitar
+##   name  band    plays 
+##   <chr> <chr>   <chr> 
+## 1 Mick  Stones  <NA>  
+## 2 John  Beatles guitar
+## 3 Paul  Beatles bass  
+## 4 Keith <NA>    guitar
 ```
 
 ## Binding operations
@@ -166,14 +166,14 @@ bind_rows(band_members, band_members)
 
 ```
 ## # A tibble: 6 x 2
-##    name    band
-##   <chr>   <chr>
-## 1  Mick  Stones
-## 2  John Beatles
-## 3  Paul Beatles
-## 4  Mick  Stones
-## 5  John Beatles
-## 6  Paul Beatles
+##   name  band   
+##   <chr> <chr>  
+## 1 Mick  Stones 
+## 2 John  Beatles
+## 3 Paul  Beatles
+## 4 Mick  Stones 
+## 5 John  Beatles
+## 6 Paul  Beatles
 ```
 
 Note the column names need not be identical for this to work. `NAs` are propogated as required.
@@ -185,14 +185,14 @@ bind_rows(band_members, band_instruments)
 
 ```
 ## # A tibble: 6 x 3
-##    name    band  plays
-##   <chr>   <chr>  <chr>
-## 1  Mick  Stones   <NA>
-## 2  John Beatles   <NA>
-## 3  Paul Beatles   <NA>
-## 4  John    <NA> guitar
-## 5  Paul    <NA>   bass
-## 6 Keith    <NA> guitar
+##   name  band    plays 
+##   <chr> <chr>   <chr> 
+## 1 Mick  Stones  <NA>  
+## 2 John  Beatles <NA>  
+## 3 Paul  Beatles <NA>  
+## 4 John  <NA>    guitar
+## 5 Paul  <NA>    bass  
+## 6 Keith <NA>    guitar
 ```
 
 `bind_cols()` sticks dataframes together side-by-side/
@@ -203,11 +203,11 @@ bind_cols(band_members, band_instruments)
 
 ```
 ## # A tibble: 3 x 4
-##    name    band name1  plays
-##   <chr>   <chr> <chr>  <chr>
-## 1  Mick  Stones  John guitar
-## 2  John Beatles  Paul   bass
-## 3  Paul Beatles Keith guitar
+##   name  band    name1 plays 
+##   <chr> <chr>   <chr> <chr> 
+## 1 Mick  Stones  John  guitar
+## 2 John  Beatles Paul  bass  
+## 3 Paul  Beatles Keith guitar
 ```
 
 Note how it doesn't do any sensible matching - it's just pasting them together. Repeated column names get modified. What happens if the dataframes aren't of equal length?
@@ -219,7 +219,7 @@ bind_cols(band_members, data_4_rows)
 ```
 
 ```
-## Error in cbind_all(x): Argument 2 must be length 4, not 3
+## Error in cbind_all(x): Argument 2 must be length 3, not 4
 ```
 
 ## Quiz

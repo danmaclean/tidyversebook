@@ -2,7 +2,7 @@
 title: "Using dplyr for data analysis"
 author: "Dan MacLean"
 description: "An introductory course for working with tabular data in R"
-date: "2017-12-06"
+date: "2018-11-20"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook: default
