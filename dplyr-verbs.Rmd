@@ -456,10 +456,8 @@ incomplete %>%
 
 3. What time of day should you fly to avoid delays as much as possible?
 
-4. For each destination compute the total minutes of delay?
+4. For each destination compute the total minutes of delay? 
 
-5. Look at each destination. Can you find flights that are suspicously fast? I.E flights that might have a data entry error. 
-
-6. Find all destinations that have at least two carriers. 
+5. Find all destinations that have at least two carriers. 
 
 (These exercises are taken from pg 75 of [R for Data Science](http://r4ds.had.co.nz/) - check there for more challenges.)
