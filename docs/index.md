@@ -2,7 +2,7 @@
 title: "Using dplyr for data analysis"
 author: "Dan MacLean"
 description: "An introductory course for working with tabular data in R"
-date: "2018-11-20"
+date: "2019-10-25"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook: default
@@ -17,6 +17,8 @@ No specific knowledge is assumed for this book, though you will need to install 
   1. R
   2. RStudio
   3. The `tidyverse` packages
+  
+You'll also need the following files [diamonds.csv](assets/diamonds.csv) and [datasets.xlsx](assets/datasets.xlsx)
   
 ## Installing R
 

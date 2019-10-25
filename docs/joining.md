@@ -21,6 +21,7 @@ The joining operation depends on the two datasets having some values in some col
 
 
 
+
 ```r
 band_members
 ```
@@ -47,27 +48,19 @@ band_instruments
 ## 3 Keith guitar
 ```
 
-The key column in `band_members` is `name` and in `band_instruments` it is `artist`.
+Note that the two dataframes have a column in common `name`. 
 
 ## Join functions
 
-The join functions in `dplyr` all have a common syntax. Here's `left_join()` as an example
-
-
-
-```r
-left_join(x, y, by.x = key_column_x, by.y = key_column_y)
-```
-
-The `x` is the first (or left) dataframe, the `y` is the second (or right) dataframe and `by.x` and `by.y` are the key columns to use.
+Join functions work to combine two dataframes side-by-side in some way. Usually they use one column as a base and add columns to that one from the other. 
 
 ### left_join()
 
-The most common sort of join is the left join. This takes one dataframe, considers it to be on the left of the join and combines the second dataframe to it, skipping rows in the right dataframe that have nowhere to join
+The most common sort of join is the left join. This takes one dataframe, considers it to be on the left of the join and combines the second dataframe on to it, skipping rows in the right dataframe that have nowhere to join
 
 
 ```r
-left_join( band_members, band_instruments, by.x = name, by.y = artist )
+left_join( band_members, band_instruments, )
 ```
 
 ```
@@ -83,7 +76,7 @@ left_join( band_members, band_instruments, by.x = name, by.y = artist )
 ## 3 Paul  Beatles bass
 ```
 
-Note how the `band_member` `Keith` goes missing because it isn't in the `x` (left) dataframe. Note also how the key column name has come from the `x` dataframe.
+Note how the column in common `name` is used as the key through which to join and that the `band_member` `Keith` goes missing because it isn't in the `left` dataframe, which is the reference. 
 
 ### right_join()
 
@@ -91,7 +84,7 @@ Note how the `band_member` `Keith` goes missing because it isn't in the `x` (lef
 
 
 ```r
-right_join( band_members, band_instruments, by.x = name, by.y = artist)
+right_join( band_members, band_instruments)
 ```
 
 ```
@@ -107,7 +100,7 @@ right_join( band_members, band_instruments, by.x = name, by.y = artist)
 ## 3 Keith <NA>    guitar
 ```
 
-See how this time `Keith` is retained as we're joining to the right table, but as he has no entry in the left table, an `NA` is used to fill the missing value.
+See how this time `Keith` is retained as we're joining to the right table as the base, but as he has no entry in the left table, an `NA` is used to fill the missing value.
 
 ### inner_join()
 
@@ -115,7 +108,7 @@ See how this time `Keith` is retained as we're joining to the right table, but a
 
 
 ```r
-inner_join( band_members, band_instruments, by.x = name, by.y = artist)
+inner_join( band_members, band_instruments)
 ```
 
 ```
@@ -136,7 +129,7 @@ inner_join( band_members, band_instruments, by.x = name, by.y = artist)
 
 
 ```r
-full_join( band_members, band_instruments, by.x = name, by.y = artist)
+full_join( band_members, band_instruments)
 ```
 
 ```
@@ -153,11 +146,45 @@ full_join( band_members, band_instruments, by.x = name, by.y = artist)
 ## 4 Keith <NA>    guitar
 ```
 
+### Joins with no common column names
+
+What can we do when there is no common column names? Consider this variant of `band instruments`
+
+
+```r
+band_instruments2
+```
+
+```
+## # A tibble: 3 x 2
+##   artist plays 
+##   <chr>  <chr> 
+## 1 John   guitar
+## 2 Paul   bass  
+## 3 Keith  guitar
+```
+
+The `name` column is called artist - we can join by explicitly stating the column to join by
+
+
+```r
+left_join( band_members, band_instruments2, by = c("name" = "artist"))
+```
+
+```
+## # A tibble: 3 x 3
+##   name  band    plays 
+##   <chr> <chr>   <chr> 
+## 1 Mick  Stones  <NA>  
+## 2 John  Beatles guitar
+## 3 Paul  Beatles bass
+```
+
 ## Binding operations
 
 These allow you to paste dataframes together.
 
-`bind_rows()` sticks them together top-to-bottom
+`bind_rows()` sticks them together top-to-bottom.
 
 
 ```r
@@ -219,7 +246,7 @@ bind_cols(band_members, data_4_rows)
 ```
 
 ```
-## Error in cbind_all(x): Argument 2 must be length 3, not 4
+## Error: Argument 2 must be length 3, not 4
 ```
 
 ## Quiz

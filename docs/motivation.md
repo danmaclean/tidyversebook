@@ -13,7 +13,7 @@ I think you know what I'm trying to say.
 
 The aim of this book is to introduce you to some tools that can reduce the pain of data analysis. The techniques here won't get rid of all your problems - there's no magic bullet for that, but they will reduce them to a more manageable size. 
 
-The techniques themselves take a bit of getting used to - there is a learning curve. But over all they're a much smaller pain and are worth it especially if you're going to re-analyse growing datasets or do similar analysis over again.
+The techniques themselves take a bit of getting used to - there is a learning curve. But over all they're a much smaller pain and are worth it especially if you're going to re-analyse growing datasets or do similar analysis over and over (and over) again.
 
 <div class="figure">
 <img src="assets/baby_bull.jpg" alt="A smaller pain in the ..."  />

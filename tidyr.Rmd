@@ -40,7 +40,7 @@ The tidy data is in `table1`.
   
 Let's work with each of these non-tidy datasets in turn to get them tidy.
 
-## gather()
+## pivot_longer()
 
 The most common problem is that in `table4a`, where the values of a variable are split over multiple columns. 
 
@@ -48,50 +48,55 @@ The most common problem is that in `table4a`, where the values of a variable are
 table4a
 ```
 
-To tidy this, we need to use `gather()`, which needs three bits of information
+To tidy this, we can use `pivot_longer()`, which increases the number of rows and decreases the number of columns. It needs three bits of information:
 
-  1. The names of the columns that represent values, i.e. the year value columns
-  2. The name of the new variable to create, this is known as the `key`
-  3. The name of the variable to put all the values from the table cells into. This is known as the `value`.
+  1. The column(s) to keep un-pivoted - these are columns that are likely already tidy. All other columns will be pivoted
+  2. The name of a new column in which to put the old column names
+  3. The name of a new column in which to put the old values
   
-The function call goes like this
-  
+The function call looks like this:
+
 ```{r}
 table4a %>% 
-  gather('1999', '2000', key = "year", value = "cases")
+  pivot_longer(-country, names_to = "year", values_to = "cases")
 ```
-Note how the columns we 'gathered' (`1999` and `2000`) have been dropped from the table completely. This little table is now tidy. 
+
+Note how we use the `-country` syntax to mean 'pivot everything but `country`'. The `names_to` argument tells `pivot_longer()` where to put the names, and the `values_to` argument specifies where the numbers should go.
+
+Note too how the columns we pivoted (`1999` and `2000`) have been dropped from the table completely. This little table is now tidy. 
+
 We can do the same with `table4b` but this one has the value `population`
 
 ```{r}
 table4b %>% 
-  gather('1999', '2000', key = "year", value = "population")
-
+  pivot_longer(-country, names_to = "year", values_to = "population")
 ```
 
 To combine these together we can use `left_join()`.
 ```{r}
 t4a <- table4a %>% 
-  gather('1999', '2000', key = "year", value = "cases")
+  pivot_longer(-country, names_to = "year", values_to = "cases")
 t4b <- table4b %>% 
-  gather('1999', '2000', key = "year", value = "population")
+  pivot_longer(-country, names_to = "year", values_to = "population")
 
 left_join(t4a, t4b)
 ```
 
-Note we don't need to specify the `by.x` and `by.y`, since the two tables have column names in common - `left_join()` works that out and does the join automatically.
+Note we don't need to specify the `by = ` argument, since the two tables have column names in common - `left_join()` works that out and does the join automatically.
 
 
-## spread()
+## pivot_wider()
 
-The complementary function to `gather()` is `spread()` which takes variables squashed into one column and puts them into more as appropriate. This is useful for dealing with the `table2` case. `spread()` needs two bits of information
+The inverse function to `pivot_longer()` is `pivot_wider()` which increases column number and decreases row count. This function needs two pieces of information
 
-  * The column with the variable name, again the `key` column
-  * The column that contains the values, again the `value` column
+  1. The column from which to get the new row names
+  2. The columns from which to get the values
   
+This is useful for dealing with the `table2` case.
+
 ```{r}
-table2 %>%
-  spread(key = type, value = count)
+table2 %>% 
+  pivot_wider(names_from = type, values_from = count)
 ```
 
 ## separate()

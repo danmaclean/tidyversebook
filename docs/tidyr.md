@@ -111,7 +111,7 @@ The tidy data is in `table1`.
   
 Let's work with each of these non-tidy datasets in turn to get them tidy.
 
-## gather()
+## pivot_longer()
 
 The most common problem is that in `table4a`, where the values of a variable are split over multiple columns. 
 
@@ -129,18 +129,18 @@ table4a
 ## 3 China       212258 213766
 ```
 
-To tidy this, we need to use `gather()`, which needs three bits of information
+To tidy this, we can use `pivot_longer()`, which increases the number of rows and decreases the number of columns. It needs three bits of information:
 
-  1. The names of the columns that represent values, i.e. the year value columns
-  2. The name of the new variable to create, this is known as the `key`
-  3. The name of the variable to put all the values from the table cells into. This is known as the `value`.
+  1. The column(s) to keep un-pivoted - these are columns that are likely already tidy. All other columns will be pivoted
+  2. The name of a new column in which to put the old column names
+  3. The name of a new column in which to put the old values
   
-The function call goes like this
-  
+The function call looks like this:
+
 
 ```r
 table4a %>% 
-  gather('1999', '2000', key = "year", value = "cases")
+  pivot_longer(-country, names_to = "year", values_to = "cases")
 ```
 
 ```
@@ -148,19 +148,23 @@ table4a %>%
 ##   country     year   cases
 ##   <chr>       <chr>  <int>
 ## 1 Afghanistan 1999     745
-## 2 Brazil      1999   37737
-## 3 China       1999  212258
-## 4 Afghanistan 2000    2666
-## 5 Brazil      2000   80488
+## 2 Afghanistan 2000    2666
+## 3 Brazil      1999   37737
+## 4 Brazil      2000   80488
+## 5 China       1999  212258
 ## 6 China       2000  213766
 ```
-Note how the columns we 'gathered' (`1999` and `2000`) have been dropped from the table completely. This little table is now tidy. 
+
+Note how we use the `-country` syntax to mean 'pivot everything but `country`'. The `names_to` argument tells `pivot_longer()` where to put the names, and the `values_to` argument specifies where the numbers should go.
+
+Note too how the columns we pivoted (`1999` and `2000`) have been dropped from the table completely. This little table is now tidy. 
+
 We can do the same with `table4b` but this one has the value `population`
 
 
 ```r
 table4b %>% 
-  gather('1999', '2000', key = "year", value = "population")
+  pivot_longer(-country, names_to = "year", values_to = "population")
 ```
 
 ```
@@ -168,10 +172,10 @@ table4b %>%
 ##   country     year  population
 ##   <chr>       <chr>      <int>
 ## 1 Afghanistan 1999    19987071
-## 2 Brazil      1999   172006362
-## 3 China       1999  1272915272
-## 4 Afghanistan 2000    20595360
-## 5 Brazil      2000   174504898
+## 2 Afghanistan 2000    20595360
+## 3 Brazil      1999   172006362
+## 4 Brazil      2000   174504898
+## 5 China       1999  1272915272
 ## 6 China       2000  1280428583
 ```
 
@@ -179,9 +183,9 @@ To combine these together we can use `left_join()`.
 
 ```r
 t4a <- table4a %>% 
-  gather('1999', '2000', key = "year", value = "cases")
+  pivot_longer(-country, names_to = "year", values_to = "cases")
 t4b <- table4b %>% 
-  gather('1999', '2000', key = "year", value = "population")
+  pivot_longer(-country, names_to = "year", values_to = "population")
 
 left_join(t4a, t4b)
 ```
@@ -195,27 +199,29 @@ left_join(t4a, t4b)
 ##   country     year   cases population
 ##   <chr>       <chr>  <int>      <int>
 ## 1 Afghanistan 1999     745   19987071
-## 2 Brazil      1999   37737  172006362
-## 3 China       1999  212258 1272915272
-## 4 Afghanistan 2000    2666   20595360
-## 5 Brazil      2000   80488  174504898
+## 2 Afghanistan 2000    2666   20595360
+## 3 Brazil      1999   37737  172006362
+## 4 Brazil      2000   80488  174504898
+## 5 China       1999  212258 1272915272
 ## 6 China       2000  213766 1280428583
 ```
 
-Note we don't need to specify the `by.x` and `by.y`, since the two tables have column names in common - `left_join()` works that out and does the join automatically.
+Note we don't need to specify the `by = ` argument, since the two tables have column names in common - `left_join()` works that out and does the join automatically.
 
 
-## spread()
+## pivot_wider()
 
-The complementary function to `gather()` is `spread()` which takes variables squashed into one column and puts them into more as appropriate. This is useful for dealing with the `table2` case. `spread()` needs two bits of information
+The inverse function to `pivot_longer()` is `pivot_wider()` which increases column number and decreases row count. This function needs two pieces of information
 
-  * The column with the variable name, again the `key` column
-  * The column that contains the values, again the `value` column
+  1. The column from which to get the new row names
+  2. The columns from which to get the values
   
+This is useful for dealing with the `table2` case.
+
 
 ```r
-table2 %>%
-  spread(key = type, value = count)
+table2 %>% 
+  pivot_wider(names_from = type, values_from = count)
 ```
 
 ```
@@ -262,7 +268,7 @@ table3 %>%
 ```
 ## # A tibble: 6 x 4
 ##   country      year cases  population
-## * <chr>       <int> <chr>  <chr>     
+##   <chr>       <int> <chr>  <chr>     
 ## 1 Afghanistan  1999 745    19987071  
 ## 2 Afghanistan  2000 2666   20595360  
 ## 3 Brazil       1999 37737  172006362 
@@ -282,7 +288,7 @@ table3 %>%
 ```
 ## # A tibble: 6 x 4
 ##   country      year cases  population
-## * <chr>       <int> <chr>  <chr>     
+##   <chr>       <int> <chr>  <chr>     
 ## 1 Afghanistan  1999 745    19987071  
 ## 2 Afghanistan  2000 2666   20595360  
 ## 3 Brazil       1999 37737  172006362 
@@ -304,7 +310,7 @@ table3 %>%
 ```
 ## # A tibble: 6 x 4
 ##   country      year  cases population
-## * <chr>       <int>  <int>      <int>
+##   <chr>       <int>  <int>      <int>
 ## 1 Afghanistan  1999    745   19987071
 ## 2 Afghanistan  2000   2666   20595360
 ## 3 Brazil       1999  37737  172006362
@@ -333,7 +339,7 @@ table5
 ```
 ## # A tibble: 6 x 4
 ##   country     century  year rate             
-## * <chr>         <int> <int> <chr>            
+##   <chr>         <int> <int> <chr>            
 ## 1 Afghanistan      19    99 745/19987071     
 ## 2 Afghanistan      20     0 2666/20595360    
 ## 3 Brazil           19    99 37737/172006362  

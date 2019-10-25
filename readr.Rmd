@@ -149,7 +149,7 @@ read_csv(toy_csv, na = "_")
 
 ## Writing Files
 
-A complementary functionto `read_csv()` `write_csv()` allows you to write a dataframe out to a '.csv' file. The convention is straightforward, you need the name of the dataframe and the name of the file and path to write to.
+A complementary function to `read_csv()` `write_csv()` allows you to write a dataframe out to a '.csv' file. The convention is straightforward, you need the name of the dataframe and the name of the file and path to write to.
 
 ```{r, eval=FALSE}
 write_csv(diamonds, "~/Desktop/my_data.csv")
@@ -158,27 +158,27 @@ write_csv(diamonds, "~/Desktop/my_data.csv")
 
 ## readxl
 
-The `readxl` package is installed as part of the tidyvers `install.packages()` command, but it is not part of the core, so `library(tidyverse)` does not load it. You must do it explicitly with `library(readxl)`. 
+The `readxl` package is installed as part of the tidyverse `install.packages()` command, but it is not part of the core, so `library(tidyverse)` does not load it. You must do it explicitly with `library(readxl)`. 
 
-### read_excel()
+### read_xlsx()
 
-The main function is `read_excel()`, it's similar to `read_csv()`. 
+The main function is `read_xlsx()`, it's similar to `read_csv()`. 
 
 ```{r}
 library(readxl)
-read_excel("~/Desktop/datasets.xls")
+read_xlsx("~/Desktop/datasets.xlsx")
 ```
 
 By default it loads the first worksheet, you can examine the sheets available with `excel_sheets()`
 
 ```{r}
-excel_sheets("~/Desktop/datasets.xls")
+excel_sheets("~/Desktop/datasets.xlsx")
 ```
 
 Then load in the one you want.
 
 ```{r}
-read_excel("~/Desktop/datasets.xls", sheet = "chickwts")
+read_xlsx("~/Desktop/datasets.xlsx", sheet = "chickwts")
 ```
 
 Loading then follows the same pattern as for `read_csv()`, with a difference in the column specifications - in this package its much simpler. You can only specify type columnwise and the specification can only be one of "skip", "guess", "logical", "numeric", "date", "text" or "list" - meaning you can't do the advanced parsing as for `read_csv()`.
@@ -186,8 +186,8 @@ Loading then follows the same pattern as for `read_csv()`, with a difference in 
 A sample spec might look like
 
 ```{r}
-read_excel(
-  "~/Desktop/datasets.xls", 
+read_xlsx(
+  "~/Desktop/datasets.xlsx", 
   sheet = "chickwts",
   col_types = c("numeric", "text")
   )

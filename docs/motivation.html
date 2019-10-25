@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Using dplyr for data analysis</title>
-  <meta name="description" content="An introductory course for working with tabular data in R">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 2 Motivation | Using dplyr for data analysis</title>
+  <meta name="description" content="An introductory course for working with tabular data in R" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Using dplyr for data analysis" />
+  <meta property="og:title" content="Topic 2 Motivation | Using dplyr for data analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -17,25 +16,26 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Using dplyr for data analysis" />
+  <meta name="twitter:title" content="Topic 2 Motivation | Using dplyr for data analysis" />
   
   <meta name="twitter:description" content="An introductory course for working with tabular data in R" />
   
 
-<meta name="author" content="Dan MacLean">
+<meta name="author" content="Dan MacLean" />
 
 
-<meta name="date" content="2018-11-20">
+<meta name="date" content="2019-10-25" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="r-fundamentals.html">
+<link rel="prev" href="index.html"/>
+<link rel="next" href="r-fundamentals.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -55,7 +55,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -184,6 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.2" data-path="combining-datasets.html"><a href="combining-datasets.html#right_join"><i class="fa fa-check"></i><b>6.3.2</b> right_join()</a></li>
 <li class="chapter" data-level="6.3.3" data-path="combining-datasets.html"><a href="combining-datasets.html#inner_join"><i class="fa fa-check"></i><b>6.3.3</b> inner_join()</a></li>
 <li class="chapter" data-level="6.3.4" data-path="combining-datasets.html"><a href="combining-datasets.html#full_join"><i class="fa fa-check"></i><b>6.3.4</b> full_join()</a></li>
+<li class="chapter" data-level="6.3.5" data-path="combining-datasets.html"><a href="combining-datasets.html#joins-with-no-common-column-names"><i class="fa fa-check"></i><b>6.3.5</b> Joins with no common column names</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="combining-datasets.html"><a href="combining-datasets.html#binding-operations"><i class="fa fa-check"></i><b>6.4</b> Binding operations</a></li>
 <li class="chapter" data-level="6.5" data-path="combining-datasets.html"><a href="combining-datasets.html#quiz-3"><i class="fa fa-check"></i><b>6.5</b> Quiz</a></li>
@@ -198,8 +198,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2" data-path="tidying-data.html"><a href="tidying-data.html#tidyr"><i class="fa fa-check"></i><b>8.2</b> tidyr</a><ul>
 <li class="chapter" data-level="8.2.1" data-path="tidying-data.html"><a href="tidying-data.html#sample-tidy-datasets"><i class="fa fa-check"></i><b>8.2.1</b> Sample tidy datasets</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="tidying-data.html"><a href="tidying-data.html#gather"><i class="fa fa-check"></i><b>8.3</b> gather()</a></li>
-<li class="chapter" data-level="8.4" data-path="tidying-data.html"><a href="tidying-data.html#spread"><i class="fa fa-check"></i><b>8.4</b> spread()</a></li>
+<li class="chapter" data-level="8.3" data-path="tidying-data.html"><a href="tidying-data.html#pivot_longer"><i class="fa fa-check"></i><b>8.3</b> pivot_longer()</a></li>
+<li class="chapter" data-level="8.4" data-path="tidying-data.html"><a href="tidying-data.html#pivot_wider"><i class="fa fa-check"></i><b>8.4</b> pivot_wider()</a></li>
 <li class="chapter" data-level="8.5" data-path="tidying-data.html"><a href="tidying-data.html#separate"><i class="fa fa-check"></i><b>8.5</b> separate()</a></li>
 <li class="chapter" data-level="8.6" data-path="tidying-data.html"><a href="tidying-data.html#unite"><i class="fa fa-check"></i><b>8.6</b> unite()</a></li>
 <li class="chapter" data-level="8.7" data-path="tidying-data.html"><a href="tidying-data.html#quiz-4"><i class="fa fa-check"></i><b>8.7</b> Quiz</a></li>
@@ -214,7 +214,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#writing-files"><i class="fa fa-check"></i><b>9.3</b> Writing Files</a></li>
 <li class="chapter" data-level="9.4" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#readxl"><i class="fa fa-check"></i><b>9.4</b> readxl</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#read_excel"><i class="fa fa-check"></i><b>9.4.1</b> read_excel()</a></li>
+<li class="chapter" data-level="9.4.1" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#read_xlsx"><i class="fa fa-check"></i><b>9.4.1</b> read_xlsx()</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -246,7 +246,7 @@ Figure 2.1: A significant pain in the …
 </div>
 <p>I think you know what I’m trying to say.</p>
 <p>The aim of this book is to introduce you to some tools that can reduce the pain of data analysis. The techniques here won’t get rid of all your problems - there’s no magic bullet for that, but they will reduce them to a more manageable size.</p>
-<p>The techniques themselves take a bit of getting used to - there is a learning curve. But over all they’re a much smaller pain and are worth it especially if you’re going to re-analyse growing datasets or do similar analysis over again.</p>
+<p>The techniques themselves take a bit of getting used to - there is a learning curve. But over all they’re a much smaller pain and are worth it especially if you’re going to re-analyse growing datasets or do similar analysis over and over (and over) again.</p>
 <div class="figure"><span id="fig:unnamed-chunk-2"></span>
 <img src="assets/baby_bull.jpg" alt="A smaller pain in the ..."  />
 <p class="caption">
@@ -275,7 +275,7 @@ Figure 2.2: A smaller pain in the …
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>See Hadley Wickham’s tidy data paper - <a href="http://vita.had.co.nz/papers/tidy-data.html" class="uri">http://vita.had.co.nz/papers/tidy-data.html</a><a href="motivation.html#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>See Hadley Wickham’s tidy data paper - <a href="http://vita.had.co.nz/papers/tidy-data.html">http://vita.had.co.nz/papers/tidy-data.html</a><a href="motivation.html#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -304,7 +304,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -314,6 +314,10 @@ gitbook.start({
 "size": 2
 },
 "edit": {
+"link": null,
+"text": null
+},
+"history": {
 "link": null,
 "text": null
 },

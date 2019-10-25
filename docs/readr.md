@@ -35,20 +35,15 @@ read_csv("~/Desktop/diamonds.csv")
 ```
 
 ```
-## Warning: Missing column names filled in: 'X1' [1]
-```
-
-```
 ## Parsed with column specification:
 ## cols(
-##   X1 = col_integer(),
 ##   carat = col_double(),
 ##   cut = col_character(),
 ##   color = col_character(),
 ##   clarity = col_character(),
 ##   depth = col_double(),
 ##   table = col_double(),
-##   price = col_integer(),
+##   price = col_double(),
 ##   x = col_double(),
 ##   y = col_double(),
 ##   z = col_double()
@@ -56,20 +51,20 @@ read_csv("~/Desktop/diamonds.csv")
 ```
 
 ```
-## # A tibble: 53,940 x 11
-##       X1 carat cut       color clarity depth table price     x     y     z
-##    <int> <dbl> <chr>     <chr> <chr>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
-##  1     1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
-##  2     2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
-##  3     3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31
-##  4     4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
-##  5     5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75
-##  6     6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
-##  7     7 0.24  Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
-##  8     8 0.26  Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
-##  9     9 0.22  Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
-## 10    10 0.23  Very Good H     VS1      59.4    61   338  4     4.05  2.39
-## # ... with 53,930 more rows
+## # A tibble: 53,940 x 10
+##    carat cut       color clarity depth table price     x     y     z
+##    <dbl> <chr>     <chr> <chr>   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+##  1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+##  2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+##  3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+##  4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+##  5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+##  6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
+##  7 0.24  Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
+##  8 0.26  Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
+##  9 0.22  Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
+## 10 0.23  Very Good H     VS1      59.4    61   338  4     4.05  2.39
+## # … with 53,930 more rows
 ```
 
 On loading we see a column specification, `read_csv()` has guessed at what the columns should be and made those types. Its fine for the most part, but some of those columns we'd prefer to be factors. We can set our own column specification to force the column types on loading. We only have to do the ones that `read_csv()` gets wrong. Specifically, lets fix `cut` and `color` to a `factor`. We can do that with the `col_types` argument.
@@ -85,24 +80,20 @@ read_csv("~/Desktop/diamonds.csv",
 ```
 
 ```
-## Warning: Missing column names filled in: 'X1' [1]
-```
-
-```
-## # A tibble: 53,940 x 11
-##       X1 carat cut       color clarity depth table price     x     y     z
-##    <int> <dbl> <fct>     <fct> <chr>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
-##  1     1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
-##  2     2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
-##  3     3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31
-##  4     4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
-##  5     5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75
-##  6     6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
-##  7     7 0.24  Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
-##  8     8 0.26  Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
-##  9     9 0.22  Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
-## 10    10 0.23  Very Good H     VS1      59.4    61   338  4     4.05  2.39
-## # ... with 53,930 more rows
+## # A tibble: 53,940 x 10
+##    carat cut       color clarity depth table price     x     y     z
+##    <dbl> <fct>     <fct> <chr>   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+##  1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+##  2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+##  3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+##  4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+##  5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+##  6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
+##  7 0.24  Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
+##  8 0.26  Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
+##  9 0.22  Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
+## 10 0.23  Very Good H     VS1      59.4    61   338  4     4.05  2.39
+## # … with 53,930 more rows
 ```
 
 ### Parser functions
@@ -125,36 +116,32 @@ read_csv("~/Desktop/diamonds.csv",
 ```
 
 ```
-## Warning: Missing column names filled in: 'X1' [1]
-```
-
-```
-## Warning in rbind(names(probs), probs_f): number of columns of result is not
-## a multiple of vector length (arg 1)
-```
-
-```
 ## Warning: 35342 parsing failures.
-## row # A tibble: 5 x 5 col     row col   expected           actual  file                     expected   <int> <chr> <chr>              <chr>   <chr>                    actual 1     1 cut   value in level set Ideal   '~/Desktop/diamonds.csv' file 2     2 cut   value in level set Premium '~/Desktop/diamonds.csv' row 3     4 cut   value in level set Premium '~/Desktop/diamonds.csv' col 4    12 cut   value in level set Ideal   '~/Desktop/diamonds.csv' expected 5    13 cut   value in level set Premium '~/Desktop/diamonds.csv'
-## ... ................. ... ................................................................. ........ ................................................................. ...... ................................................................. .... ................................................................. ... ................................................................. ... ................................................................. ........ .................................................................
+## row col           expected  actual                     file
+##   1 cut value in level set Ideal   '~/Desktop/diamonds.csv'
+##   2 cut value in level set Premium '~/Desktop/diamonds.csv'
+##   4 cut value in level set Premium '~/Desktop/diamonds.csv'
+##  12 cut value in level set Ideal   '~/Desktop/diamonds.csv'
+##  13 cut value in level set Premium '~/Desktop/diamonds.csv'
+## ... ... .................. ....... ........................
 ## See problems(...) for more details.
 ```
 
 ```
-## # A tibble: 53,940 x 11
-##       X1 carat cut       color clarity depth table price     x     y     z
-##    <int> <dbl> <fct>     <fct> <chr>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
-##  1     1 0.23  <NA>      E     SI2      61.5    55   326  3.95  3.98  2.43
-##  2     2 0.21  <NA>      E     SI1      59.8    61   326  3.89  3.84  2.31
-##  3     3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31
-##  4     4 0.290 <NA>      I     VS2      62.4    58   334  4.2   4.23  2.63
-##  5     5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75
-##  6     6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
-##  7     7 0.24  Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
-##  8     8 0.26  Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
-##  9     9 0.22  Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
-## 10    10 0.23  Very Good H     VS1      59.4    61   338  4     4.05  2.39
-## # ... with 53,930 more rows
+## # A tibble: 53,940 x 10
+##    carat cut       color clarity depth table price     x     y     z
+##    <dbl> <fct>     <fct> <chr>   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+##  1 0.23  <NA>      E     SI2      61.5    55   326  3.95  3.98  2.43
+##  2 0.21  <NA>      E     SI1      59.8    61   326  3.89  3.84  2.31
+##  3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+##  4 0.290 <NA>      I     VS2      62.4    58   334  4.2   4.23  2.63
+##  5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+##  6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
+##  7 0.24  Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
+##  8 0.26  Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
+##  9 0.22  Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
+## 10 0.23  Very Good H     VS1      59.4    61   338  4     4.05  2.39
+## # … with 53,930 more rows
 ```
 This time, we get a large number of warnings. Though the output is quite cryptic at first glance, `read_csv()` is complaining that it found values for cut that were not in the list we passed to the parser function. 
 
@@ -177,7 +164,7 @@ read_csv(toy_csv)
 ```
 ## # A tibble: 2 x 3
 ##       a     b     c
-##   <int> <int> <int>
+##   <dbl> <dbl> <dbl>
 ## 1     1     2     3
 ## 2     4     5     6
 ```
@@ -195,13 +182,11 @@ read_csv(toy_csv)
 ```
 
 ```
-## Warning in rbind(names(probs), probs_f): number of columns of result is not
-## a multiple of vector length (arg 1)
-```
-
-```
 ## Warning: 3 parsing failures.
-## row # A tibble: 3 x 5 col     row col   expected  actual    file         expected   <int> <chr> <chr>     <chr>     <chr>        actual 1     1 <NA>  1 columns 3 columns literal data file 2     2 <NA>  1 columns 3 columns literal data row 3     3 <NA>  1 columns 3 columns literal data
+## row col  expected    actual         file
+##   1  -- 1 columns 3 columns literal data
+##   2  -- 1 columns 3 columns literal data
+##   3  -- 1 columns 3 columns literal data
 ```
 
 ```
@@ -228,7 +213,7 @@ read_csv(toy_csv, skip = 1)
 ```
 ## # A tibble: 2 x 3
 ##       a     b     c
-##   <int> <int> <int>
+##   <dbl> <dbl> <dbl>
 ## 1     1     2     3
 ## 2     4     5     6
 ```
@@ -250,7 +235,7 @@ read_csv(toy_csv, comment = "#")
 ```
 ## # A tibble: 2 x 3
 ##       a     b     c
-##   <int> <int> <int>
+##   <dbl> <dbl> <dbl>
 ## 1     1     2     3
 ## 2     4     5     6
 ```
@@ -268,7 +253,7 @@ read_csv(toy_csv, col_names = FALSE)
 ```
 ## # A tibble: 2 x 3
 ##      X1    X2    X3
-##   <int> <int> <int>
+##   <dbl> <dbl> <dbl>
 ## 1     1     2     3
 ## 2     4     5     6
 ```
@@ -309,14 +294,14 @@ read_csv(toy_csv, na = "_")
 ```
 ## # A tibble: 2 x 3
 ##       a     b     c
-##   <int> <int> <int>
+##   <dbl> <dbl> <dbl>
 ## 1     1    NA     3
 ## 2     4     5    NA
 ```
 
 ## Writing Files
 
-A complementary functionto `read_csv()` `write_csv()` allows you to write a dataframe out to a '.csv' file. The convention is straightforward, you need the name of the dataframe and the name of the file and path to write to.
+A complementary function to `read_csv()` `write_csv()` allows you to write a dataframe out to a '.csv' file. The convention is straightforward, you need the name of the dataframe and the name of the file and path to write to.
 
 
 ```r
@@ -326,16 +311,16 @@ write_csv(diamonds, "~/Desktop/my_data.csv")
 
 ## readxl
 
-The `readxl` package is installed as part of the tidyvers `install.packages()` command, but it is not part of the core, so `library(tidyverse)` does not load it. You must do it explicitly with `library(readxl)`. 
+The `readxl` package is installed as part of the tidyverse `install.packages()` command, but it is not part of the core, so `library(tidyverse)` does not load it. You must do it explicitly with `library(readxl)`. 
 
-### read_excel()
+### read_xlsx()
 
-The main function is `read_excel()`, it's similar to `read_csv()`. 
+The main function is `read_xlsx()`, it's similar to `read_csv()`. 
 
 
 ```r
 library(readxl)
-read_excel("~/Desktop/datasets.xls")
+read_xlsx("~/Desktop/datasets.xlsx")
 ```
 
 ```
@@ -352,14 +337,14 @@ read_excel("~/Desktop/datasets.xls")
 ##  8          5           3.4          1.5         0.2 setosa 
 ##  9          4.4         2.9          1.4         0.2 setosa 
 ## 10          4.9         3.1          1.5         0.1 setosa 
-## # ... with 140 more rows
+## # … with 140 more rows
 ```
 
 By default it loads the first worksheet, you can examine the sheets available with `excel_sheets()`
 
 
 ```r
-excel_sheets("~/Desktop/datasets.xls")
+excel_sheets("~/Desktop/datasets.xlsx")
 ```
 
 ```
@@ -370,7 +355,7 @@ Then load in the one you want.
 
 
 ```r
-read_excel("~/Desktop/datasets.xls", sheet = "chickwts")
+read_xlsx("~/Desktop/datasets.xlsx", sheet = "chickwts")
 ```
 
 ```
@@ -387,7 +372,7 @@ read_excel("~/Desktop/datasets.xls", sheet = "chickwts")
 ##  8    124 horsebean
 ##  9    143 horsebean
 ## 10    140 horsebean
-## # ... with 61 more rows
+## # … with 61 more rows
 ```
 
 Loading then follows the same pattern as for `read_csv()`, with a difference in the column specifications - in this package its much simpler. You can only specify type columnwise and the specification can only be one of "skip", "guess", "logical", "numeric", "date", "text" or "list" - meaning you can't do the advanced parsing as for `read_csv()`.
@@ -396,8 +381,8 @@ A sample spec might look like
 
 
 ```r
-read_excel(
-  "~/Desktop/datasets.xls", 
+read_xlsx(
+  "~/Desktop/datasets.xlsx", 
   sheet = "chickwts",
   col_types = c("numeric", "text")
   )
@@ -417,5 +402,5 @@ read_excel(
 ##  8    124 horsebean
 ##  9    143 horsebean
 ## 10    140 horsebean
-## # ... with 61 more rows
+## # … with 61 more rows
 ```

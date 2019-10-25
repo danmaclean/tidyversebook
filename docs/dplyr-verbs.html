@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Using dplyr for data analysis</title>
-  <meta name="description" content="An introductory course for working with tabular data in R">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 5 dplyr Verbs | Using dplyr for data analysis</title>
+  <meta name="description" content="An introductory course for working with tabular data in R" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Using dplyr for data analysis" />
+  <meta property="og:title" content="Topic 5 dplyr Verbs | Using dplyr for data analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -17,25 +16,26 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Using dplyr for data analysis" />
+  <meta name="twitter:title" content="Topic 5 dplyr Verbs | Using dplyr for data analysis" />
   
   <meta name="twitter:description" content="An introductory course for working with tabular data in R" />
   
 
-<meta name="author" content="Dan MacLean">
+<meta name="author" content="Dan MacLean" />
 
 
-<meta name="date" content="2018-11-20">
+<meta name="date" content="2019-10-25" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="tidy-data.html">
-<link rel="next" href="combining-datasets.html">
+<link rel="prev" href="tidy-data.html"/>
+<link rel="next" href="combining-datasets.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -55,7 +55,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -184,6 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.2" data-path="combining-datasets.html"><a href="combining-datasets.html#right_join"><i class="fa fa-check"></i><b>6.3.2</b> right_join()</a></li>
 <li class="chapter" data-level="6.3.3" data-path="combining-datasets.html"><a href="combining-datasets.html#inner_join"><i class="fa fa-check"></i><b>6.3.3</b> inner_join()</a></li>
 <li class="chapter" data-level="6.3.4" data-path="combining-datasets.html"><a href="combining-datasets.html#full_join"><i class="fa fa-check"></i><b>6.3.4</b> full_join()</a></li>
+<li class="chapter" data-level="6.3.5" data-path="combining-datasets.html"><a href="combining-datasets.html#joins-with-no-common-column-names"><i class="fa fa-check"></i><b>6.3.5</b> Joins with no common column names</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="combining-datasets.html"><a href="combining-datasets.html#binding-operations"><i class="fa fa-check"></i><b>6.4</b> Binding operations</a></li>
 <li class="chapter" data-level="6.5" data-path="combining-datasets.html"><a href="combining-datasets.html#quiz-3"><i class="fa fa-check"></i><b>6.5</b> Quiz</a></li>
@@ -198,8 +198,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2" data-path="tidying-data.html"><a href="tidying-data.html#tidyr"><i class="fa fa-check"></i><b>8.2</b> tidyr</a><ul>
 <li class="chapter" data-level="8.2.1" data-path="tidying-data.html"><a href="tidying-data.html#sample-tidy-datasets"><i class="fa fa-check"></i><b>8.2.1</b> Sample tidy datasets</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="tidying-data.html"><a href="tidying-data.html#gather"><i class="fa fa-check"></i><b>8.3</b> gather()</a></li>
-<li class="chapter" data-level="8.4" data-path="tidying-data.html"><a href="tidying-data.html#spread"><i class="fa fa-check"></i><b>8.4</b> spread()</a></li>
+<li class="chapter" data-level="8.3" data-path="tidying-data.html"><a href="tidying-data.html#pivot_longer"><i class="fa fa-check"></i><b>8.3</b> pivot_longer()</a></li>
+<li class="chapter" data-level="8.4" data-path="tidying-data.html"><a href="tidying-data.html#pivot_wider"><i class="fa fa-check"></i><b>8.4</b> pivot_wider()</a></li>
 <li class="chapter" data-level="8.5" data-path="tidying-data.html"><a href="tidying-data.html#separate"><i class="fa fa-check"></i><b>8.5</b> separate()</a></li>
 <li class="chapter" data-level="8.6" data-path="tidying-data.html"><a href="tidying-data.html#unite"><i class="fa fa-check"></i><b>8.6</b> unite()</a></li>
 <li class="chapter" data-level="8.7" data-path="tidying-data.html"><a href="tidying-data.html#quiz-4"><i class="fa fa-check"></i><b>8.7</b> Quiz</a></li>
@@ -214,7 +214,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#writing-files"><i class="fa fa-check"></i><b>9.3</b> Writing Files</a></li>
 <li class="chapter" data-level="9.4" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#readxl"><i class="fa fa-check"></i><b>9.4</b> readxl</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#read_excel"><i class="fa fa-check"></i><b>9.4.1</b> read_excel()</a></li>
+<li class="chapter" data-level="9.4.1" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#read_xlsx"><i class="fa fa-check"></i><b>9.4.1</b> read_xlsx()</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -298,42 +298,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.4</span> select()</h2>
 <p><code>select()</code> is probably the simplest verb. It lets you select whole columns from the dataframe, discarding others. This is most useful for working with huge datasets of many columns, or for extracting bits for ease of printing or presentation.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">diamonds <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(carat, cut) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 2
-##   carat cut      
-##   &lt;dbl&gt; &lt;ord&gt;    
-## 1 0.23  Ideal    
-## 2 0.21  Premium  
-## 3 0.23  Good     
-## 4 0.290 Premium  
-## 5 0.31  Good     
-## 6 0.24  Very Good</code></pre>
+<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(carat, cut)</a></code></pre></div>
+<pre><code>## # A tibble: 53,940 x 2
+##    carat cut      
+##    &lt;dbl&gt; &lt;ord&gt;    
+##  1 0.23  Ideal    
+##  2 0.21  Premium  
+##  3 0.23  Good     
+##  4 0.290 Premium  
+##  5 0.31  Good     
+##  6 0.24  Very Good
+##  7 0.24  Very Good
+##  8 0.26  Very Good
+##  9 0.22  Fair     
+## 10 0.23  Very Good
+## # … with 53,930 more rows</code></pre>
 <p>Shorthands include the <code>:</code> which lets you choose a range and <code>-</code> which can be read as <code>except</code> so leaves out the columns you state</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">diamonds <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(depth<span class="op">:</span>price) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 3
-##   depth table price
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
-## 1  61.5    55   326
-## 2  59.8    61   326
-## 3  56.9    65   327
-## 4  62.4    58   334
-## 5  63.3    58   335
-## 6  62.8    57   336</code></pre>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(depth<span class="op">:</span>price) </a></code></pre></div>
+<pre><code>## # A tibble: 53,940 x 3
+##    depth table price
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+##  1  61.5    55   326
+##  2  59.8    61   326
+##  3  56.9    65   327
+##  4  62.4    58   334
+##  5  63.3    58   335
+##  6  62.8    57   336
+##  7  62.3    57   336
+##  8  61.9    55   337
+##  9  65.1    61   337
+## 10  59.4    61   338
+## # … with 53,930 more rows</code></pre>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">diamonds <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>( <span class="op">-</span>x, <span class="op">-</span>y, <span class="op">-</span>z)  <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb40-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 7
-##   carat cut       color clarity depth table price
-##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
-## 1 0.23  Ideal     E     SI2      61.5    55   326
-## 2 0.21  Premium   E     SI1      59.8    61   326
-## 3 0.23  Good      E     VS1      56.9    65   327
-## 4 0.290 Premium   I     VS2      62.4    58   334
-## 5 0.31  Good      J     SI2      63.3    58   335
-## 6 0.24  Very Good J     VVS2     62.8    57   336</code></pre>
+<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>( <span class="op">-</span>x, <span class="op">-</span>y, <span class="op">-</span>z)</a></code></pre></div>
+<pre><code>## # A tibble: 53,940 x 7
+##    carat cut       color clarity depth table price
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+##  1 0.23  Ideal     E     SI2      61.5    55   326
+##  2 0.21  Premium   E     SI1      59.8    61   326
+##  3 0.23  Good      E     VS1      56.9    65   327
+##  4 0.290 Premium   I     VS2      62.4    58   334
+##  5 0.31  Good      J     SI2      63.3    58   335
+##  6 0.24  Very Good J     VVS2     62.8    57   336
+##  7 0.24  Very Good I     VVS1     62.3    57   336
+##  8 0.26  Very Good H     SI1      61.9    55   337
+##  9 0.22  Fair      E     VS2      65.1    61   337
+## 10 0.23  Very Good H     VS1      59.4    61   338
+## # … with 53,930 more rows</code></pre>
 <p>You can select columns with helpers,</p>
 <ul>
 <li><code>starts_with()</code></li>
@@ -343,87 +355,111 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Here are examples.</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">diamonds <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>( <span class="kw">starts_with</span>(<span class="st">&quot;c&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 4
-##   carat cut       color clarity
-##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;  
-## 1 0.23  Ideal     E     SI2    
-## 2 0.21  Premium   E     SI1    
-## 3 0.23  Good      E     VS1    
-## 4 0.290 Premium   I     VS2    
-## 5 0.31  Good      J     SI2    
-## 6 0.24  Very Good J     VVS2</code></pre>
+<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>( <span class="kw">starts_with</span>(<span class="st">&quot;c&quot;</span>))</a></code></pre></div>
+<pre><code>## # A tibble: 53,940 x 4
+##    carat cut       color clarity
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;  
+##  1 0.23  Ideal     E     SI2    
+##  2 0.21  Premium   E     SI1    
+##  3 0.23  Good      E     VS1    
+##  4 0.290 Premium   I     VS2    
+##  5 0.31  Good      J     SI2    
+##  6 0.24  Very Good J     VVS2   
+##  7 0.24  Very Good I     VVS1   
+##  8 0.26  Very Good H     SI1    
+##  9 0.22  Fair      E     VS2    
+## 10 0.23  Very Good H     VS1    
+## # … with 53,930 more rows</code></pre>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">diamonds <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>( <span class="kw">ends_with</span>(<span class="st">&quot;e&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 2
-##   table price
-##   &lt;dbl&gt; &lt;int&gt;
-## 1    55   326
-## 2    61   326
-## 3    65   327
-## 4    58   334
-## 5    58   335
-## 6    57   336</code></pre>
+<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>( <span class="kw">ends_with</span>(<span class="st">&quot;e&quot;</span>)) </a></code></pre></div>
+<pre><code>## # A tibble: 53,940 x 2
+##    table price
+##    &lt;dbl&gt; &lt;int&gt;
+##  1    55   326
+##  2    61   326
+##  3    65   327
+##  4    58   334
+##  5    58   335
+##  6    57   336
+##  7    57   336
+##  8    55   337
+##  9    61   337
+## 10    61   338
+## # … with 53,930 more rows</code></pre>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">diamonds <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>( <span class="kw">contains</span>(<span class="st">&quot;l&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb46-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 3
-##   color clarity table
-##   &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt;
-## 1 E     SI2        55
-## 2 E     SI1        61
-## 3 E     VS1        65
-## 4 I     VS2        58
-## 5 J     SI2        58
-## 6 J     VVS2       57</code></pre>
+<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>( <span class="kw">contains</span>(<span class="st">&quot;l&quot;</span>))</a></code></pre></div>
+<pre><code>## # A tibble: 53,940 x 3
+##    color clarity table
+##    &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt;
+##  1 E     SI2        55
+##  2 E     SI1        61
+##  3 E     VS1        65
+##  4 I     VS2        58
+##  5 J     SI2        58
+##  6 J     VVS2       57
+##  7 I     VVS1       57
+##  8 H     SI1        55
+##  9 E     VS2        61
+## 10 H     VS1        61
+## # … with 53,930 more rows</code></pre>
 <div id="rename" class="section level3">
 <h3><span class="header-section-number">5.4.1</span> rename()</h3>
 <p>Often when you’re selecting columns to work on, you’ll need to fix the names - <code>rename()</code> is useful for this. Let’s fix that mis-spelled column</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">diamonds <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="st">  </span><span class="kw">rename</span>( <span class="dt">colour =</span> color) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 10
-##   carat cut       colour clarity depth table price     x     y     z
-##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt;  &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 0.23  Ideal     E      SI2      61.5    55   326  3.95  3.98  2.43
-## 2 0.21  Premium   E      SI1      59.8    61   326  3.89  3.84  2.31
-## 3 0.23  Good      E      VS1      56.9    65   327  4.05  4.07  2.31
-## 4 0.290 Premium   I      VS2      62.4    58   334  4.2   4.23  2.63
-## 5 0.31  Good      J      SI2      63.3    58   335  4.34  4.35  2.75
-## 6 0.24  Very Good J      VVS2     62.8    57   336  3.94  3.96  2.48</code></pre>
+<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="st">  </span><span class="kw">rename</span>( <span class="dt">colour =</span> color)</a></code></pre></div>
+<pre><code>## # A tibble: 53,940 x 10
+##    carat cut       colour clarity depth table price     x     y     z
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt;  &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 0.23  Ideal     E      SI2      61.5    55   326  3.95  3.98  2.43
+##  2 0.21  Premium   E      SI1      59.8    61   326  3.89  3.84  2.31
+##  3 0.23  Good      E      VS1      56.9    65   327  4.05  4.07  2.31
+##  4 0.290 Premium   I      VS2      62.4    58   334  4.2   4.23  2.63
+##  5 0.31  Good      J      SI2      63.3    58   335  4.34  4.35  2.75
+##  6 0.24  Very Good J      VVS2     62.8    57   336  3.94  3.96  2.48
+##  7 0.24  Very Good I      VVS1     62.3    57   336  3.95  3.98  2.47
+##  8 0.26  Very Good H      SI1      61.9    55   337  4.07  4.11  2.53
+##  9 0.22  Fair      E      VS2      65.1    61   337  3.87  3.78  2.49
+## 10 0.23  Very Good H      VS1      59.4    61   338  4     4.05  2.39
+## # … with 53,930 more rows</code></pre>
 </div>
 </div>
 <div id="filter" class="section level2">
 <h2><span class="header-section-number">5.5</span> filter()</h2>
 <p>The <code>filter()</code> function lets you select rows (observations) from your data frame based on criteria you specify. Here I’ll look for all rows with a value of <code>G</code> for the <code>color</code> variable (I’ll also pipe the output to the <code>head()</code> function to view just the top of the output.)</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">diamonds <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>( color <span class="op">==</span><span class="st"> &quot;G&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb50-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 10
-##   carat cut       color clarity depth table price     x     y     z
-##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  0.23 Very Good G     VVS2     60.4    58   354  3.97  4.01  2.41
-## 2  0.23 Ideal     G     VS1      61.9    54   404  3.93  3.95  2.44
-## 3  0.28 Ideal     G     VVS2     61.4    56   553  4.19  4.22  2.58
-## 4  0.31 Very Good G     SI1      63.3    57   553  4.33  4.3   2.73
-## 5  0.31 Premium   G     SI1      61.8    58   553  4.35  4.32  2.68
-## 6  0.24 Premium   G     VVS1     62.3    59   554  3.95  3.92  2.45</code></pre>
+<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>( color <span class="op">==</span><span class="st"> &quot;G&quot;</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 11,292 x 10
+##    carat cut       color clarity depth table price     x     y     z
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  0.23 Very Good G     VVS2     60.4    58   354  3.97  4.01  2.41
+##  2  0.23 Ideal     G     VS1      61.9    54   404  3.93  3.95  2.44
+##  3  0.28 Ideal     G     VVS2     61.4    56   553  4.19  4.22  2.58
+##  4  0.31 Very Good G     SI1      63.3    57   553  4.33  4.3   2.73
+##  5  0.31 Premium   G     SI1      61.8    58   553  4.35  4.32  2.68
+##  6  0.24 Premium   G     VVS1     62.3    59   554  3.95  3.92  2.45
+##  7  0.7  Ideal     G     VS2      61.6    56  2757  5.7   5.67  3.5 
+##  8  0.78 Very Good G     SI2      63.8    56  2759  5.81  5.85  3.72
+##  9  0.74 Ideal     G     SI1      61.6    55  2760  5.8   5.85  3.59
+## 10  0.75 Premium   G     VS2      61.7    58  2760  5.85  5.79  3.59
+## # … with 11,282 more rows</code></pre>
 <p>The syntax is fairly clear, just pass the column you want to think about and the condition to keep the rows. Multiple conditions can be used and all must be true to keep a row.</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">diamonds <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb52-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>( color <span class="op">==</span><span class="st"> &quot;G&quot;</span>, </a>
-<a class="sourceLine" id="cb52-3" data-line-number="3">          cut <span class="op">==</span><span class="st"> &quot;Ideal&quot;</span> ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb52-4" data-line-number="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 10
-##   carat cut   color clarity depth table price     x     y     z
-##   &lt;dbl&gt; &lt;ord&gt; &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  0.23 Ideal G     VS1      61.9    54   404  3.93  3.95  2.44
-## 2  0.28 Ideal G     VVS2     61.4    56   553  4.19  4.22  2.58
-## 3  0.7  Ideal G     VS2      61.6    56  2757  5.7   5.67  3.5 
-## 4  0.74 Ideal G     SI1      61.6    55  2760  5.8   5.85  3.59
-## 5  0.75 Ideal G     SI1      62.2    55  2760  5.87  5.8   3.63
-## 6  0.71 Ideal G     VS2      62.4    54  2762  5.72  5.76  3.58</code></pre>
+<a class="sourceLine" id="cb52-3" data-line-number="3">          cut <span class="op">==</span><span class="st"> &quot;Ideal&quot;</span> )</a></code></pre></div>
+<pre><code>## # A tibble: 4,884 x 10
+##    carat cut   color clarity depth table price     x     y     z
+##    &lt;dbl&gt; &lt;ord&gt; &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 0.23  Ideal G     VS1      61.9    54   404  3.93  3.95  2.44
+##  2 0.28  Ideal G     VVS2     61.4    56   553  4.19  4.22  2.58
+##  3 0.7   Ideal G     VS2      61.6    56  2757  5.7   5.67  3.5 
+##  4 0.74  Ideal G     SI1      61.6    55  2760  5.8   5.85  3.59
+##  5 0.75  Ideal G     SI1      62.2    55  2760  5.87  5.8   3.63
+##  6 0.71  Ideal G     VS2      62.4    54  2762  5.72  5.76  3.58
+##  7 0.64  Ideal G     VVS1     61.9    56  2766  5.53  5.56  3.43
+##  8 0.71  Ideal G     VS2      61.9    57  2771  5.73  5.77  3.56
+##  9 0.580 Ideal G     VVS1     61.5    55  2772  5.39  5.44  3.33
+## 10 0.72  Ideal G     SI1      61.8    56  2776  5.72  5.75  3.55
+## # … with 4,874 more rows</code></pre>
 <p>To make more complex queries, you’ll need to combine comparisons and logical operators.</p>
 <div id="comparisons" class="section level3">
 <h3><span class="header-section-number">5.5.1</span> Comparisons</h3>
@@ -444,60 +480,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.5.2</span> Logical operators</h3>
 <p><code>filter()</code> uses combinations of R logical operators, these are <code>&amp;</code> for <code>and</code>, <code>|</code> for <code>or</code> and <code>!</code> for <code>not</code>. You can build filters with these. Let’s modify our query to find <code>color</code> <code>G</code> or <code>cut</code> <code>ideal</code>.</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">diamonds <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>( color <span class="op">==</span><span class="st"> &quot;G&quot;</span> <span class="op">|</span><span class="st"> </span>cut <span class="op">==</span><span class="st"> &quot;Ideal&quot;</span> ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 10
-##   carat cut       color clarity depth table price     x     y     z
-##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
-## 2  0.23 Ideal     J     VS1      62.8    56   340  3.93  3.9   2.46
-## 3  0.31 Ideal     J     SI2      62.2    54   344  4.35  4.37  2.71
-## 4  0.3  Ideal     I     SI2      62      54   348  4.31  4.34  2.68
-## 5  0.23 Very Good G     VVS2     60.4    58   354  3.97  4.01  2.41
-## 6  0.33 Ideal     I     SI2      61.8    55   403  4.49  4.51  2.78</code></pre>
+<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>( color <span class="op">==</span><span class="st"> &quot;G&quot;</span> <span class="op">|</span><span class="st"> </span>cut <span class="op">==</span><span class="st"> &quot;Ideal&quot;</span> )</a></code></pre></div>
+<pre><code>## # A tibble: 27,959 x 10
+##    carat cut       color clarity depth table price     x     y     z
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+##  2  0.23 Ideal     J     VS1      62.8    56   340  3.93  3.9   2.46
+##  3  0.31 Ideal     J     SI2      62.2    54   344  4.35  4.37  2.71
+##  4  0.3  Ideal     I     SI2      62      54   348  4.31  4.34  2.68
+##  5  0.23 Very Good G     VVS2     60.4    58   354  3.97  4.01  2.41
+##  6  0.33 Ideal     I     SI2      61.8    55   403  4.49  4.51  2.78
+##  7  0.33 Ideal     I     SI2      61.2    56   403  4.49  4.5   2.75
+##  8  0.33 Ideal     J     SI1      61.1    56   403  4.49  4.55  2.76
+##  9  0.23 Ideal     G     VS1      61.9    54   404  3.93  3.95  2.44
+## 10  0.32 Ideal     I     SI1      60.9    55   404  4.45  4.48  2.72
+## # … with 27,949 more rows</code></pre>
 <p>Note that the computer doesn’t read this like it’s English. Consider this</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">diamonds <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>( color <span class="op">==</span><span class="st"> &quot;G&quot;</span> <span class="op">|</span><span class="st"> &quot;F&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb60-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>( color <span class="op">==</span><span class="st"> &quot;G&quot;</span> <span class="op">|</span><span class="st"> &quot;F&quot;</span>)</a></code></pre></div>
 <p>You might consider this to read <code>filter rows with color column equal to</code>G<code>or</code>F`. The computer doesn’t read it like this. It needs more explicit statements</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">diamonds <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb61-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>( color <span class="op">==</span><span class="st"> &quot;G&quot;</span> <span class="op">|</span><span class="st"> </span>color <span class="op">==</span><span class="st"> &quot;F&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb61-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 10
-##   carat cut       color clarity depth table price     x     y     z
-##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  0.22 Premium   F     SI1      60.4    61   342  3.88  3.84  2.33
-## 2  0.23 Very Good G     VVS2     60.4    58   354  3.97  4.01  2.41
-## 3  0.23 Very Good F     VS1      60.9    57   357  3.96  3.99  2.42
-## 4  0.23 Very Good F     VS1      60      57   402  4     4.03  2.41
-## 5  0.23 Very Good F     VS1      59.8    57   402  4.04  4.06  2.42
-## 6  0.23 Good      F     VS1      58.2    59   402  4.06  4.08  2.37</code></pre>
+<a class="sourceLine" id="cb61-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>( color <span class="op">==</span><span class="st"> &quot;G&quot;</span> <span class="op">|</span><span class="st"> </span>color <span class="op">==</span><span class="st"> &quot;F&quot;</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 20,834 x 10
+##    carat cut       color clarity depth table price     x     y     z
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 0.22  Premium   F     SI1      60.4    61   342  3.88  3.84  2.33
+##  2 0.23  Very Good G     VVS2     60.4    58   354  3.97  4.01  2.41
+##  3 0.23  Very Good F     VS1      60.9    57   357  3.96  3.99  2.42
+##  4 0.23  Very Good F     VS1      60      57   402  4     4.03  2.41
+##  5 0.23  Very Good F     VS1      59.8    57   402  4.04  4.06  2.42
+##  6 0.23  Good      F     VS1      58.2    59   402  4.06  4.08  2.37
+##  7 0.290 Premium   F     SI1      62.4    58   403  4.24  4.26  2.65
+##  8 0.24  Very Good F     SI1      60.9    61   404  4.02  4.03  2.45
+##  9 0.23  Ideal     G     VS1      61.9    54   404  3.93  3.95  2.44
+## 10 0.28  Ideal     G     VVS2     61.4    56   553  4.19  4.22  2.58
+## # … with 20,824 more rows</code></pre>
 <p>Which can be cumbersome if you want to filter on one of many possible values. For that reason we have <code>%in%</code> , which works like</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">diamonds <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>( color  <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;G&quot;</span>, <span class="st">&quot;F&quot;</span>) ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb63-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 10
-##   carat cut       color clarity depth table price     x     y     z
-##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  0.22 Premium   F     SI1      60.4    61   342  3.88  3.84  2.33
-## 2  0.23 Very Good G     VVS2     60.4    58   354  3.97  4.01  2.41
-## 3  0.23 Very Good F     VS1      60.9    57   357  3.96  3.99  2.42
-## 4  0.23 Very Good F     VS1      60      57   402  4     4.03  2.41
-## 5  0.23 Very Good F     VS1      59.8    57   402  4.04  4.06  2.42
-## 6  0.23 Good      F     VS1      58.2    59   402  4.06  4.08  2.37</code></pre>
+<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>( color  <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;G&quot;</span>, <span class="st">&quot;F&quot;</span>) )</a></code></pre></div>
+<pre><code>## # A tibble: 20,834 x 10
+##    carat cut       color clarity depth table price     x     y     z
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 0.22  Premium   F     SI1      60.4    61   342  3.88  3.84  2.33
+##  2 0.23  Very Good G     VVS2     60.4    58   354  3.97  4.01  2.41
+##  3 0.23  Very Good F     VS1      60.9    57   357  3.96  3.99  2.42
+##  4 0.23  Very Good F     VS1      60      57   402  4     4.03  2.41
+##  5 0.23  Very Good F     VS1      59.8    57   402  4.04  4.06  2.42
+##  6 0.23  Good      F     VS1      58.2    59   402  4.06  4.08  2.37
+##  7 0.290 Premium   F     SI1      62.4    58   403  4.24  4.26  2.65
+##  8 0.24  Very Good F     SI1      60.9    61   404  4.02  4.03  2.45
+##  9 0.23  Ideal     G     VS1      61.9    54   404  3.93  3.95  2.44
+## 10 0.28  Ideal     G     VVS2     61.4    56   553  4.19  4.22  2.58
+## # … with 20,824 more rows</code></pre>
 <p>You can select anything not in a list given to <code>%in%</code> with a judicious <code>!</code> (not), again this is a bit weird if you translate directly from English, as the not goes first.</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">diamonds <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>( <span class="op">!</span><span class="st"> </span>color <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;G&quot;</span>, <span class="st">&quot;F&quot;</span>) ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb65-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 10
-##   carat cut       color clarity depth table price     x     y     z
-##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
-## 2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
-## 3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31
-## 4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
-## 5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75
-## 6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48</code></pre>
+<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>( <span class="op">!</span><span class="st"> </span>color <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;G&quot;</span>, <span class="st">&quot;F&quot;</span>) )</a></code></pre></div>
+<pre><code>## # A tibble: 33,106 x 10
+##    carat cut       color clarity depth table price     x     y     z
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+##  2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+##  3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+##  4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+##  5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+##  6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
+##  7 0.24  Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
+##  8 0.26  Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
+##  9 0.22  Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
+## 10 0.23  Very Good H     VS1      59.4    61   338  4     4.05  2.39
+## # … with 33,096 more rows</code></pre>
 </div>
 </div>
 <div id="mutate" class="section level2">
@@ -505,61 +556,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <code>mutate()</code> function lets you add new columns based on values in other columns. Note that doing so to this data set makes it too big to print, so I’ll <code>select()</code> the appropriate columns.</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">diamonds <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb67-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">price_per_carat =</span> price <span class="op">/</span><span class="st"> </span>carat) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(price, carat, price_per_carat) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb67-4" data-line-number="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 3
-##   price carat price_per_carat
-##   &lt;int&gt; &lt;dbl&gt;           &lt;dbl&gt;
-## 1   326 0.23            1417.
-## 2   326 0.21            1552.
-## 3   327 0.23            1422.
-## 4   334 0.290           1152.
-## 5   335 0.31            1081.
-## 6   336 0.24            1400</code></pre>
+<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(price, carat, price_per_carat)</a></code></pre></div>
+<pre><code>## # A tibble: 53,940 x 3
+##    price carat price_per_carat
+##    &lt;int&gt; &lt;dbl&gt;           &lt;dbl&gt;
+##  1   326 0.23            1417.
+##  2   326 0.21            1552.
+##  3   327 0.23            1422.
+##  4   334 0.290           1152.
+##  5   335 0.31            1081.
+##  6   336 0.24            1400 
+##  7   336 0.24            1400 
+##  8   337 0.26            1296.
+##  9   337 0.22            1532.
+## 10   338 0.23            1470.
+## # … with 53,930 more rows</code></pre>
 <p>You can refer to columns straight after creating them, so you can minimise <code>mutate()</code>s</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">diamonds <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">price_per_carat =</span> price <span class="op">/</span><span class="st"> </span>carat) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">depth_per_ppc =</span> depth <span class="op">/</span><span class="st"> </span>price_per_carat) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(depth_per_ppc, price_per_carat) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-5" data-line-number="5"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 2
-##   depth_per_ppc price_per_carat
-##           &lt;dbl&gt;           &lt;dbl&gt;
-## 1        0.0434           1417.
-## 2        0.0385           1552.
-## 3        0.0400           1422.
-## 4        0.0542           1152.
-## 5        0.0586           1081.
-## 6        0.0449           1400</code></pre>
+<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">price_per_carat =</span> price <span class="op">/</span><span class="st"> </span>carat,</a>
+<a class="sourceLine" id="cb69-3" data-line-number="3">         <span class="dt">depth_per_ppc =</span> depth <span class="op">/</span><span class="st"> </span>price_per_carat) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb69-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(depth_per_ppc, price_per_carat) </a></code></pre></div>
+<pre><code>## # A tibble: 53,940 x 2
+##    depth_per_ppc price_per_carat
+##            &lt;dbl&gt;           &lt;dbl&gt;
+##  1        0.0434           1417.
+##  2        0.0385           1552.
+##  3        0.0400           1422.
+##  4        0.0542           1152.
+##  5        0.0586           1081.
+##  6        0.0449           1400 
+##  7        0.0445           1400 
+##  8        0.0478           1296.
+##  9        0.0425           1532.
+## 10        0.0404           1470.
+## # … with 53,930 more rows</code></pre>
 <div id="functions-in-mutate" class="section level3">
 <h3><span class="header-section-number">5.6.1</span> Functions in mutate()</h3>
-<p>You can create a new column with <code>mutate()</code> using pretty much any (vectorized) R function. It’s a bit out of scope to explain what I mean by ‘vectorized’ but here’s some examples.</p>
+<p>You can create a new column with <code>mutate()</code> using pretty much any vectorized R function. It’s a bit complicated to explain what I mean by ‘vectorized’ so let’s start with some examples.</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">diamonds <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb71-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">log_price =</span> <span class="kw">log</span>(price)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb71-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>x, <span class="op">-</span>y, <span class="op">-</span>z) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb71-4" data-line-number="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 8
-##   carat cut       color clarity depth table price log_price
-##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;     &lt;dbl&gt;
-## 1 0.23  Ideal     E     SI2      61.5    55   326      5.79
-## 2 0.21  Premium   E     SI1      59.8    61   326      5.79
-## 3 0.23  Good      E     VS1      56.9    65   327      5.79
-## 4 0.290 Premium   I     VS2      62.4    58   334      5.81
-## 5 0.31  Good      J     SI2      63.3    58   335      5.81
-## 6 0.24  Very Good J     VVS2     62.8    57   336      5.82</code></pre>
+<a class="sourceLine" id="cb71-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>x, <span class="op">-</span>y, <span class="op">-</span>z) </a></code></pre></div>
+<pre><code>## # A tibble: 53,940 x 8
+##    carat cut       color clarity depth table price log_price
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;     &lt;dbl&gt;
+##  1 0.23  Ideal     E     SI2      61.5    55   326      5.79
+##  2 0.21  Premium   E     SI1      59.8    61   326      5.79
+##  3 0.23  Good      E     VS1      56.9    65   327      5.79
+##  4 0.290 Premium   I     VS2      62.4    58   334      5.81
+##  5 0.31  Good      J     SI2      63.3    58   335      5.81
+##  6 0.24  Very Good J     VVS2     62.8    57   336      5.82
+##  7 0.24  Very Good I     VVS1     62.3    57   336      5.82
+##  8 0.26  Very Good H     SI1      61.9    55   337      5.82
+##  9 0.22  Fair      E     VS2      65.1    61   337      5.82
+## 10 0.23  Very Good H     VS1      59.4    61   338      5.82
+## # … with 53,930 more rows</code></pre>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1">diamonds <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb73-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>( <span class="dt">total_price =</span> <span class="kw">sum</span>(price)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb73-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>( <span class="op">-</span>x, <span class="op">-</span>y, <span class="op">-</span>z) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb73-4" data-line-number="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 8
-##   carat cut       color clarity depth table price total_price
-##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;       &lt;int&gt;
-## 1 0.23  Ideal     E     SI2      61.5    55   326   212135217
-## 2 0.21  Premium   E     SI1      59.8    61   326   212135217
-## 3 0.23  Good      E     VS1      56.9    65   327   212135217
-## 4 0.290 Premium   I     VS2      62.4    58   334   212135217
-## 5 0.31  Good      J     SI2      63.3    58   335   212135217
-## 6 0.24  Very Good J     VVS2     62.8    57   336   212135217</code></pre>
+<a class="sourceLine" id="cb73-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>( <span class="op">-</span>x, <span class="op">-</span>y, <span class="op">-</span>z) </a></code></pre></div>
+<pre><code>## # A tibble: 53,940 x 8
+##    carat cut       color clarity depth table price total_price
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;       &lt;int&gt;
+##  1 0.23  Ideal     E     SI2      61.5    55   326   212135217
+##  2 0.21  Premium   E     SI1      59.8    61   326   212135217
+##  3 0.23  Good      E     VS1      56.9    65   327   212135217
+##  4 0.290 Premium   I     VS2      62.4    58   334   212135217
+##  5 0.31  Good      J     SI2      63.3    58   335   212135217
+##  6 0.24  Very Good J     VVS2     62.8    57   336   212135217
+##  7 0.24  Very Good I     VVS1     62.3    57   336   212135217
+##  8 0.26  Very Good H     SI1      61.9    55   337   212135217
+##  9 0.22  Fair      E     VS2      65.1    61   337   212135217
+## 10 0.23  Very Good H     VS1      59.4    61   338   212135217
+## # … with 53,930 more rows</code></pre>
 <p>Observe how the same number is in all the rows in the last example, this highlights how this ‘vectorized’ function idea works.</p>
 <p>Briefly, vectorized functions work on whole columns at a time, not just single rows. So if it makes sense to treat each element of the column individually, the function will do that. Consider this column (here printed on its side) with the <code>log()</code> function.</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="kw">log</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</a></code></pre></div>
@@ -567,7 +634,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You get back a column of numbers the same length as you put in, each item logged. With the <code>sum()</code> function it makes sense to return the sum of all the numbers in the column.</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="kw">sum</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</a></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<p>So you get back a single number. The behaviour of <code>mutate()</code> then is akin to taking the whole column or columns you specify, apply whatever function you ask for and putting the resulting column in the dataframe. If the resulting column is too short, it just gets repeated until it fits. That is why we get repeats of the same number in the <code>sum()</code> example and why that number is the sum of all the prices.</p>
+<p>So you get back a single number. The behaviour of <code>mutate()</code> then is akin to taking the whole column or columns you specify, apply whatever function you ask for and putting the resulting column in the dataframe. If the resulting column is of length one, that just gets repeated until it fits. That is why we get repeats of the same number in the <code>sum()</code> example and why that number is the sum of all the prices.</p>
+<p>If the result from the function isn’t the same length as the column or has length of one - the function will fail. Most common functions will work nicely though.</p>
 </div>
 <div id="if_else" class="section level3">
 <h3><span class="header-section-number">5.6.2</span> if_else()</h3>
@@ -588,7 +656,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 0.26  Very Good H     SI1      61.9    55   337 high 
 ##  9 0.22  Fair      E     VS2      65.1    61   337 high 
 ## 10 0.23  Very Good H     VS1      59.4    61   338 high 
-## # ... with 53,930 more rows</code></pre>
+## # … with 53,930 more rows</code></pre>
 <p>The <code>if_else()</code> function then just adds the first value (“high”) if the condition is ‘true’ else it puts the second value.</p>
 </div>
 </div>
@@ -624,7 +692,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb85-5" data-line-number="5">    <span class="dt">sd =</span> <span class="kw">sd</span>(price)</a>
 <a class="sourceLine" id="cb85-6" data-line-number="6">    )</a></code></pre></div>
 <pre><code>## # A tibble: 35 x 4
-## # Groups:   color [?]
+## # Groups:   color [7]
 ##    color cut       mean_price    sd
 ##    &lt;ord&gt; &lt;ord&gt;          &lt;dbl&gt; &lt;dbl&gt;
 ##  1 D     Fair           4291. 3286.
@@ -637,7 +705,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 E     Very Good      3215. 3408.
 ##  9 E     Premium        3539. 3795.
 ## 10 E     Ideal          2598. 2956.
-## # ... with 25 more rows</code></pre>
+## # … with 25 more rows</code></pre>
 <p>Note how every combination of <code>color</code> and <code>cut</code> is made into subsets.</p>
 <div id="helpful-summarize-functions" class="section level3">
 <h3><span class="header-section-number">5.7.1</span> Helpful summarize() functions</h3>
@@ -686,30 +754,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.8</span> arrange()</h2>
 <p>The <code>arrange()</code> function is a straightforward function that helps you arrange the final table from <code>summarize()</code> a bit more nicely. It simply orders the rows in a way that you specify.</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">diamonds <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb91-2" data-line-number="2"><span class="st">  </span><span class="kw">arrange</span>(price) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb91-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 10
-##   carat cut       color clarity depth table price     x     y     z
-##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
-## 2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
-## 3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31
-## 4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
-## 5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75
-## 6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48</code></pre>
+<a class="sourceLine" id="cb91-2" data-line-number="2"><span class="st">  </span><span class="kw">arrange</span>(price)</a></code></pre></div>
+<pre><code>## # A tibble: 53,940 x 10
+##    carat cut       color clarity depth table price     x     y     z
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+##  2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+##  3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+##  4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+##  5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+##  6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
+##  7 0.24  Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
+##  8 0.26  Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
+##  9 0.22  Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
+## 10 0.23  Very Good H     VS1      59.4    61   338  4     4.05  2.39
+## # … with 53,930 more rows</code></pre>
 <p>To sort biggest first, use <code>desc()</code></p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1">diamonds <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb93-2" data-line-number="2"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(price)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb93-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 10
-##   carat cut       color clarity depth table price     x     y     z
-##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  2.29 Premium   I     VS2      60.8    60 18823  8.5   8.47  5.16
-## 2  2    Very Good G     SI1      63.5    56 18818  7.9   7.97  5.04
-## 3  1.51 Ideal     G     IF       61.7    55 18806  7.37  7.41  4.56
-## 4  2.07 Ideal     G     SI2      62.5    55 18804  8.2   8.13  5.11
-## 5  2    Very Good H     SI1      62.8    57 18803  7.95  8     5.01
-## 6  2.29 Premium   I     SI1      61.8    59 18797  8.52  8.45  5.24</code></pre>
+<a class="sourceLine" id="cb93-2" data-line-number="2"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(price)) </a></code></pre></div>
+<pre><code>## # A tibble: 53,940 x 10
+##    carat cut       color clarity depth table price     x     y     z
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  2.29 Premium   I     VS2      60.8    60 18823  8.5   8.47  5.16
+##  2  2    Very Good G     SI1      63.5    56 18818  7.9   7.97  5.04
+##  3  1.51 Ideal     G     IF       61.7    55 18806  7.37  7.41  4.56
+##  4  2.07 Ideal     G     SI2      62.5    55 18804  8.2   8.13  5.11
+##  5  2    Very Good H     SI1      62.8    57 18803  7.95  8     5.01
+##  6  2.29 Premium   I     SI1      61.8    59 18797  8.52  8.45  5.24
+##  7  2.04 Premium   H     SI1      58.1    60 18795  8.37  8.28  4.84
+##  8  2    Premium   I     VS1      60.8    59 18795  8.13  8.02  4.91
+##  9  1.71 Premium   F     VS2      62.3    59 18791  7.57  7.53  4.7 
+## 10  2.15 Ideal     G     SI2      62.6    54 18791  8.29  8.35  5.21
+## # … with 53,930 more rows</code></pre>
 </div>
 <div id="missing-values" class="section level2">
 <h2><span class="header-section-number">5.9</span> Missing Values</h2>
@@ -749,14 +825,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb101-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(size <span class="op">!=</span><span class="st"> </span><span class="ot">NA</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb101-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>( group ) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb101-4" data-line-number="4"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_size =</span> <span class="kw">mean</span>(size))</a></code></pre></div>
-<pre><code>## # A tibble: 0 x 2
-## # ... with 2 variables: group &lt;fct&gt;, mean_size &lt;dbl&gt;</code></pre>
+<pre><code>## Warning: Factor `group` contains implicit NA, consider using
+## `forcats::fct_explicit_na`</code></pre>
+<pre><code>## # A tibble: 1 x 2
+##   group mean_size
+##   &lt;fct&gt;     &lt;dbl&gt;
+## 1 &lt;NA&gt;        NaN</code></pre>
 <p>By definition <code>NA</code> means <code>Not available</code>, which is a nice way of saying <code>don't know</code>, so, strictly, <code>x == NA</code> means “is <code>x</code> equal to something we don’t know the value of?” To which the answer can only be <code>don't know</code>, for which R uses <code>NA</code>. The result is that any comparison with <code>NA</code> in it is <code>NA</code>. <code>filter()</code> doesn’t know whether any row passes so throws it out. You get no rows for <code>group_by()</code> to group.</p>
 <p>If you want to check something is an <code>NA</code>, you can use <code>is.na()</code></p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">incomplete <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb103-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="st"> </span><span class="kw">is.na</span>(size)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb103-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>( group ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb103-4" data-line-number="4"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_size =</span> <span class="kw">mean</span>(size))</a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">incomplete <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb104-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="st"> </span><span class="kw">is.na</span>(size)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb104-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>( group ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb104-4" data-line-number="4"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_size =</span> <span class="kw">mean</span>(size))</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   group mean_size
 ##   &lt;fct&gt;     &lt;dbl&gt;
@@ -764,38 +844,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 C           8</code></pre>
 <p>Note that you lose the information for the <code>B</code> group, which may be important.</p>
 <p>You may want to pair these operations with an <code>n()</code> column to give you an idea of how many values you use to get your answer.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">incomplete <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb105-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>( group ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb105-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
-<a class="sourceLine" id="cb105-4" data-line-number="4">    <span class="dt">mean_size =</span> <span class="kw">mean</span>(size, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb105-5" data-line-number="5">    <span class="dt">sample_size =</span> <span class="kw">n</span>()</a>
-<a class="sourceLine" id="cb105-6" data-line-number="6">    )</a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">incomplete <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb106-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>( group ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb106-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb106-4" data-line-number="4">    <span class="dt">mean_size =</span> <span class="kw">mean</span>(size, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb106-5" data-line-number="5">    <span class="dt">sample_size =</span> <span class="kw">n</span>()</a>
+<a class="sourceLine" id="cb106-6" data-line-number="6">    )</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   group mean_size sample_size
 ##   &lt;fct&gt;     &lt;dbl&gt;       &lt;int&gt;
 ## 1 A           8.2           2
 ## 2 B         NaN             2
 ## 3 C           8             2</code></pre>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">incomplete <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb107-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="st"> </span><span class="kw">is.na</span>(size)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb107-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>( group ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb107-4" data-line-number="4"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_size =</span> <span class="kw">mean</span>(size),</a>
-<a class="sourceLine" id="cb107-5" data-line-number="5">    <span class="dt">sample_size =</span> <span class="kw">n</span>()</a>
-<a class="sourceLine" id="cb107-6" data-line-number="6">    </a>
-<a class="sourceLine" id="cb107-7" data-line-number="7">    )</a></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">incomplete <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb108-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="st"> </span><span class="kw">is.na</span>(size)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb108-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>( group ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb108-4" data-line-number="4"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_size =</span> <span class="kw">mean</span>(size),</a>
+<a class="sourceLine" id="cb108-5" data-line-number="5">    <span class="dt">sample_size =</span> <span class="kw">n</span>()</a>
+<a class="sourceLine" id="cb108-6" data-line-number="6">    </a>
+<a class="sourceLine" id="cb108-7" data-line-number="7">    )</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 3
 ##   group mean_size sample_size
 ##   &lt;fct&gt;     &lt;dbl&gt;       &lt;int&gt;
 ## 1 A           8.2           2
 ## 2 C           8             1</code></pre>
 <p>With a more complicated call, you can explicitly get the number of <code>NA</code>s.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">incomplete <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb109-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>( group ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb109-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
-<a class="sourceLine" id="cb109-4" data-line-number="4">    <span class="dt">mean_size =</span> <span class="kw">mean</span>(size, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb109-5" data-line-number="5">    <span class="dt">sample_size =</span> <span class="kw">n</span>(),</a>
-<a class="sourceLine" id="cb109-6" data-line-number="6">    <span class="dt">nas =</span> <span class="kw">sum</span>(<span class="kw">is.na</span>(size))</a>
-<a class="sourceLine" id="cb109-7" data-line-number="7">    )</a></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">incomplete <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb110-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>( group ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb110-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb110-4" data-line-number="4">    <span class="dt">mean_size =</span> <span class="kw">mean</span>(size, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb110-5" data-line-number="5">    <span class="dt">sample_size =</span> <span class="kw">n</span>(),</a>
+<a class="sourceLine" id="cb110-6" data-line-number="6">    <span class="dt">nas =</span> <span class="kw">sum</span>(<span class="kw">is.na</span>(size))</a>
+<a class="sourceLine" id="cb110-7" data-line-number="7">    )</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 4
 ##   group mean_size sample_size   nas
 ##   &lt;fct&gt;     &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
@@ -842,7 +922,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -852,6 +932,10 @@ gitbook.start({
 "size": 2
 },
 "edit": {
+"link": null,
+"text": null
+},
+"history": {
 "link": null,
 "text": null
 },

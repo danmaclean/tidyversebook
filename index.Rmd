@@ -18,6 +18,8 @@ No specific knowledge is assumed for this book, though you will need to install 
   2. RStudio
   3. The `tidyverse` packages
   
+You'll also need the following files [diamonds.csv](assets/diamonds.csv) and [datasets.xlsx](assets/datasets.xlsx)
+  
 ## Installing R
 
 Follow this link and install the right version for your operating system [https://www.stats.bris.ac.uk/R/](https://www.stats.bris.ac.uk/R/)

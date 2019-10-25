@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Using dplyr for data analysis</title>
-  <meta name="description" content="An introductory course for working with tabular data in R">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 6 Combining Datasets | Using dplyr for data analysis</title>
+  <meta name="description" content="An introductory course for working with tabular data in R" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Using dplyr for data analysis" />
+  <meta property="og:title" content="Topic 6 Combining Datasets | Using dplyr for data analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -17,25 +16,26 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Using dplyr for data analysis" />
+  <meta name="twitter:title" content="Topic 6 Combining Datasets | Using dplyr for data analysis" />
   
   <meta name="twitter:description" content="An introductory course for working with tabular data in R" />
   
 
-<meta name="author" content="Dan MacLean">
+<meta name="author" content="Dan MacLean" />
 
 
-<meta name="date" content="2018-11-20">
+<meta name="date" content="2019-10-25" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="dplyr-verbs.html">
-<link rel="next" href="dplyr-and-ggplot.html">
+<link rel="prev" href="dplyr-verbs.html"/>
+<link rel="next" href="dplyr-and-ggplot.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -55,7 +55,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -184,6 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.2" data-path="combining-datasets.html"><a href="combining-datasets.html#right_join"><i class="fa fa-check"></i><b>6.3.2</b> right_join()</a></li>
 <li class="chapter" data-level="6.3.3" data-path="combining-datasets.html"><a href="combining-datasets.html#inner_join"><i class="fa fa-check"></i><b>6.3.3</b> inner_join()</a></li>
 <li class="chapter" data-level="6.3.4" data-path="combining-datasets.html"><a href="combining-datasets.html#full_join"><i class="fa fa-check"></i><b>6.3.4</b> full_join()</a></li>
+<li class="chapter" data-level="6.3.5" data-path="combining-datasets.html"><a href="combining-datasets.html#joins-with-no-common-column-names"><i class="fa fa-check"></i><b>6.3.5</b> Joins with no common column names</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="combining-datasets.html"><a href="combining-datasets.html#binding-operations"><i class="fa fa-check"></i><b>6.4</b> Binding operations</a></li>
 <li class="chapter" data-level="6.5" data-path="combining-datasets.html"><a href="combining-datasets.html#quiz-3"><i class="fa fa-check"></i><b>6.5</b> Quiz</a></li>
@@ -198,8 +198,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2" data-path="tidying-data.html"><a href="tidying-data.html#tidyr"><i class="fa fa-check"></i><b>8.2</b> tidyr</a><ul>
 <li class="chapter" data-level="8.2.1" data-path="tidying-data.html"><a href="tidying-data.html#sample-tidy-datasets"><i class="fa fa-check"></i><b>8.2.1</b> Sample tidy datasets</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="tidying-data.html"><a href="tidying-data.html#gather"><i class="fa fa-check"></i><b>8.3</b> gather()</a></li>
-<li class="chapter" data-level="8.4" data-path="tidying-data.html"><a href="tidying-data.html#spread"><i class="fa fa-check"></i><b>8.4</b> spread()</a></li>
+<li class="chapter" data-level="8.3" data-path="tidying-data.html"><a href="tidying-data.html#pivot_longer"><i class="fa fa-check"></i><b>8.3</b> pivot_longer()</a></li>
+<li class="chapter" data-level="8.4" data-path="tidying-data.html"><a href="tidying-data.html#pivot_wider"><i class="fa fa-check"></i><b>8.4</b> pivot_wider()</a></li>
 <li class="chapter" data-level="8.5" data-path="tidying-data.html"><a href="tidying-data.html#separate"><i class="fa fa-check"></i><b>8.5</b> separate()</a></li>
 <li class="chapter" data-level="8.6" data-path="tidying-data.html"><a href="tidying-data.html#unite"><i class="fa fa-check"></i><b>8.6</b> unite()</a></li>
 <li class="chapter" data-level="8.7" data-path="tidying-data.html"><a href="tidying-data.html#quiz-4"><i class="fa fa-check"></i><b>8.7</b> Quiz</a></li>
@@ -214,7 +214,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#writing-files"><i class="fa fa-check"></i><b>9.3</b> Writing Files</a></li>
 <li class="chapter" data-level="9.4" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#readxl"><i class="fa fa-check"></i><b>9.4</b> readxl</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#read_excel"><i class="fa fa-check"></i><b>9.4.1</b> read_excel()</a></li>
+<li class="chapter" data-level="9.4.1" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#read_xlsx"><i class="fa fa-check"></i><b>9.4.1</b> read_xlsx()</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -264,32 +264,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="key-columns" class="section level3">
 <h3><span class="header-section-number">6.2.1</span> Key columns</h3>
 <p>The joining operation depends on the two datasets having some values in some column in common. The column in each dataset that allows you to combine columns is the key column. Consider these dataframes</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">band_members</a></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">band_members</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##   name  band   
 ##   &lt;chr&gt; &lt;chr&gt;  
 ## 1 Mick  Stones 
 ## 2 John  Beatles
 ## 3 Paul  Beatles</code></pre>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">band_instruments</a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">band_instruments</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##   name  plays 
 ##   &lt;chr&gt; &lt;chr&gt; 
 ## 1 John  guitar
 ## 2 Paul  bass  
 ## 3 Keith guitar</code></pre>
-<p>The key column in <code>band_members</code> is <code>name</code> and in <code>band_instruments</code> it is <code>artist</code>.</p>
+<p>Note that the two dataframes have a column in common <code>name</code>.</p>
 </div>
 </div>
 <div id="join-functions" class="section level2">
 <h2><span class="header-section-number">6.3</span> Join functions</h2>
-<p>The join functions in <code>dplyr</code> all have a common syntax. Here’s <code>left_join()</code> as an example</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1"><span class="kw">left_join</span>(x, y, <span class="dt">by.x =</span> key_column_x, <span class="dt">by.y =</span> key_column_y)</a></code></pre></div>
-<p>The <code>x</code> is the first (or left) dataframe, the <code>y</code> is the second (or right) dataframe and <code>by.x</code> and <code>by.y</code> are the key columns to use.</p>
+<p>Join functions work to combine two dataframes side-by-side in some way. Usually they use one column as a base and add columns to that one from the other.</p>
 <div id="left_join" class="section level3">
 <h3><span class="header-section-number">6.3.1</span> left_join()</h3>
-<p>The most common sort of join is the left join. This takes one dataframe, considers it to be on the left of the join and combines the second dataframe to it, skipping rows in the right dataframe that have nowhere to join</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="kw">left_join</span>( band_members, band_instruments, <span class="dt">by.x =</span> name, <span class="dt">by.y =</span> artist )</a></code></pre></div>
+<p>The most common sort of join is the left join. This takes one dataframe, considers it to be on the left of the join and combines the second dataframe on to it, skipping rows in the right dataframe that have nowhere to join</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="kw">left_join</span>( band_members, band_instruments, )</a></code></pre></div>
 <pre><code>## Joining, by = &quot;name&quot;</code></pre>
 <pre><code>## # A tibble: 3 x 3
 ##   name  band    plays 
@@ -297,12 +295,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 1 Mick  Stones  &lt;NA&gt;  
 ## 2 John  Beatles guitar
 ## 3 Paul  Beatles bass</code></pre>
-<p>Note how the <code>band_member</code> <code>Keith</code> goes missing because it isn’t in the <code>x</code> (left) dataframe. Note also how the key column name has come from the <code>x</code> dataframe.</p>
+<p>Note how the column in common <code>name</code> is used as the key through which to join and that the <code>band_member</code> <code>Keith</code> goes missing because it isn’t in the <code>left</code> dataframe, which is the reference.</p>
 </div>
 <div id="right_join" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> right_join()</h3>
 <p><code>right_join()</code> is the complementary function.</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="kw">right_join</span>( band_members, band_instruments, <span class="dt">by.x =</span> name, <span class="dt">by.y =</span> artist)</a></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="kw">right_join</span>( band_members, band_instruments)</a></code></pre></div>
 <pre><code>## Joining, by = &quot;name&quot;</code></pre>
 <pre><code>## # A tibble: 3 x 3
 ##   name  band    plays 
@@ -310,12 +308,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 1 John  Beatles guitar
 ## 2 Paul  Beatles bass  
 ## 3 Keith &lt;NA&gt;    guitar</code></pre>
-<p>See how this time <code>Keith</code> is retained as we’re joining to the right table, but as he has no entry in the left table, an <code>NA</code> is used to fill the missing value.</p>
+<p>See how this time <code>Keith</code> is retained as we’re joining to the right table as the base, but as he has no entry in the left table, an <code>NA</code> is used to fill the missing value.</p>
 </div>
 <div id="inner_join" class="section level3">
 <h3><span class="header-section-number">6.3.3</span> inner_join()</h3>
 <p><code>inner_join()</code> keeps only rows that are completely shared</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1"><span class="kw">inner_join</span>( band_members, band_instruments, <span class="dt">by.x =</span> name, <span class="dt">by.y =</span> artist)</a></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1"><span class="kw">inner_join</span>( band_members, band_instruments)</a></code></pre></div>
 <pre><code>## Joining, by = &quot;name&quot;</code></pre>
 <pre><code>## # A tibble: 2 x 3
 ##   name  band    plays 
@@ -326,7 +324,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="full_join" class="section level3">
 <h3><span class="header-section-number">6.3.4</span> full_join()</h3>
 <p><code>full_join()</code> joins all rows as well as possible, generating <code>NA</code> as appropriate.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1"><span class="kw">full_join</span>( band_members, band_instruments, <span class="dt">by.x =</span> name, <span class="dt">by.y =</span> artist)</a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1"><span class="kw">full_join</span>( band_members, band_instruments)</a></code></pre></div>
 <pre><code>## Joining, by = &quot;name&quot;</code></pre>
 <pre><code>## # A tibble: 4 x 3
 ##   name  band    plays 
@@ -336,12 +334,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 3 Paul  Beatles bass  
 ## 4 Keith &lt;NA&gt;    guitar</code></pre>
 </div>
+<div id="joins-with-no-common-column-names" class="section level3">
+<h3><span class="header-section-number">6.3.5</span> Joins with no common column names</h3>
+<p>What can we do when there is no common column names? Consider this variant of <code>band instruments</code></p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1">band_instruments2</a></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##   artist plays 
+##   &lt;chr&gt;  &lt;chr&gt; 
+## 1 John   guitar
+## 2 Paul   bass  
+## 3 Keith  guitar</code></pre>
+<p>The <code>name</code> column is called artist - we can join by explicitly stating the column to join by</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1"><span class="kw">left_join</span>( band_members, band_instruments2, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;name&quot;</span> =<span class="st"> &quot;artist&quot;</span>))</a></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 Mick  Stones  &lt;NA&gt;  
+## 2 John  Beatles guitar
+## 3 Paul  Beatles bass</code></pre>
+</div>
 </div>
 <div id="binding-operations" class="section level2">
 <h2><span class="header-section-number">6.4</span> Binding operations</h2>
 <p>These allow you to paste dataframes together.</p>
-<p><code>bind_rows()</code> sticks them together top-to-bottom</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1"><span class="kw">bind_rows</span>(band_members, band_members)</a></code></pre></div>
+<p><code>bind_rows()</code> sticks them together top-to-bottom.</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1"><span class="kw">bind_rows</span>(band_members, band_members)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   name  band   
 ##   &lt;chr&gt; &lt;chr&gt;  
@@ -352,7 +369,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 John  Beatles
 ## 6 Paul  Beatles</code></pre>
 <p>Note the column names need not be identical for this to work. <code>NAs</code> are propogated as required.</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1"><span class="kw">bind_rows</span>(band_members, band_instruments)</a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1"><span class="kw">bind_rows</span>(band_members, band_instruments)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   name  band    plays 
 ##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
@@ -363,7 +380,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 Paul  &lt;NA&gt;    bass  
 ## 6 Keith &lt;NA&gt;    guitar</code></pre>
 <p><code>bind_cols()</code> sticks dataframes together side-by-side/</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1"><span class="kw">bind_cols</span>(band_members, band_instruments)</a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1"><span class="kw">bind_cols</span>(band_members, band_instruments)</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 4
 ##   name  band    name1 plays 
 ##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; 
@@ -371,9 +388,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 John  Beatles Paul  bass  
 ## 3 Paul  Beatles Keith guitar</code></pre>
 <p>Note how it doesn’t do any sensible matching - it’s just pasting them together. Repeated column names get modified. What happens if the dataframes aren’t of equal length?</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1">data_<span class="dv">4</span>_rows &lt;-<span class="st"> </span><span class="kw">tibble</span>( <span class="dt">names =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">values =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb134-2" data-line-number="2"><span class="kw">bind_cols</span>(band_members, data_<span class="dv">4</span>_rows)</a></code></pre></div>
-<pre><code>## Error in cbind_all(x): Argument 2 must be length 3, not 4</code></pre>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1">data_<span class="dv">4</span>_rows &lt;-<span class="st"> </span><span class="kw">tibble</span>( <span class="dt">names =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">values =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb138-2" data-line-number="2"><span class="kw">bind_cols</span>(band_members, data_<span class="dv">4</span>_rows)</a></code></pre></div>
+<pre><code>## Error: Argument 2 must be length 3, not 4</code></pre>
 </div>
 <div id="quiz-3" class="section level2">
 <h2><span class="header-section-number">6.5</span> Quiz</h2>
@@ -409,7 +426,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -419,6 +436,10 @@ gitbook.start({
 "size": 2
 },
 "edit": {
+"link": null,
+"text": null
+},
+"history": {
 "link": null,
 "text": null
 },

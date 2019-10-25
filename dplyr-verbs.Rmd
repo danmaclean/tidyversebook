@@ -75,22 +75,19 @@ library(tidyverse)
 ```
 ```{r}
 diamonds %>% 
-  select(carat, cut) %>%
-  head()
+  select(carat, cut)
 ```
 
 Shorthands include the `:` which lets you choose a range and `-` which can be read as `except` so leaves out the columns you state
 
 ```{r}
 diamonds %>%
-  select(depth:price) %>%
-  head()
+  select(depth:price) 
 ```
 
 ```{r}
 diamonds %>%
-  select( -x, -y, -z)  %>%
-  head()
+  select( -x, -y, -z)
 ```
 
 You can select columns with helpers, 
@@ -104,18 +101,15 @@ Here are examples.
 
 ```{r}
 diamonds %>%
-  select( starts_with("c")) %>%
-  head()
+  select( starts_with("c"))
 ``` 
 ```{r}
 diamonds %>%
-  select( ends_with("e")) %>%
-  head()
+  select( ends_with("e")) 
 ``` 
 ```{r}
 diamonds %>%
-  select( contains("l")) %>%
-  head()
+  select( contains("l"))
 ``` 
 ### rename()
 
@@ -123,8 +117,7 @@ Often when you're selecting columns to work on, you'll need to fix the names - `
 
 ```{r}
 diamonds %>% 
-  rename( colour = color) %>%
-  head()
+  rename( colour = color)
 ```
 ## filter()
 
@@ -132,8 +125,7 @@ The `filter()` function lets you select rows (observations) from your data frame
 
 ```{r}
 diamonds %>%
-  filter( color == "G") %>%
-  head()
+  filter( color == "G")
 ```
 
 The syntax is fairly clear, just pass the column you want to think about and the condition to keep the rows. Multiple conditions can be used and all must be true to keep a row.  
@@ -141,8 +133,7 @@ The syntax is fairly clear, just pass the column you want to think about and the
 ```{r}
 diamonds %>%
   filter( color == "G", 
-          cut == "Ideal" ) %>%
-  head()
+          cut == "Ideal" )
 ```
 
 To make more complex queries, you'll need to combine comparisons and logical operators.
@@ -173,39 +164,35 @@ near( (1 / 49) * 49, 1)
 
 ```{r}
 diamonds %>%
-  filter( color == "G" | cut == "Ideal" ) %>%
-  head()
+  filter( color == "G" | cut == "Ideal" )
 ```
 
 Note that the computer doesn't read this like it's English. Consider this
 
 ```{r, eval = FALSE}
 diamonds %>%
-  filter( color == "G" | "F") %>%
-  head()
+  filter( color == "G" | "F")
 ```
 
 You might consider this to read `filter rows with color column equal to `G` or `F`. The computer doesn't read it like this. It needs more explicit statements 
 
 ```{r}
 diamonds %>%
-  filter( color == "G" | color == "F") %>%
-  head()
+  filter( color == "G" | color == "F")
 ```
 
 Which can be cumbersome if you want to filter on one of many possible values. For that reason we have `%in%` , which works like
 
 ```{r}
 diamonds %>%
-  filter( color  %in% c("G", "F") ) %>%
-  head()
+  filter( color  %in% c("G", "F") )
 ```
 
 You can select anything not in a list given to `%in%` with a judicious `!` (not), again this is a bit weird if you translate directly from English, as the not goes first. 
+
 ```{r}
 diamonds %>%
-  filter( ! color %in% c("G", "F") ) %>%
-  head()
+  filter( ! color %in% c("G", "F") )
 ```
 
 ## mutate()
@@ -215,36 +202,32 @@ The `mutate()` function lets you add new columns based on values in other column
 ```{r}
 diamonds %>%
   mutate(price_per_carat = price / carat) %>%
-  select(price, carat, price_per_carat) %>%
-  head()
+  select(price, carat, price_per_carat)
 ```
 
 You can refer to columns straight after creating them, so you can minimise `mutate()`s
 
 ```{r}
 diamonds %>%
-  mutate(price_per_carat = price / carat) %>%
-  mutate(depth_per_ppc = depth / price_per_carat) %>%
-  select(depth_per_ppc, price_per_carat) %>%
-  head()
+  mutate(price_per_carat = price / carat,
+         depth_per_ppc = depth / price_per_carat) %>%
+  select(depth_per_ppc, price_per_carat) 
 ```
 
 ### Functions in mutate()
 
-You can create a new column with `mutate()` using pretty much any (vectorized) R function. It's a bit out of scope to explain what I mean by 'vectorized' but here's some examples.
+You can create a new column with `mutate()` using pretty much any vectorized R function. It's a bit complicated to explain what I mean by 'vectorized' so let's start with some examples.
 
 ```{r}
 diamonds %>% 
   mutate(log_price = log(price)) %>%
-  select(-x, -y, -z) %>% 
-  head()
+  select(-x, -y, -z) 
 ```
 
 ```{r}
 diamonds %>%
   mutate( total_price = sum(price)) %>%
-  select( -x, -y, -z) %>%
-  head()
+  select( -x, -y, -z) 
 ```
 
 Observe how the same number is in all the rows in the last example, this highlights how this 'vectorized' function idea works. 
@@ -261,7 +244,9 @@ You get back a column of numbers the same length as you put in, each item logged
 sum(c(1,2,3))
 ```
 
-So you get back a single number. The behaviour of `mutate()` then is akin to taking the whole column or columns you specify, apply whatever function you ask for and putting the resulting column in the dataframe. If the resulting column is too short, it just gets repeated until it fits. That is why we get repeats of the same number in the `sum()` example and why that number is the sum of all the prices.
+So you get back a single number. The behaviour of `mutate()` then is akin to taking the whole column or columns you specify, apply whatever function you ask for and putting the resulting column in the dataframe. If the resulting column is of length one, that just gets repeated until it fits. That is why we get repeats of the same number in the `sum()` example and why that number is the sum of all the prices.
+
+If the result from the function isn't the same length as the column or has length of one - the function will fail. Most common functions will work nicely though.
 
 
 ### if_else()
@@ -347,16 +332,14 @@ The `arrange()` function is a straightforward function that helps you arrange th
 
 ```{r}
 diamonds %>% 
-  arrange(price) %>%
-  head()
+  arrange(price)
 ```
 
 To sort biggest first, use `desc()`
 
 ```{r}
 diamonds %>% 
-  arrange(desc(price)) %>%
-  head()
+  arrange(desc(price)) 
 ```
 
 ## Missing Values
