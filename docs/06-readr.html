@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Wrangling data with ‘tidyverse’ - 7&nbsp; Loading data from files</title>
+<title>Wrangling data with ‘tidyverse’ - 6&nbsp; Loading data from files</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Loading data from files</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loading data from files</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -171,7 +171,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Motivation</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Motivation</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -184,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-tidy-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tidy Data</span></a>
+  <a href="./01-tidy-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tidy Data</span></a>
   </div>
 </li>
     </ul>
@@ -199,17 +199,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-dplyr-verbs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></a>
+  <a href="./02-dplyr-verbs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-joining.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Combining Datasets</span></a>
+  <a href="./03-joining.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Combining Datasets</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-dplyr-ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">dplyr and ggplot</span></a>
+  <a href="./04-dplyr-ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">dplyr and ggplot</span></a>
   </div>
 </li>
     </ul>
@@ -224,12 +224,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying data</span></a>
+  <a href="./05-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tidying data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-readr.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Loading data from files</span></a>
+  <a href="./06-readr.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loading data from files</span></a>
   </div>
 </li>
     </ul>
@@ -268,18 +268,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#about-this-chapter" id="toc-about-this-chapter" class="nav-link active" data-scroll-target="#about-this-chapter"> <span class="header-section-number">7.1</span> About this chapter</a></li>
-  <li><a href="#readr" id="toc-readr" class="nav-link" data-scroll-target="#readr"> <span class="header-section-number">7.2</span> readr</a>
+  <li><a href="#about-this-chapter" id="toc-about-this-chapter" class="nav-link active" data-scroll-target="#about-this-chapter"> <span class="header-section-number">6.1</span> About this chapter</a></li>
+  <li><a href="#readr" id="toc-readr" class="nav-link" data-scroll-target="#readr"> <span class="header-section-number">6.2</span> readr</a>
   <ul class="collapse">
-  <li><a href="#read_csv" id="toc-read_csv" class="nav-link" data-scroll-target="#read_csv"> <span class="header-section-number">7.2.1</span> read_csv()</a></li>
-  <li><a href="#parser-functions" id="toc-parser-functions" class="nav-link" data-scroll-target="#parser-functions"> <span class="header-section-number">7.2.2</span> Parser functions</a></li>
-  <li><a href="#headers-and-column-names" id="toc-headers-and-column-names" class="nav-link" data-scroll-target="#headers-and-column-names"> <span class="header-section-number">7.2.3</span> Headers and column names</a></li>
-  <li><a href="#missing-values" id="toc-missing-values" class="nav-link" data-scroll-target="#missing-values"> <span class="header-section-number">7.2.4</span> Missing values</a></li>
+  <li><a href="#read_csv" id="toc-read_csv" class="nav-link" data-scroll-target="#read_csv"> <span class="header-section-number">6.2.1</span> read_csv()</a></li>
+  <li><a href="#parser-functions" id="toc-parser-functions" class="nav-link" data-scroll-target="#parser-functions"> <span class="header-section-number">6.2.2</span> Parser functions</a></li>
+  <li><a href="#headers-and-column-names" id="toc-headers-and-column-names" class="nav-link" data-scroll-target="#headers-and-column-names"> <span class="header-section-number">6.2.3</span> Headers and column names</a></li>
+  <li><a href="#missing-values" id="toc-missing-values" class="nav-link" data-scroll-target="#missing-values"> <span class="header-section-number">6.2.4</span> Missing values</a></li>
   </ul></li>
-  <li><a href="#writing-files" id="toc-writing-files" class="nav-link" data-scroll-target="#writing-files"> <span class="header-section-number">7.3</span> Writing Files</a></li>
-  <li><a href="#readxl" id="toc-readxl" class="nav-link" data-scroll-target="#readxl"> <span class="header-section-number">7.4</span> readxl</a>
+  <li><a href="#writing-files" id="toc-writing-files" class="nav-link" data-scroll-target="#writing-files"> <span class="header-section-number">6.3</span> Writing Files</a></li>
+  <li><a href="#readxl" id="toc-readxl" class="nav-link" data-scroll-target="#readxl"> <span class="header-section-number">6.4</span> readxl</a>
   <ul class="collapse">
-  <li><a href="#read_xlsx" id="toc-read_xlsx" class="nav-link" data-scroll-target="#read_xlsx"> <span class="header-section-number">7.4.1</span> read_xlsx()</a></li>
+  <li><a href="#read_xlsx" id="toc-read_xlsx" class="nav-link" data-scroll-target="#read_xlsx"> <span class="header-section-number">6.4.1</span> read_xlsx()</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -289,7 +289,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Loading data from files</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loading data from files</span></h1>
 </div>
 
 
@@ -305,8 +305,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="about-this-chapter" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="about-this-chapter"><span class="header-section-number">7.1</span> About this chapter</h2>
+<section id="about-this-chapter" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="about-this-chapter"><span class="header-section-number">6.1</span> About this chapter</h2>
 <ol type="1">
 <li>Questions:</li>
 </ol>
@@ -329,11 +329,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The <code>readr</code> and <code>readxl</code> packages contain functions for loading data from .csv and .xslx files. These functions help you to ensure that your data is loaded as you expect.</li>
 </ul>
 </section>
-<section id="readr" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="readr"><span class="header-section-number">7.2</span> readr</h2>
+<section id="readr" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="readr"><span class="header-section-number">6.2</span> readr</h2>
 <p>readr is a tool for loading data into R. As part of the tidyverse it is loaded when you use <code>library(tidyverse)</code> but can be loaded on its own with <code>library(readr)</code>. We will use <code>readr</code> to load in data from a ‘flat’ <code>.csv</code> file. Most</p>
-<section id="read_csv" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="read_csv"><span class="header-section-number">7.2.1</span> read_csv()</h3>
+<section id="read_csv" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="read_csv"><span class="header-section-number">6.2.1</span> read_csv()</h3>
 <p>The main function is <code>read_csv()</code> which can read a standard comma separated values file from disk into an R dataframe. There are a few variants of <code>read_csv()</code> which may be appropriate for different sorts of <code>.csv</code> file, but they all work the same.</p>
 <ul>
 <li><code>read_csv2()</code> - reads semi-colon delimited files, which are commonly used where a comma is used as a decimal separator</li>
@@ -403,8 +403,8 @@ dbl (7): carat, depth, table, price, x, y, z
 </div>
 </div>
 </section>
-<section id="parser-functions" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="parser-functions"><span class="header-section-number">7.2.2</span> Parser functions</h3>
+<section id="parser-functions" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="parser-functions"><span class="header-section-number">6.2.2</span> Parser functions</h3>
 <p>This works by assigning a parser function that returns a specific type to each column, here it’s <code>col_factor()</code>. There are parser functions for all types of data, and all of them can be used if <code>read_csv()</code> doesn’t guess your data properly. We won’t go into detail of all of them, just remember that if your numbers or dates or stuff won’t load properly, there’s a parser function that can help.</p>
 <p>The parser functions all have their own arguments, so we can manipulate those. We can see the <code>NULL</code> argument being passed to <code>col_factor()</code> above, which means ‘all values found should be used as levels of the factor’. This is a great default setting, but if we have a large file, it won’t help us find unexpected values.</p>
 <p>Consider a situation where we are certain we should only have the values <code>Fair</code>, <code>Good</code> and <code>Very Good</code> for <code>cut</code> in our <code>diamonds</code> data. We can make the parser function check this for us and give a warning if it finds anything else.</p>
@@ -440,8 +440,8 @@ dbl (7): carat, depth, table, price, x, y, z
 <p>This time, we get a large number of warnings. Though the output is quite cryptic at first glance, <code>read_csv()</code> is complaining that it found values for cut that were not in the list we passed to the parser function.</p>
 <p>Hence we can use parsers to ensure we are loading in the data we expect and generate errors if not.</p>
 </section>
-<section id="headers-and-column-names" class="level3" data-number="7.2.3">
-<h3 data-number="7.2.3" class="anchored" data-anchor-id="headers-and-column-names"><span class="header-section-number">7.2.3</span> Headers and column names</h3>
+<section id="headers-and-column-names" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="headers-and-column-names"><span class="header-section-number">6.2.3</span> Headers and column names</h3>
 <p>By default <code>read_csv()</code> uses the first line of the file for column names. Consider this toy example.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>toy_csv <span class="ot">&lt;-</span> </span>
@@ -596,8 +596,8 @@ chr (3): x, y, z
 </div>
 </div>
 </section>
-<section id="missing-values" class="level3" data-number="7.2.4">
-<h3 data-number="7.2.4" class="anchored" data-anchor-id="missing-values"><span class="header-section-number">7.2.4</span> Missing values</h3>
+<section id="missing-values" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="missing-values"><span class="header-section-number">6.2.4</span> Missing values</h3>
 <p>There are many different ways of encoding missing values, you can tell <code>read_csv()</code> which character represents a missing value explicitly with the <code>na</code> argument. These values will all be loaded as proper <code>NA</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>toy_csv <span class="ot">&lt;-</span> </span>
@@ -624,18 +624,18 @@ dbl (3): a, b, c
 </div>
 </section>
 </section>
-<section id="writing-files" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="writing-files"><span class="header-section-number">7.3</span> Writing Files</h2>
+<section id="writing-files" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="writing-files"><span class="header-section-number">6.3</span> Writing Files</h2>
 <p>A complementary function to <code>read_csv()</code> <code>write_csv()</code> allows you to write a dataframe out to a ‘.csv’ file. The convention is straightforward, you need the name of the dataframe and the name of the file and path to write to.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(diamonds, <span class="st">"~/Desktop/my_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="readxl" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="readxl"><span class="header-section-number">7.4</span> readxl</h2>
+<section id="readxl" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="readxl"><span class="header-section-number">6.4</span> readxl</h2>
 <p>The <code>readxl</code> package is installed as part of the tidyverse <code>install.packages()</code> command, but it is not part of the core, so <code>library(tidyverse)</code> does not load it. You must do it explicitly with <code>library(readxl)</code>.</p>
-<section id="read_xlsx" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="read_xlsx"><span class="header-section-number">7.4.1</span> read_xlsx()</h3>
+<section id="read_xlsx" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="read_xlsx"><span class="header-section-number">6.4.1</span> read_xlsx()</h3>
 <p>The main function is <code>read_xlsx()</code>, it’s similar to <code>read_csv()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
@@ -805,7 +805,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./05-tidyr.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying data</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tidying data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

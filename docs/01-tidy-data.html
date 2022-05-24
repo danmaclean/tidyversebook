@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Wrangling data with ‘tidyverse’ - 2&nbsp; Tidy Data</title>
+<title>Wrangling data with ‘tidyverse’ - 1&nbsp; Tidy Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tidy Data</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tidy Data</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -171,7 +171,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Motivation</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Motivation</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -184,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-tidy-data.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tidy Data</span></a>
+  <a href="./01-tidy-data.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tidy Data</span></a>
   </div>
 </li>
     </ul>
@@ -199,17 +199,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-dplyr-verbs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></a>
+  <a href="./02-dplyr-verbs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-joining.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Combining Datasets</span></a>
+  <a href="./03-joining.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Combining Datasets</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-dplyr-ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">dplyr and ggplot</span></a>
+  <a href="./04-dplyr-ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">dplyr and ggplot</span></a>
   </div>
 </li>
     </ul>
@@ -224,12 +224,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying data</span></a>
+  <a href="./05-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tidying data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-readr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Loading data from files</span></a>
+  <a href="./06-readr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loading data from files</span></a>
   </div>
 </li>
     </ul>
@@ -268,13 +268,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#about-this-chapter" id="toc-about-this-chapter" class="nav-link active" data-scroll-target="#about-this-chapter"> <span class="header-section-number">2.1</span> About this chapter</a></li>
-  <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link" data-scroll-target="#tidy-data"> <span class="header-section-number">2.2</span> Tidy data</a></li>
-  <li><a href="#a-sample-tidy-data-set" id="toc-a-sample-tidy-data-set" class="nav-link" data-scroll-target="#a-sample-tidy-data-set"> <span class="header-section-number">2.3</span> A sample tidy data set</a>
+  <li><a href="#about-this-chapter" id="toc-about-this-chapter" class="nav-link active" data-scroll-target="#about-this-chapter"> <span class="header-section-number">1.1</span> About this chapter</a></li>
+  <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link" data-scroll-target="#tidy-data"> <span class="header-section-number">1.2</span> Tidy data</a></li>
+  <li><a href="#a-sample-tidy-data-set" id="toc-a-sample-tidy-data-set" class="nav-link" data-scroll-target="#a-sample-tidy-data-set"> <span class="header-section-number">1.3</span> A sample tidy data set</a>
   <ul class="collapse">
-  <li><a href="#class" id="toc-class" class="nav-link" data-scroll-target="#class"> <span class="header-section-number">2.3.1</span> Class</a></li>
+  <li><a href="#class" id="toc-class" class="nav-link" data-scroll-target="#class"> <span class="header-section-number">1.3.1</span> Class</a></li>
   </ul></li>
-  <li><a href="#quiz" id="toc-quiz" class="nav-link" data-scroll-target="#quiz"> <span class="header-section-number">2.4</span> Quiz</a></li>
+  <li><a href="#quiz" id="toc-quiz" class="nav-link" data-scroll-target="#quiz"> <span class="header-section-number">1.4</span> Quiz</a></li>
   </ul>
 </nav>
     </div>
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tidy Data</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tidy Data</span></h1>
 </div>
 
 
@@ -299,8 +299,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="about-this-chapter" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="about-this-chapter"><span class="header-section-number">2.1</span> About this chapter</h2>
+<section id="about-this-chapter" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="about-this-chapter"><span class="header-section-number">1.1</span> About this chapter</h2>
 <ol type="1">
 <li>Questions:</li>
 </ol>
@@ -322,8 +322,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Data needs to be in a particular format for tidy data principles to work</li>
 </ul>
 </section>
-<section id="tidy-data" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="tidy-data"><span class="header-section-number">2.2</span> Tidy data</h2>
+<section id="tidy-data" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="tidy-data"><span class="header-section-number">1.2</span> Tidy data</h2>
 <p>There are many ways to structure data. Here are two quite common ones.</p>
 
 <table>
@@ -501,7 +501,7 @@ b
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="http://garrettgman.github.io/images/tidy-1.png" class="img-fluid figure-img"></p>
+<p><img src="assets/tidy-1.png" class="img-fluid figure-img" width="960"></p>
 <p></p><figcaption aria-hidden="true" class="figure-caption">from Garret Grolemund - http://garrettgman.github.io/tidying/</figcaption><p></p>
 </figure>
 </div>
@@ -513,8 +513,8 @@ b
 <li>The value of a variable in an observation is in a single cell.</li>
 </ol>
 </section>
-<section id="a-sample-tidy-data-set" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="a-sample-tidy-data-set"><span class="header-section-number">2.3</span> A sample tidy data set</h2>
+<section id="a-sample-tidy-data-set" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="a-sample-tidy-data-set"><span class="header-section-number">1.3</span> A sample tidy data set</h2>
 <p>Let’s use a tidy data set that comes with the tidyverse packages. The object <code>diamonds</code> is built in to <code>tidyr</code> and can be viewed by typing its name. We’ll use the <code>head()</code> function to look at the top six rows only</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -532,8 +532,8 @@ b
 </div>
 </div>
 <p>The output tells us that this is a thing called a <code>tibble</code> - this is just a table like object, more about these later. We can see the size of the tibble - 6 rows, 10 columns (this is truncated because of <code>head()</code> in reality its 53940 rows long). We can see the column headings and we can see the column type or, as this is called in R-speak, its class.</p>
-<section id="class" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="class"><span class="header-section-number">2.3.1</span> Class</h3>
+<section id="class" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="class"><span class="header-section-number">1.3.1</span> Class</h3>
 <p>Each of the columns has a particular type or class. Here class is either <code>&lt;dbl&gt;, &lt;ord&gt; or &lt;int&gt;</code>. This tells us what kind of data R is in that column. It’s very important that you and R agree about what sort of data is in each column, otherwise the operations you run can go awry.</p>
 <p>Thankfully there are only a few main classes to worry about</p>
 <ul>
@@ -543,15 +543,15 @@ b
 <li><code>lgl</code> - <code>TRUE</code> or <code>FALSE</code> data. Can only have these two values.</li>
 </ul>
 <p>Numeric, logical and character are pretty self explanatory. Factors need a bit more thinking about.</p>
-<section id="factors" class="level4" data-number="2.3.1.1">
-<h4 data-number="2.3.1.1" class="anchored" data-anchor-id="factors"><span class="header-section-number">2.3.1.1</span> Factors</h4>
+<section id="factors" class="level4" data-number="1.3.1.1">
+<h4 data-number="1.3.1.1" class="anchored" data-anchor-id="factors"><span class="header-section-number">1.3.1.1</span> Factors</h4>
 <p>A factor is a variable that can only take pre-known values called levels. Often these will be experimental categories or groups. Usually you will know the values of the level before you even start an experiment. A treatment of a plant with different chemicals could be a factor. Its levels would be names for each treatment studied. E.G <code>GiberellicAcid</code>, <code>Jasmonate</code> or <code>Auxin</code>. Note a factor isn’t restricted to describing inputs. In the same way, the sort of response of a plant to a treatment could be a factor, so <code>high</code>,<code>low</code>, <code>hypersensitive</code> could all be levels of an output factor variable in an infection assay.</p>
 <p>A factor can have numeric-looking levels. Treatment or response can often be labelled <code>1</code>, <code>2</code>, <code>3</code> etc, but they are used as categories, not actual measurements or numbers in factors. If the values can be replaced by e.g <code>A</code>, <code>B</code>, <code>C</code> without loss of sense, then the variable is a category and should be encoded as a factor.</p>
 <p>In our <code>diamonds</code> data set, the <code>cut</code>, <code>color</code> and <code>clarity</code> variables are factors - they just happen to be a particular sort of <code>ordered factor</code>.</p>
 <p>Factors are what we will group and split our data sets by. We will do statistics, plots and comparisons based on numbers within factor levels.</p>
 </section>
-<section id="checking-class-explicitly" class="level4" data-number="2.3.1.2">
-<h4 data-number="2.3.1.2" class="anchored" data-anchor-id="checking-class-explicitly"><span class="header-section-number">2.3.1.2</span> Checking Class Explicitly</h4>
+<section id="checking-class-explicitly" class="level4" data-number="1.3.1.2">
+<h4 data-number="1.3.1.2" class="anchored" data-anchor-id="checking-class-explicitly"><span class="header-section-number">1.3.1.2</span> Checking Class Explicitly</h4>
 <p>The <code>tibble</code> table-like object of our <code>diamonds</code> data does a good job of summarising type. R has some commands for this too.</p>
 <p><code>class()</code> will give you the class(es) of a specific variable (we can use the <code>$</code> notation to get a single column out of a table-like object such as a <code>tibble</code>)</p>
 <div class="cell">
@@ -587,8 +587,8 @@ b
 </section>
 </section>
 </section>
-<section id="quiz" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="quiz"><span class="header-section-number">2.4</span> Quiz</h2>
+<section id="quiz" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="quiz"><span class="header-section-number">1.4</span> Quiz</h2>
 <ol type="1">
 <li>How many levels in the factor <code>color</code> in the <code>diamonds</code> data?</li>
 <li>Is the table below ‘tidy’?</li>
@@ -771,12 +771,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Motivation</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Motivation</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./02-dplyr-verbs.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

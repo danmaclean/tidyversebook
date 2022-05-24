@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Wrangling data with ‘tidyverse’ - 3&nbsp; dplyr Verbs</title>
+<title>Wrangling data with ‘tidyverse’ - 2&nbsp; dplyr Verbs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -171,7 +171,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Motivation</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Motivation</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -184,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-tidy-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tidy Data</span></a>
+  <a href="./01-tidy-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tidy Data</span></a>
   </div>
 </li>
     </ul>
@@ -199,17 +199,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-dplyr-verbs.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></a>
+  <a href="./02-dplyr-verbs.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-joining.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Combining Datasets</span></a>
+  <a href="./03-joining.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Combining Datasets</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-dplyr-ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">dplyr and ggplot</span></a>
+  <a href="./04-dplyr-ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">dplyr and ggplot</span></a>
   </div>
 </li>
     </ul>
@@ -224,12 +224,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying data</span></a>
+  <a href="./05-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tidying data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-readr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Loading data from files</span></a>
+  <a href="./06-readr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loading data from files</span></a>
   </div>
 </li>
     </ul>
@@ -268,30 +268,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#about-this-chapter" id="toc-about-this-chapter" class="nav-link active" data-scroll-target="#about-this-chapter"> <span class="header-section-number">3.1</span> About this chapter</a></li>
-  <li><a href="#dplyr" id="toc-dplyr" class="nav-link" data-scroll-target="#dplyr"> <span class="header-section-number">3.2</span> dplyr</a></li>
-  <li><a href="#pipe-syntax" id="toc-pipe-syntax" class="nav-link" data-scroll-target="#pipe-syntax"> <span class="header-section-number">3.3</span> Pipe Syntax</a></li>
-  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"> <span class="header-section-number">3.4</span> select()</a>
+  <li><a href="#about-this-chapter" id="toc-about-this-chapter" class="nav-link active" data-scroll-target="#about-this-chapter"> <span class="header-section-number">2.1</span> About this chapter</a></li>
+  <li><a href="#dplyr" id="toc-dplyr" class="nav-link" data-scroll-target="#dplyr"> <span class="header-section-number">2.2</span> dplyr</a></li>
+  <li><a href="#pipe-syntax" id="toc-pipe-syntax" class="nav-link" data-scroll-target="#pipe-syntax"> <span class="header-section-number">2.3</span> Pipe Syntax</a></li>
+  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"> <span class="header-section-number">2.4</span> select()</a>
   <ul class="collapse">
-  <li><a href="#rename" id="toc-rename" class="nav-link" data-scroll-target="#rename"> <span class="header-section-number">3.4.1</span> rename()</a></li>
+  <li><a href="#rename" id="toc-rename" class="nav-link" data-scroll-target="#rename"> <span class="header-section-number">2.4.1</span> rename()</a></li>
   </ul></li>
-  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter"> <span class="header-section-number">3.5</span> filter()</a>
+  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter"> <span class="header-section-number">2.5</span> filter()</a>
   <ul class="collapse">
-  <li><a href="#comparisons" id="toc-comparisons" class="nav-link" data-scroll-target="#comparisons"> <span class="header-section-number">3.5.1</span> Comparisons</a></li>
-  <li><a href="#logical-operators" id="toc-logical-operators" class="nav-link" data-scroll-target="#logical-operators"> <span class="header-section-number">3.5.2</span> Logical operators</a></li>
+  <li><a href="#comparisons" id="toc-comparisons" class="nav-link" data-scroll-target="#comparisons"> <span class="header-section-number">2.5.1</span> Comparisons</a></li>
+  <li><a href="#logical-operators" id="toc-logical-operators" class="nav-link" data-scroll-target="#logical-operators"> <span class="header-section-number">2.5.2</span> Logical operators</a></li>
   </ul></li>
-  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"> <span class="header-section-number">3.6</span> mutate()</a>
+  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"> <span class="header-section-number">2.6</span> mutate()</a>
   <ul class="collapse">
-  <li><a href="#functions-in-mutate" id="toc-functions-in-mutate" class="nav-link" data-scroll-target="#functions-in-mutate"> <span class="header-section-number">3.6.1</span> Functions in mutate()</a></li>
-  <li><a href="#if_else" id="toc-if_else" class="nav-link" data-scroll-target="#if_else"> <span class="header-section-number">3.6.2</span> if_else()</a></li>
+  <li><a href="#functions-in-mutate" id="toc-functions-in-mutate" class="nav-link" data-scroll-target="#functions-in-mutate"> <span class="header-section-number">2.6.1</span> Functions in mutate()</a></li>
+  <li><a href="#if_else" id="toc-if_else" class="nav-link" data-scroll-target="#if_else"> <span class="header-section-number">2.6.2</span> if_else()</a></li>
   </ul></li>
-  <li><a href="#summarize-and-group_by" id="toc-summarize-and-group_by" class="nav-link" data-scroll-target="#summarize-and-group_by"> <span class="header-section-number">3.7</span> summarize() and group_by()</a>
+  <li><a href="#summarize-and-group_by" id="toc-summarize-and-group_by" class="nav-link" data-scroll-target="#summarize-and-group_by"> <span class="header-section-number">2.7</span> summarize() and group_by()</a>
   <ul class="collapse">
-  <li><a href="#helpful-summarize-functions" id="toc-helpful-summarize-functions" class="nav-link" data-scroll-target="#helpful-summarize-functions"> <span class="header-section-number">3.7.1</span> Helpful summarize() functions</a></li>
+  <li><a href="#helpful-summarize-functions" id="toc-helpful-summarize-functions" class="nav-link" data-scroll-target="#helpful-summarize-functions"> <span class="header-section-number">2.7.1</span> Helpful summarize() functions</a></li>
   </ul></li>
-  <li><a href="#arrange" id="toc-arrange" class="nav-link" data-scroll-target="#arrange"> <span class="header-section-number">3.8</span> arrange()</a></li>
-  <li><a href="#missing-values" id="toc-missing-values" class="nav-link" data-scroll-target="#missing-values"> <span class="header-section-number">3.9</span> Missing Values</a></li>
-  <li><a href="#quiz" id="toc-quiz" class="nav-link" data-scroll-target="#quiz"> <span class="header-section-number">3.10</span> Quiz</a></li>
+  <li><a href="#arrange" id="toc-arrange" class="nav-link" data-scroll-target="#arrange"> <span class="header-section-number">2.8</span> arrange()</a></li>
+  <li><a href="#missing-values" id="toc-missing-values" class="nav-link" data-scroll-target="#missing-values"> <span class="header-section-number">2.9</span> Missing Values</a></li>
+  <li><a href="#quiz" id="toc-quiz" class="nav-link" data-scroll-target="#quiz"> <span class="header-section-number">2.10</span> Quiz</a></li>
   </ul>
 </nav>
     </div>
@@ -300,7 +300,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></h1>
 </div>
 
 
@@ -316,8 +316,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="about-this-chapter" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="about-this-chapter"><span class="header-section-number">3.1</span> About this chapter</h2>
+<section id="about-this-chapter" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="about-this-chapter"><span class="header-section-number">2.1</span> About this chapter</h2>
 <ol type="1">
 <li>Questions:</li>
 </ol>
@@ -339,8 +339,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Tidy data can be operated on with six main functions that can quickly split, apply summaries and combine sub-groups of data</li>
 </ul>
 </section>
-<section id="dplyr" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="dplyr"><span class="header-section-number">3.2</span> dplyr</h2>
+<section id="dplyr" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="dplyr"><span class="header-section-number">2.2</span> dplyr</h2>
 <p>dplyr (data plier) is a tool for manipulating datasets. As part of the tidyverse it is loaded when you use <code>library(tidyverse)</code> but can be loaded on it’s own with <code>library(dplyr)</code>. dplyr is set up as a small grammar, it has five main verbs that help you form small ‘sentences’ to get to your result.</p>
 <p>The verbs are:</p>
 <ul>
@@ -352,8 +352,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>A sixth function <code>group_by()</code> allows you to operate on subsets of the data.</p>
 </section>
-<section id="pipe-syntax" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="pipe-syntax"><span class="header-section-number">3.3</span> Pipe Syntax</h2>
+<section id="pipe-syntax" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="pipe-syntax"><span class="header-section-number">2.3</span> Pipe Syntax</h2>
 <p>The first argument to all these functions is the tidy table-like object (we’ll start calling these data frames from here), so for our diamonds data set, then we use</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(diamonds, ... ) <span class="co"># ... stands in for other arguments</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -384,8 +384,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( ... )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="select" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="select"><span class="header-section-number">3.4</span> select()</h2>
+<section id="select" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="select"><span class="header-section-number">2.4</span> select()</h2>
 <p><code>select()</code> is probably the simplest verb. It lets you select whole columns from the dataframe, discarding others. This is most useful for working with huge datasets of many columns, or for extracting bits for ease of printing or presentation.</p>
 <div class="cell">
 
@@ -519,8 +519,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # … with 53,930 more rows</code></pre>
 </div>
 </div>
-<section id="rename" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="rename"><span class="header-section-number">3.4.1</span> rename()</h3>
+<section id="rename" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="rename"><span class="header-section-number">2.4.1</span> rename()</h3>
 <p>Often when you’re selecting columns to work on, you’ll need to fix the names - <code>rename()</code> is useful for this. Let’s fix that mis-spelled column</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
@@ -544,8 +544,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="filter" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="filter"><span class="header-section-number">3.5</span> filter()</h2>
+<section id="filter" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="filter"><span class="header-section-number">2.5</span> filter()</h2>
 <p>The <code>filter()</code> function lets you select rows (observations) from your data frame based on criteria you specify. Here I’ll look for all rows with a value of <code>G</code> for the <code>color</code> variable (I’ll also pipe the output to the <code>head()</code> function to view just the top of the output.)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
@@ -590,8 +590,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>To make more complex queries, you’ll need to combine comparisons and logical operators.</p>
-<section id="comparisons" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="comparisons"><span class="header-section-number">3.5.1</span> Comparisons</h3>
+<section id="comparisons" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="comparisons"><span class="header-section-number">2.5.1</span> Comparisons</h3>
 <p>R provides the following comparison operators</p>
 <ul>
 <li><code>==</code> - strictly equal to</li>
@@ -613,8 +613,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="logical-operators" class="level3" data-number="3.5.2">
-<h3 data-number="3.5.2" class="anchored" data-anchor-id="logical-operators"><span class="header-section-number">3.5.2</span> Logical operators</h3>
+<section id="logical-operators" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="logical-operators"><span class="header-section-number">2.5.2</span> Logical operators</h3>
 <p><code>filter()</code> uses combinations of R logical operators, these are <code>&amp;</code> for <code>and</code>, <code>|</code> for <code>or</code> and <code>!</code> for <code>not</code>. You can build filters with these. Let’s modify our query to find <code>color</code> <code>G</code> or <code>cut</code> <code>ideal</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
@@ -706,8 +706,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="mutate" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="mutate"><span class="header-section-number">3.6</span> mutate()</h2>
+<section id="mutate" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="mutate"><span class="header-section-number">2.6</span> mutate()</h2>
 <p>The <code>mutate()</code> function lets you add new columns based on values in other columns. Note that doing so to this data set makes it too big to print, so I’ll <code>select()</code> the appropriate columns.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
@@ -753,8 +753,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # … with 53,930 more rows</code></pre>
 </div>
 </div>
-<section id="functions-in-mutate" class="level3" data-number="3.6.1">
-<h3 data-number="3.6.1" class="anchored" data-anchor-id="functions-in-mutate"><span class="header-section-number">3.6.1</span> Functions in mutate()</h3>
+<section id="functions-in-mutate" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="functions-in-mutate"><span class="header-section-number">2.6.1</span> Functions in mutate()</h3>
 <p>You can create a new column with <code>mutate()</code> using pretty much any vectorized R function. It’s a bit complicated to explain what I mean by ‘vectorized’ so let’s start with some examples.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
@@ -816,8 +816,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>So you get back a single number. The behaviour of <code>mutate()</code> then is akin to taking the whole column or columns you specify, apply whatever function you ask for and putting the resulting column in the dataframe. If the resulting column is of length one, that just gets repeated until it fits. That is why we get repeats of the same number in the <code>sum()</code> example and why that number is the sum of all the prices.</p>
 <p>If the result from the function isn’t the same length as the column or has length of one - the function will fail. Most common functions will work nicely though.</p>
 </section>
-<section id="if_else" class="level3" data-number="3.6.2">
-<h3 data-number="3.6.2" class="anchored" data-anchor-id="if_else"><span class="header-section-number">3.6.2</span> if_else()</h3>
+<section id="if_else" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="if_else"><span class="header-section-number">2.6.2</span> if_else()</h3>
 <p>One final vectorized function is <code>if_else()</code>, this is useful when you want to add a column that annotates the data with an arbitrary value based on values. Let’s add a column called <code>cost</code> that can be <code>high</code> or <code>low</code> depending on the <code>price</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
@@ -843,8 +843,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <code>if_else()</code> function then just adds the first value (“high”) if the condition is ‘true’ else it puts the second value.</p>
 </section>
 </section>
-<section id="summarize-and-group_by" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="summarize-and-group_by"><span class="header-section-number">3.7</span> summarize() and group_by()</h2>
+<section id="summarize-and-group_by" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="summarize-and-group_by"><span class="header-section-number">2.7</span> summarize() and group_by()</h2>
 <p>The <code>summarize()</code> function is a reductive function. It reduces entire dataframes to a single row, and returns an entirely new dataframe.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
@@ -906,8 +906,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Note how every combination of <code>color</code> and <code>cut</code> is made into subsets.</p>
-<section id="helpful-summarize-functions" class="level3" data-number="3.7.1">
-<h3 data-number="3.7.1" class="anchored" data-anchor-id="helpful-summarize-functions"><span class="header-section-number">3.7.1</span> Helpful summarize() functions</h3>
+<section id="helpful-summarize-functions" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="helpful-summarize-functions"><span class="header-section-number">2.7.1</span> Helpful summarize() functions</h3>
 <p>There are numerous helpful summary functions. We’ve already seen <code>mean()</code> , <code>sum()</code> and <code>sd()</code>.</p>
 <p>The function <code>n()</code> counts the number of items in a group. It doesn’t need a column name to work on.</p>
 <div class="cell">
@@ -957,8 +957,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </section>
 </section>
-<section id="arrange" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="arrange"><span class="header-section-number">3.8</span> arrange()</h2>
+<section id="arrange" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="arrange"><span class="header-section-number">2.8</span> arrange()</h2>
 <p>The <code>arrange()</code> function is a straightforward function that helps you arrange the final table from <code>summarize()</code> a bit more nicely. It simply orders the rows in a way that you specify.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
@@ -1002,8 +1002,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="missing-values" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="missing-values"><span class="header-section-number">3.9</span> Missing Values</h2>
+<section id="missing-values" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="missing-values"><span class="header-section-number">2.9</span> Missing Values</h2>
 <p>Many (many!) datasets will have some missing values at some points. These are encoded in R as <code>NA</code>. They need to be dealt with explicitly as they mess up lots of calculations.</p>
 <p>Look at the toy dataframe <code>incomplete</code> below</p>
 <div class="cell">
@@ -1129,8 +1129,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="quiz" class="level2" data-number="3.10">
-<h2 data-number="3.10" class="anchored" data-anchor-id="quiz"><span class="header-section-number">3.10</span> Quiz</h2>
+<section id="quiz" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="quiz"><span class="header-section-number">2.10</span> Quiz</h2>
 <ol type="1">
 <li><p>Load the package <code>nycflights13</code> which is a tidy data set of flight information out of New York. Look at the <code>flights</code> table that has been loaded and note the column names and types.</p></li>
 <li><p>The individual planes are identified by their <code>tailnum</code>. Which plane has the worst on-time record?</p></li>
@@ -1226,12 +1226,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./01-tidy-data.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tidy Data</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tidy Data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./03-joining.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Combining Datasets</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Combining Datasets</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -51,7 +51,7 @@ Now each variable has a column, and each seperate observation of the data has it
 More generally put, a tidy data set should look like this, schematically.
 
 ```{r, echo=FALSE, fig.cap="from Garret Grolemund - http://garrettgman.github.io/tidying/"}
-knitr::include_graphics('http://garrettgman.github.io/images/tidy-1.png')
+knitr::include_graphics('assets/tidy-1.png')
 ```
 
   1. Each variable is in its own column

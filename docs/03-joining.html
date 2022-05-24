@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Wrangling data with ‘tidyverse’ - 4&nbsp; Combining Datasets</title>
+<title>Wrangling data with ‘tidyverse’ - 3&nbsp; Combining Datasets</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Combining Datasets</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Combining Datasets</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -171,7 +171,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Motivation</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Motivation</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -184,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-tidy-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tidy Data</span></a>
+  <a href="./01-tidy-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tidy Data</span></a>
   </div>
 </li>
     </ul>
@@ -199,17 +199,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-dplyr-verbs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></a>
+  <a href="./02-dplyr-verbs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-joining.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Combining Datasets</span></a>
+  <a href="./03-joining.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Combining Datasets</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-dplyr-ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">dplyr and ggplot</span></a>
+  <a href="./04-dplyr-ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">dplyr and ggplot</span></a>
   </div>
 </li>
     </ul>
@@ -224,12 +224,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying data</span></a>
+  <a href="./05-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tidying data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-readr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Loading data from files</span></a>
+  <a href="./06-readr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loading data from files</span></a>
   </div>
 </li>
     </ul>
@@ -268,21 +268,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#about-this-chapter" id="toc-about-this-chapter" class="nav-link active" data-scroll-target="#about-this-chapter"> <span class="header-section-number">4.1</span> About this chapter</a></li>
-  <li><a href="#joining" id="toc-joining" class="nav-link" data-scroll-target="#joining"> <span class="header-section-number">4.2</span> Joining</a>
+  <li><a href="#about-this-chapter" id="toc-about-this-chapter" class="nav-link active" data-scroll-target="#about-this-chapter"> <span class="header-section-number">3.1</span> About this chapter</a></li>
+  <li><a href="#joining" id="toc-joining" class="nav-link" data-scroll-target="#joining"> <span class="header-section-number">3.2</span> Joining</a>
   <ul class="collapse">
-  <li><a href="#key-columns" id="toc-key-columns" class="nav-link" data-scroll-target="#key-columns"> <span class="header-section-number">4.2.1</span> Key columns</a></li>
+  <li><a href="#key-columns" id="toc-key-columns" class="nav-link" data-scroll-target="#key-columns"> <span class="header-section-number">3.2.1</span> Key columns</a></li>
   </ul></li>
-  <li><a href="#join-functions" id="toc-join-functions" class="nav-link" data-scroll-target="#join-functions"> <span class="header-section-number">4.3</span> Join functions</a>
+  <li><a href="#join-functions" id="toc-join-functions" class="nav-link" data-scroll-target="#join-functions"> <span class="header-section-number">3.3</span> Join functions</a>
   <ul class="collapse">
-  <li><a href="#left_join" id="toc-left_join" class="nav-link" data-scroll-target="#left_join"> <span class="header-section-number">4.3.1</span> left_join()</a></li>
-  <li><a href="#right_join" id="toc-right_join" class="nav-link" data-scroll-target="#right_join"> <span class="header-section-number">4.3.2</span> right_join()</a></li>
-  <li><a href="#inner_join" id="toc-inner_join" class="nav-link" data-scroll-target="#inner_join"> <span class="header-section-number">4.3.3</span> inner_join()</a></li>
-  <li><a href="#full_join" id="toc-full_join" class="nav-link" data-scroll-target="#full_join"> <span class="header-section-number">4.3.4</span> full_join()</a></li>
-  <li><a href="#joins-with-no-common-column-names" id="toc-joins-with-no-common-column-names" class="nav-link" data-scroll-target="#joins-with-no-common-column-names"> <span class="header-section-number">4.3.5</span> Joins with no common column names</a></li>
+  <li><a href="#left_join" id="toc-left_join" class="nav-link" data-scroll-target="#left_join"> <span class="header-section-number">3.3.1</span> left_join()</a></li>
+  <li><a href="#right_join" id="toc-right_join" class="nav-link" data-scroll-target="#right_join"> <span class="header-section-number">3.3.2</span> right_join()</a></li>
+  <li><a href="#inner_join" id="toc-inner_join" class="nav-link" data-scroll-target="#inner_join"> <span class="header-section-number">3.3.3</span> inner_join()</a></li>
+  <li><a href="#full_join" id="toc-full_join" class="nav-link" data-scroll-target="#full_join"> <span class="header-section-number">3.3.4</span> full_join()</a></li>
+  <li><a href="#joins-with-no-common-column-names" id="toc-joins-with-no-common-column-names" class="nav-link" data-scroll-target="#joins-with-no-common-column-names"> <span class="header-section-number">3.3.5</span> Joins with no common column names</a></li>
   </ul></li>
-  <li><a href="#binding-operations" id="toc-binding-operations" class="nav-link" data-scroll-target="#binding-operations"> <span class="header-section-number">4.4</span> Binding operations</a></li>
-  <li><a href="#quiz" id="toc-quiz" class="nav-link" data-scroll-target="#quiz"> <span class="header-section-number">4.5</span> Quiz</a></li>
+  <li><a href="#binding-operations" id="toc-binding-operations" class="nav-link" data-scroll-target="#binding-operations"> <span class="header-section-number">3.4</span> Binding operations</a></li>
+  <li><a href="#quiz" id="toc-quiz" class="nav-link" data-scroll-target="#quiz"> <span class="header-section-number">3.5</span> Quiz</a></li>
   </ul>
 </nav>
     </div>
@@ -291,7 +291,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Combining Datasets</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Combining Datasets</span></h1>
 </div>
 
 
@@ -307,8 +307,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="about-this-chapter" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="about-this-chapter"><span class="header-section-number">4.1</span> About this chapter</h2>
+<section id="about-this-chapter" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="about-this-chapter"><span class="header-section-number">3.1</span> About this chapter</h2>
 <ol type="1">
 <li>Questions:</li>
 </ol>
@@ -329,11 +329,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Dataframes get joined on key columns. The rows that are retained depends on the type of <code>join</code> performed</li>
 </ul>
 </section>
-<section id="joining" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="joining"><span class="header-section-number">4.2</span> Joining</h2>
+<section id="joining" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="joining"><span class="header-section-number">3.2</span> Joining</h2>
 <p>Often you will want to combine data contained in more than one dataset. In this section we will look at the functions that help you do that.</p>
-<section id="key-columns" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="key-columns"><span class="header-section-number">4.2.1</span> Key columns</h3>
+<section id="key-columns" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="key-columns"><span class="header-section-number">3.2.1</span> Key columns</h3>
 <p>The joining operation depends on the two datasets having some values in some column in common. The column in each dataset that allows you to combine columns is the key column. Consider these dataframes</p>
 <div class="cell">
 
@@ -361,11 +361,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note that the two dataframes have a column in common <code>name</code>.</p>
 </section>
 </section>
-<section id="join-functions" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="join-functions"><span class="header-section-number">4.3</span> Join functions</h2>
+<section id="join-functions" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="join-functions"><span class="header-section-number">3.3</span> Join functions</h2>
 <p>Join functions work to combine two dataframes side-by-side in some way. Usually they use one column as a base and add columns to that one from the other.</p>
-<section id="left_join" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="left_join"><span class="header-section-number">4.3.1</span> left_join()</h3>
+<section id="left_join" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="left_join"><span class="header-section-number">3.3.1</span> left_join()</h3>
 <p>The most common sort of join is the left join. This takes one dataframe, considers it to be on the left of the join and combines the second dataframe on to it, skipping rows in the right dataframe that have nowhere to join</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>( band_members, band_instruments, )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -383,8 +383,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Note how the column in common <code>name</code> is used as the key through which to join and that the <code>band_member</code> <code>Keith</code> goes missing because it isn’t in the <code>left</code> dataframe, which is the reference.</p>
 </section>
-<section id="right_join" class="level3" data-number="4.3.2">
-<h3 data-number="4.3.2" class="anchored" data-anchor-id="right_join"><span class="header-section-number">4.3.2</span> right_join()</h3>
+<section id="right_join" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="right_join"><span class="header-section-number">3.3.2</span> right_join()</h3>
 <p><code>right_join()</code> is the complementary function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">right_join</span>( band_members, band_instruments)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -402,8 +402,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>See how this time <code>Keith</code> is retained as we’re joining to the right table as the base, but as he has no entry in the left table, an <code>NA</code> is used to fill the missing value.</p>
 </section>
-<section id="inner_join" class="level3" data-number="4.3.3">
-<h3 data-number="4.3.3" class="anchored" data-anchor-id="inner_join"><span class="header-section-number">4.3.3</span> inner_join()</h3>
+<section id="inner_join" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="inner_join"><span class="header-section-number">3.3.3</span> inner_join()</h3>
 <p><code>inner_join()</code> keeps only rows that are completely shared</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>( band_members, band_instruments)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -419,8 +419,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="full_join" class="level3" data-number="4.3.4">
-<h3 data-number="4.3.4" class="anchored" data-anchor-id="full_join"><span class="header-section-number">4.3.4</span> full_join()</h3>
+<section id="full_join" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="full_join"><span class="header-section-number">3.3.4</span> full_join()</h3>
 <p><code>full_join()</code> joins all rows as well as possible, generating <code>NA</code> as appropriate.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">full_join</span>( band_members, band_instruments)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -438,8 +438,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="joins-with-no-common-column-names" class="level3" data-number="4.3.5">
-<h3 data-number="4.3.5" class="anchored" data-anchor-id="joins-with-no-common-column-names"><span class="header-section-number">4.3.5</span> Joins with no common column names</h3>
+<section id="joins-with-no-common-column-names" class="level3" data-number="3.3.5">
+<h3 data-number="3.3.5" class="anchored" data-anchor-id="joins-with-no-common-column-names"><span class="header-section-number">3.3.5</span> Joins with no common column names</h3>
 <p>What can we do when there is no common column names? Consider this variant of <code>band instruments</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>band_instruments2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -466,8 +466,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="binding-operations" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="binding-operations"><span class="header-section-number">4.4</span> Binding operations</h2>
+<section id="binding-operations" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="binding-operations"><span class="header-section-number">3.4</span> Binding operations</h2>
 <p>These allow you to paste dataframes together.</p>
 <p><code>bind_rows()</code> sticks them together top-to-bottom.</p>
 <div class="cell">
@@ -526,8 +526,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="quiz" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="quiz"><span class="header-section-number">4.5</span> Quiz</h2>
+<section id="quiz" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="quiz"><span class="header-section-number">3.5</span> Quiz</h2>
 <ol type="1">
 <li>Examine the <code>table1</code> and <code>table4a</code> datasets. Combine <code>table4a</code> to <code>table1</code> to create two new columns. Ensure the columns make sense and retain data integrity.</li>
 </ol>
@@ -618,12 +618,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./02-dplyr-verbs.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./04-dplyr-ggplot.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">dplyr and ggplot</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">dplyr and ggplot</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
