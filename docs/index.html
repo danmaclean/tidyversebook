@@ -1,320 +1,399 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Using dplyr for data analysis</title>
-  <meta name="description" content="An introductory course for working with tabular data in R" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.387">
 
-  <meta property="og:title" content="Using dplyr for data analysis" />
-  <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="An introductory course for working with tabular data in R" />
-  
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Using dplyr for data analysis" />
-  
-  <meta name="twitter:description" content="An introductory course for working with tabular data in R" />
-  
+<meta name="author" content="Dan MacLean">
+<meta name="dcterms.date" content="2022-05-01">
 
-<meta name="author" content="Dan MacLean" />
-
-
-<meta name="date" content="2019-10-25" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-
-<link rel="next" href="motivation.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-
-<style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+<title>Wrangling data with ‘tidyverse’</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
 </style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<link href="./01-tidy-data.html" rel="next">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+
 
 </head>
 
-<body>
+<body class="nav-sidebar floating">
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i><b>1.1</b> Installing R</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-r-packages-in-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing R packages in RStudio</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i><b>2</b> Motivation</a><ul>
-<li class="chapter" data-level="2.1" data-path="motivation.html"><a href="motivation.html#tidy-data-analysis"><i class="fa fa-check"></i><b>2.1</b> Tidy data analysis</a></li>
-<li class="chapter" data-level="2.2" data-path="motivation.html"><a href="motivation.html#aim-of-this-book"><i class="fa fa-check"></i><b>2.2</b> Aim of this book</a></li>
-<li class="chapter" data-level="2.3" data-path="motivation.html"><a href="motivation.html#organization-of-this-book"><i class="fa fa-check"></i><b>2.3</b> Organization of this book</a></li>
-<li class="chapter" data-level="2.4" data-path="motivation.html"><a href="motivation.html#external-resources"><i class="fa fa-check"></i><b>2.4</b> External Resources</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="r-fundamentals.html"><a href="r-fundamentals.html"><i class="fa fa-check"></i><b>3</b> R Fundamentals</a><ul>
-<li class="chapter" data-level="3.1" data-path="r-fundamentals.html"><a href="r-fundamentals.html#about-this-chapter"><i class="fa fa-check"></i><b>3.1</b> About this chapter</a></li>
-<li class="chapter" data-level="3.2" data-path="r-fundamentals.html"><a href="r-fundamentals.html#working-with-r"><i class="fa fa-check"></i><b>3.2</b> Working with R</a></li>
-<li class="chapter" data-level="3.3" data-path="r-fundamentals.html"><a href="r-fundamentals.html#variables"><i class="fa fa-check"></i><b>3.3</b> Variables</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="r-fundamentals.html"><a href="r-fundamentals.html#using-objects-and-functions"><i class="fa fa-check"></i><b>3.3.1</b> Using objects and functions</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="r-fundamentals.html"><a href="r-fundamentals.html#quiz"><i class="fa fa-check"></i><b>3.4</b> Quiz</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>4</b> Tidy Data</a><ul>
-<li class="chapter" data-level="4.1" data-path="tidy-data.html"><a href="tidy-data.html#about-this-chapter-1"><i class="fa fa-check"></i><b>4.1</b> About this chapter</a></li>
-<li class="chapter" data-level="4.2" data-path="tidy-data.html"><a href="tidy-data.html#tidy-data-1"><i class="fa fa-check"></i><b>4.2</b> Tidy data</a></li>
-<li class="chapter" data-level="4.3" data-path="tidy-data.html"><a href="tidy-data.html#a-sample-tidy-data-set"><i class="fa fa-check"></i><b>4.3</b> A sample tidy data set</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="tidy-data.html"><a href="tidy-data.html#class"><i class="fa fa-check"></i><b>4.3.1</b> Class</a></li>
-</ul></li>
-<li class="chapter" data-level="4.4" data-path="tidy-data.html"><a href="tidy-data.html#quiz-1"><i class="fa fa-check"></i><b>4.4</b> Quiz</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html"><i class="fa fa-check"></i><b>5</b> dplyr Verbs</a><ul>
-<li class="chapter" data-level="5.1" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#about-this-chapter-2"><i class="fa fa-check"></i><b>5.1</b> About this chapter</a></li>
-<li class="chapter" data-level="5.2" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#dplyr"><i class="fa fa-check"></i><b>5.2</b> dplyr</a></li>
-<li class="chapter" data-level="5.3" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#pipe-syntax"><i class="fa fa-check"></i><b>5.3</b> Pipe Syntax</a></li>
-<li class="chapter" data-level="5.4" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#select"><i class="fa fa-check"></i><b>5.4</b> select()</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#rename"><i class="fa fa-check"></i><b>5.4.1</b> rename()</a></li>
-</ul></li>
-<li class="chapter" data-level="5.5" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#filter"><i class="fa fa-check"></i><b>5.5</b> filter()</a><ul>
-<li class="chapter" data-level="5.5.1" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#comparisons"><i class="fa fa-check"></i><b>5.5.1</b> Comparisons</a></li>
-<li class="chapter" data-level="5.5.2" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#logical-operators"><i class="fa fa-check"></i><b>5.5.2</b> Logical operators</a></li>
-</ul></li>
-<li class="chapter" data-level="5.6" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#mutate"><i class="fa fa-check"></i><b>5.6</b> mutate()</a><ul>
-<li class="chapter" data-level="5.6.1" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#functions-in-mutate"><i class="fa fa-check"></i><b>5.6.1</b> Functions in mutate()</a></li>
-<li class="chapter" data-level="5.6.2" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#if_else"><i class="fa fa-check"></i><b>5.6.2</b> if_else()</a></li>
-</ul></li>
-<li class="chapter" data-level="5.7" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#summarize-and-group_by"><i class="fa fa-check"></i><b>5.7</b> summarize() and group_by()</a><ul>
-<li class="chapter" data-level="5.7.1" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#helpful-summarize-functions"><i class="fa fa-check"></i><b>5.7.1</b> Helpful summarize() functions</a></li>
-</ul></li>
-<li class="chapter" data-level="5.8" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#arrange"><i class="fa fa-check"></i><b>5.8</b> arrange()</a></li>
-<li class="chapter" data-level="5.9" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#missing-values"><i class="fa fa-check"></i><b>5.9</b> Missing Values</a></li>
-<li class="chapter" data-level="5.10" data-path="dplyr-verbs.html"><a href="dplyr-verbs.html#quiz-2"><i class="fa fa-check"></i><b>5.10</b> Quiz</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="combining-datasets.html"><a href="combining-datasets.html"><i class="fa fa-check"></i><b>6</b> Combining Datasets</a><ul>
-<li class="chapter" data-level="6.1" data-path="combining-datasets.html"><a href="combining-datasets.html#about-this-chapter-3"><i class="fa fa-check"></i><b>6.1</b> About this chapter</a></li>
-<li class="chapter" data-level="6.2" data-path="combining-datasets.html"><a href="combining-datasets.html#joining"><i class="fa fa-check"></i><b>6.2</b> Joining</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="combining-datasets.html"><a href="combining-datasets.html#key-columns"><i class="fa fa-check"></i><b>6.2.1</b> Key columns</a></li>
-</ul></li>
-<li class="chapter" data-level="6.3" data-path="combining-datasets.html"><a href="combining-datasets.html#join-functions"><i class="fa fa-check"></i><b>6.3</b> Join functions</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="combining-datasets.html"><a href="combining-datasets.html#left_join"><i class="fa fa-check"></i><b>6.3.1</b> left_join()</a></li>
-<li class="chapter" data-level="6.3.2" data-path="combining-datasets.html"><a href="combining-datasets.html#right_join"><i class="fa fa-check"></i><b>6.3.2</b> right_join()</a></li>
-<li class="chapter" data-level="6.3.3" data-path="combining-datasets.html"><a href="combining-datasets.html#inner_join"><i class="fa fa-check"></i><b>6.3.3</b> inner_join()</a></li>
-<li class="chapter" data-level="6.3.4" data-path="combining-datasets.html"><a href="combining-datasets.html#full_join"><i class="fa fa-check"></i><b>6.3.4</b> full_join()</a></li>
-<li class="chapter" data-level="6.3.5" data-path="combining-datasets.html"><a href="combining-datasets.html#joins-with-no-common-column-names"><i class="fa fa-check"></i><b>6.3.5</b> Joins with no common column names</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="combining-datasets.html"><a href="combining-datasets.html#binding-operations"><i class="fa fa-check"></i><b>6.4</b> Binding operations</a></li>
-<li class="chapter" data-level="6.5" data-path="combining-datasets.html"><a href="combining-datasets.html#quiz-3"><i class="fa fa-check"></i><b>6.5</b> Quiz</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="dplyr-and-ggplot.html"><a href="dplyr-and-ggplot.html"><i class="fa fa-check"></i><b>7</b> dplyr and ggplot</a><ul>
-<li class="chapter" data-level="7.1" data-path="dplyr-and-ggplot.html"><a href="dplyr-and-ggplot.html#piping-to-ggplot"><i class="fa fa-check"></i><b>7.1</b> Piping to <code>ggplot()</code></a><ul>
-<li class="chapter" data-level="7.1.1" data-path="dplyr-and-ggplot.html"><a href="dplyr-and-ggplot.html#quick-bar-charts"><i class="fa fa-check"></i><b>7.1.1</b> Quick bar charts</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="tidying-data.html"><a href="tidying-data.html"><i class="fa fa-check"></i><b>8</b> Tidying data</a><ul>
-<li class="chapter" data-level="8.1" data-path="tidying-data.html"><a href="tidying-data.html#about-this-chapter-4"><i class="fa fa-check"></i><b>8.1</b> About this chapter</a></li>
-<li class="chapter" data-level="8.2" data-path="tidying-data.html"><a href="tidying-data.html#tidyr"><i class="fa fa-check"></i><b>8.2</b> tidyr</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="tidying-data.html"><a href="tidying-data.html#sample-tidy-datasets"><i class="fa fa-check"></i><b>8.2.1</b> Sample tidy datasets</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="tidying-data.html"><a href="tidying-data.html#pivot_longer"><i class="fa fa-check"></i><b>8.3</b> pivot_longer()</a></li>
-<li class="chapter" data-level="8.4" data-path="tidying-data.html"><a href="tidying-data.html#pivot_wider"><i class="fa fa-check"></i><b>8.4</b> pivot_wider()</a></li>
-<li class="chapter" data-level="8.5" data-path="tidying-data.html"><a href="tidying-data.html#separate"><i class="fa fa-check"></i><b>8.5</b> separate()</a></li>
-<li class="chapter" data-level="8.6" data-path="tidying-data.html"><a href="tidying-data.html#unite"><i class="fa fa-check"></i><b>8.6</b> unite()</a></li>
-<li class="chapter" data-level="8.7" data-path="tidying-data.html"><a href="tidying-data.html#quiz-4"><i class="fa fa-check"></i><b>8.7</b> Quiz</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html"><i class="fa fa-check"></i><b>9</b> Loading data from files</a><ul>
-<li class="chapter" data-level="9.1" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#about-this-chapter-5"><i class="fa fa-check"></i><b>9.1</b> About this chapter</a></li>
-<li class="chapter" data-level="9.2" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#readr"><i class="fa fa-check"></i><b>9.2</b> readr</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#read_csv"><i class="fa fa-check"></i><b>9.2.1</b> read_csv()</a></li>
-<li class="chapter" data-level="9.2.2" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#parser-functions"><i class="fa fa-check"></i><b>9.2.2</b> Parser functions</a></li>
-<li class="chapter" data-level="9.2.3" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#headers-and-column-names"><i class="fa fa-check"></i><b>9.2.3</b> Headers and column names</a></li>
-<li class="chapter" data-level="9.2.4" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#missing-values-1"><i class="fa fa-check"></i><b>9.2.4</b> Missing values</a></li>
-</ul></li>
-<li class="chapter" data-level="9.3" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#writing-files"><i class="fa fa-check"></i><b>9.3</b> Writing Files</a></li>
-<li class="chapter" data-level="9.4" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#readxl"><i class="fa fa-check"></i><b>9.4</b> readxl</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="loading-data-from-files.html"><a href="loading-data-from-files.html#read_xlsx"><i class="fa fa-check"></i><b>9.4.1</b> read_xlsx()</a></li>
-</ul></li>
-</ul></li>
-</ul>
-
-      </nav>
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Wrangling data with ‘tidyverse’</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
     </div>
-
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Using dplyr for data analysis</a>
-          </h1>
-        </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Using dplyr for data analysis</h1>
-<p class="author"><em>Dan MacLean</em></p>
-<p class="date"><em>2019-10-25</em></p>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Wrangling data with ‘tidyverse’</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Wrangling-data-with--tidyverse--.pdf" title="Download PDF" class="sidebar-tool px-1"><i class="bi bi-file-pdf"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+    </ul>
 </div>
-<div id="prerequisites" class="section level1">
-<h1><span class="header-section-number">Topic 1</span> Prerequisites</h1>
-<p>No specific knowledge is assumed for this book, though you will need to install some software.</p>
-<ol style="list-style-type: decimal">
-<li>R</li>
-<li>RStudio</li>
-<li>The <code>tidyverse</code> packages</li>
-</ol>
-<p>You’ll also need the following files <a href="assets/diamonds.csv">diamonds.csv</a> and <a href="assets/datasets.xlsx">datasets.xlsx</a></p>
-<div id="installing-r" class="section level2">
-<h2><span class="header-section-number">1.1</span> Installing R</h2>
-<p>Follow this link and install the right version for your operating system <a href="https://www.stats.bris.ac.uk/R/">https://www.stats.bris.ac.uk/R/</a></p>
-</div>
-<div id="installing-rstudio" class="section level2">
-<h2><span class="header-section-number">1.2</span> Installing RStudio</h2>
-<p>Follow this link and install the right version for your operating system <a href="https://www.rstudio.com/products/rstudio/download/">https://www.rstudio.com/products/rstudio/download/</a></p>
-</div>
-<div id="installing-r-packages-in-rstudio" class="section level2">
-<h2><span class="header-section-number">1.3</span> Installing R packages in RStudio</h2>
-<p>To install all the <code>tidyverse</code> packages in one go start RStudio and use the Packages tab in the lower-right panel. Click the install button (top left of the panel) and enter ‘tidyverse’, then click install as in this picture</p>
-<p>To complete the quizzes you’ll need a package called <code>nycflights13</code>. Install that in the same way.</p>
-<p><img src="assets/packages.png" width="212" /></p>
-
-</div>
-</div>
-            </section>
-
-          </div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
         </div>
       </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">Motivation</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Background</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-tidy-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tidy Data</span></a>
+  </div>
+</li>
+    </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Working with tidy data in <code>dplyr</code></a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-dplyr-verbs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-joining.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Combining Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-dplyr-ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">dplyr and ggplot</span></a>
+  </div>
+</li>
+    </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Making messy data tidy with <code>tidyr</code></a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tidying data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-readr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loading data from files</span></a>
+  </div>
+</li>
+    </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Appendices</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prerequisites.html" class="sidebar-item-text sidebar-link">Prerequisites</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./r-fundamentals.html" class="sidebar-item-text sidebar-link">R Fundamentals</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">Acknowledgements</a>
+  </div>
+</li>
+    </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation">Motivation</a>
+  <ul class="collapse">
+  <li><a href="#tidy-data-analysis" id="toc-tidy-data-analysis" class="nav-link" data-scroll-target="#tidy-data-analysis">Tidy data analysis</a></li>
+  <li><a href="#aim-of-this-book" id="toc-aim-of-this-book" class="nav-link" data-scroll-target="#aim-of-this-book">Aim of this book</a></li>
+  <li><a href="#organization-of-this-book" id="toc-organization-of-this-book" class="nav-link" data-scroll-target="#organization-of-this-book">Organization of this book</a></li>
+  <li><a href="#external-resources" id="toc-external-resources" class="nav-link" data-scroll-target="#external-resources">External Resources</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
 
-<a href="motivation.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Wrangling data with ‘tidyverse’</h1>
+</div>
+
+
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dan MacLean </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 1, 2022</p>
     </div>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"download": null,
-"toc": {
-"collapse": "subsection"
-}
-});
+    
+  </div>
+  
+
+</header>
+
+<section id="motivation" class="level1 unnumbered">
+<h1 class="unnumbered">Motivation</h1>
+<p>Working with data is pretty much the foundation of all science. Every field, lab, and scientist; every research tool, machine and data type seems to have it’s own favourite way of storing, searching, analysing, and reporting data. For the individual scientist trying to analyse some work, this can be a practical nightmare.</p>
+<p>If you’ve ever needed to work with any non-trivial data sets, or even tried to re-analyse an old one, you’ll know that working with data is a massive …</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/matador.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">A significant pain in the …</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>I think you know what I’m trying to say.</p>
+<p>The aim of this book is to introduce you to some tools that can reduce the pain of data analysis. The techniques here won’t get rid of all your problems - there’s no magic bullet for that, but they will reduce them to a more manageable size.</p>
+<p>The techniques themselves take a bit of getting used to - there is a learning curve. But over all they’re a much smaller pain and are worth it especially if you’re going to re-analyse growing datasets or do similar analysis over and over (and over) again.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/baby_bull.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">A smaller pain in the …</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="tidy-data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="tidy-data-analysis">Tidy data analysis</h2>
+<p>The method we’ll look it is called <code>tidy</code> analysis. It’s a set of ways of working that is supposed to make datasets easier to manipulate, analyse and visualise <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The tools for doing this in <code>R</code> are encapsulated in a set of packages collectively called the tidyverse. In reality this is the separate packages <code>dplyr, tidyr, readr, ggplot2, tibble, and purr</code>. We’ll get to know <em>some</em> of them in this book.</p>
+</section>
+<section id="aim-of-this-book" class="level2">
+<h2 class="anchored" data-anchor-id="aim-of-this-book">Aim of this book</h2>
+<p>We don’t aim to make you an expert in, or show you every trick in the tidyverse. In honesty, we’re only going to scratch the surface of what is available in that package. But what you do learn should be enough to allow you a fighting chance to apply tidy, reproducible data analysis principles to all your data sets in the future.</p>
+</section>
+<section id="organization-of-this-book" class="level2">
+<h2 class="anchored" data-anchor-id="organization-of-this-book">Organization of this book</h2>
+<p>In the first part of this book we’ll look at tools for rationally and reproducibly getting answers from table-like datasets. We’ll look at the <code>dplyr</code> R package that helps you split datasets into sub-groups, compute new data based on the data you already have, filter and reduce the data to useful parts. This part will be especially useful for developing statistics to compare groups and replicates and for generating plots that compare different parts of the data. In this part we’ll work with built-in data sets</p>
+<p>In the second part of this book, we’re going to look at ways of loading in data from external sources and making your own data consistent, in the hope that it will help you to organize your own data and then work on it in a reproducible, tidy fashion.</p>
+</section>
+<section id="external-resources" class="level2">
+<h2 class="anchored" data-anchor-id="external-resources">External Resources</h2>
+<p>Much of what is here is presented (sometimes in disparate fashion) in other resources. If you’re looking for a different view on these techniques - this site <a href="http://r4ds.had.co.nz/">R for data science</a> by the inventor of the tidyverse is the best place to go. It’s available as a print version too.</p>
+
+
+</section>
+</section>
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1" role="doc-endnote"><p>See Hadley Wickham’s tidy data paper - <a href="http://vita.had.co.nz/papers/tidy-data.html">http://vita.had.co.nz/papers/tidy-data.html</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./01-tidy-data.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tidy Data</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
 
-</body>
 
-</html>
+
+</body></html>

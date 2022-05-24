@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.387">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Wrangling data with ‘tidyverse’ - 2&nbsp; dplyr Verbs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<link href="./03-joining.html" rel="next">
+<link href="./01-tidy-data.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Wrangling data with ‘tidyverse’</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Wrangling-data-with--tidyverse--.pdf" title="Download PDF" class="sidebar-tool px-1"><i class="bi bi-file-pdf"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+    </ul>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Motivation</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Background</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-tidy-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tidy Data</span></a>
+  </div>
+</li>
+    </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Working with tidy data in <code>dplyr</code></a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-dplyr-verbs.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-joining.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Combining Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-dplyr-ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">dplyr and ggplot</span></a>
+  </div>
+</li>
+    </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Making messy data tidy with <code>tidyr</code></a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tidying data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-readr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loading data from files</span></a>
+  </div>
+</li>
+    </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Appendices</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prerequisites.html" class="sidebar-item-text sidebar-link">Prerequisites</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./r-fundamentals.html" class="sidebar-item-text sidebar-link">R Fundamentals</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">Acknowledgements</a>
+  </div>
+</li>
+    </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#about-this-chapter" id="toc-about-this-chapter" class="nav-link active" data-scroll-target="#about-this-chapter"> <span class="header-section-number">2.1</span> About this chapter</a></li>
+  <li><a href="#dplyr" id="toc-dplyr" class="nav-link" data-scroll-target="#dplyr"> <span class="header-section-number">2.2</span> dplyr</a></li>
+  <li><a href="#pipe-syntax" id="toc-pipe-syntax" class="nav-link" data-scroll-target="#pipe-syntax"> <span class="header-section-number">2.3</span> Pipe Syntax</a></li>
+  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"> <span class="header-section-number">2.4</span> select()</a>
+  <ul class="collapse">
+  <li><a href="#rename" id="toc-rename" class="nav-link" data-scroll-target="#rename"> <span class="header-section-number">2.4.1</span> rename()</a></li>
+  </ul></li>
+  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter"> <span class="header-section-number">2.5</span> filter()</a>
+  <ul class="collapse">
+  <li><a href="#comparisons" id="toc-comparisons" class="nav-link" data-scroll-target="#comparisons"> <span class="header-section-number">2.5.1</span> Comparisons</a></li>
+  <li><a href="#logical-operators" id="toc-logical-operators" class="nav-link" data-scroll-target="#logical-operators"> <span class="header-section-number">2.5.2</span> Logical operators</a></li>
+  </ul></li>
+  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"> <span class="header-section-number">2.6</span> mutate()</a>
+  <ul class="collapse">
+  <li><a href="#functions-in-mutate" id="toc-functions-in-mutate" class="nav-link" data-scroll-target="#functions-in-mutate"> <span class="header-section-number">2.6.1</span> Functions in mutate()</a></li>
+  <li><a href="#if_else" id="toc-if_else" class="nav-link" data-scroll-target="#if_else"> <span class="header-section-number">2.6.2</span> if_else()</a></li>
+  </ul></li>
+  <li><a href="#summarize-and-group_by" id="toc-summarize-and-group_by" class="nav-link" data-scroll-target="#summarize-and-group_by"> <span class="header-section-number">2.7</span> summarize() and group_by()</a>
+  <ul class="collapse">
+  <li><a href="#helpful-summarize-functions" id="toc-helpful-summarize-functions" class="nav-link" data-scroll-target="#helpful-summarize-functions"> <span class="header-section-number">2.7.1</span> Helpful summarize() functions</a></li>
+  </ul></li>
+  <li><a href="#arrange" id="toc-arrange" class="nav-link" data-scroll-target="#arrange"> <span class="header-section-number">2.8</span> arrange()</a></li>
+  <li><a href="#missing-values" id="toc-missing-values" class="nav-link" data-scroll-target="#missing-values"> <span class="header-section-number">2.9</span> Missing Values</a></li>
+  <li><a href="#quiz" id="toc-quiz" class="nav-link" data-scroll-target="#quiz"> <span class="header-section-number">2.10</span> Quiz</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">dplyr Verbs</span></h1>
+</div>
+
+
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="about-this-chapter" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="about-this-chapter"><span class="header-section-number">2.1</span> About this chapter</h2>
+<ol type="1">
+<li>Questions:</li>
+</ol>
+<ul>
+<li>How do I manipulate tidy data?</li>
+</ul>
+<ol start="2" type="1">
+<li>Objectives:</li>
+</ol>
+<ul>
+<li>Understanding the pipe syntax</li>
+<li>Working with the 6 main functions</li>
+<li>Overview of helper functions</li>
+</ul>
+<ol start="3" type="1">
+<li>Keypoints:</li>
+</ol>
+<ul>
+<li>Tidy data can be operated on with six main functions that can quickly split, apply summaries and combine sub-groups of data</li>
+</ul>
+</section>
+<section id="dplyr" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="dplyr"><span class="header-section-number">2.2</span> dplyr</h2>
+<p>dplyr (data plier) is a tool for manipulating datasets. As part of the tidyverse it is loaded when you use <code>library(tidyverse)</code> but can be loaded on it’s own with <code>library(dplyr)</code>. dplyr is set up as a small grammar, it has five main verbs that help you form small ‘sentences’ to get to your result.</p>
+<p>The verbs are:</p>
+<ul>
+<li><code>select()</code> picks variables based on their names.</li>
+<li><code>filter()</code> picks cases based on their values.</li>
+<li><code>mutate()</code> adds new variables that are functions of existing variables</li>
+<li><code>summarise()</code> reduces multiple values down to a single summary.</li>
+<li><code>arrange()</code> changes the ordering of the rows.</li>
+</ul>
+<p>A sixth function <code>group_by()</code> allows you to operate on subsets of the data.</p>
+</section>
+<section id="pipe-syntax" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="pipe-syntax"><span class="header-section-number">2.3</span> Pipe Syntax</h2>
+<p>The first argument to all these functions is the tidy table-like object (we’ll start calling these data frames from here), so for our diamonds data set, then we use</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(diamonds, ... ) <span class="co"># ... stands in for other arguments</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If we want to perform more than one step in series, we end up in the situation of having to save our result with a new name and working from there. This gets cumbersome quickly…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>diamonds2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(diamonds, ...)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>diamonds3 <span class="ot">&lt;-</span> <span class="fu">select</span>(diamonds2, ...)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>diamonds4 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(diamonds3, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To avoid this, there is a pipe operator - <code>%&gt;%</code>. The purpose of the pipe is to take the thing on its left, and use it as the first argument of the thing on its right. So we can change that mess to</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> <span class="fu">filter</span>( ... ) <span class="sc">%&gt;%</span> <span class="fu">select</span>( ... ) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>( ... )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Which is much more readable. Further we can put the right hand side of the pipe on a new line, such that we can get a very easy to read pattern.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( ... ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( ... ) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( ... )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you want to save the result, you’ll just put the usual assign at the top</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>filtered_diamonds <span class="ot">&lt;-</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( ... ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( ... ) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( ... )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="select" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="select"><span class="header-section-number">2.4</span> select()</h2>
+<p><code>select()</code> is probably the simplest verb. It lets you select whole columns from the dataframe, discarding others. This is most useful for working with huge datasets of many columns, or for extracting bits for ease of printing or presentation.</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(carat, cut)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 2
+   carat cut      
+   &lt;dbl&gt; &lt;ord&gt;    
+ 1  0.23 Ideal    
+ 2  0.21 Premium  
+ 3  0.23 Good     
+ 4  0.29 Premium  
+ 5  0.31 Good     
+ 6  0.24 Very Good
+ 7  0.24 Very Good
+ 8  0.26 Very Good
+ 9  0.22 Fair     
+10  0.23 Very Good
+# … with 53,930 more rows</code></pre>
+</div>
+</div>
+<p>Shorthands include the <code>:</code> which lets you choose a range and <code>-</code> which can be read as <code>except</code> so leaves out the columns you state</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(depth<span class="sc">:</span>price) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 3
+   depth table price
+   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+ 1  61.5    55   326
+ 2  59.8    61   326
+ 3  56.9    65   327
+ 4  62.4    58   334
+ 5  63.3    58   335
+ 6  62.8    57   336
+ 7  62.3    57   336
+ 8  61.9    55   337
+ 9  65.1    61   337
+10  59.4    61   338
+# … with 53,930 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( <span class="sc">-</span>x, <span class="sc">-</span>y, <span class="sc">-</span>z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 7
+   carat cut       color clarity depth table price
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+ 1  0.23 Ideal     E     SI2      61.5    55   326
+ 2  0.21 Premium   E     SI1      59.8    61   326
+ 3  0.23 Good      E     VS1      56.9    65   327
+ 4  0.29 Premium   I     VS2      62.4    58   334
+ 5  0.31 Good      J     SI2      63.3    58   335
+ 6  0.24 Very Good J     VVS2     62.8    57   336
+ 7  0.24 Very Good I     VVS1     62.3    57   336
+ 8  0.26 Very Good H     SI1      61.9    55   337
+ 9  0.22 Fair      E     VS2      65.1    61   337
+10  0.23 Very Good H     VS1      59.4    61   338
+# … with 53,930 more rows</code></pre>
+</div>
+</div>
+<p>You can select columns with helpers,</p>
+<ul>
+<li><code>starts_with()</code></li>
+<li><code>ends_with()</code></li>
+<li><code>contains()</code></li>
+<li><code>num_range()</code></li>
+</ul>
+<p>Here are examples.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( <span class="fu">starts_with</span>(<span class="st">"c"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 4
+   carat cut       color clarity
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;  
+ 1  0.23 Ideal     E     SI2    
+ 2  0.21 Premium   E     SI1    
+ 3  0.23 Good      E     VS1    
+ 4  0.29 Premium   I     VS2    
+ 5  0.31 Good      J     SI2    
+ 6  0.24 Very Good J     VVS2   
+ 7  0.24 Very Good I     VVS1   
+ 8  0.26 Very Good H     SI1    
+ 9  0.22 Fair      E     VS2    
+10  0.23 Very Good H     VS1    
+# … with 53,930 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( <span class="fu">ends_with</span>(<span class="st">"e"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 2
+   table price
+   &lt;dbl&gt; &lt;int&gt;
+ 1    55   326
+ 2    61   326
+ 3    65   327
+ 4    58   334
+ 5    58   335
+ 6    57   336
+ 7    57   336
+ 8    55   337
+ 9    61   337
+10    61   338
+# … with 53,930 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( <span class="fu">contains</span>(<span class="st">"l"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 3
+   color clarity table
+   &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt;
+ 1 E     SI2        55
+ 2 E     SI1        61
+ 3 E     VS1        65
+ 4 I     VS2        58
+ 5 J     SI2        58
+ 6 J     VVS2       57
+ 7 I     VVS1       57
+ 8 H     SI1        55
+ 9 E     VS2        61
+10 H     VS1        61
+# … with 53,930 more rows</code></pre>
+</div>
+</div>
+<section id="rename" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="rename"><span class="header-section-number">2.4.1</span> rename()</h3>
+<p>Often when you’re selecting columns to work on, you’ll need to fix the names - <code>rename()</code> is useful for this. Let’s fix that mis-spelled column</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>( <span class="at">colour =</span> color)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 10
+   carat cut       colour clarity depth table price     x     y     z
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt;  &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1  0.23 Ideal     E      SI2      61.5    55   326  3.95  3.98  2.43
+ 2  0.21 Premium   E      SI1      59.8    61   326  3.89  3.84  2.31
+ 3  0.23 Good      E      VS1      56.9    65   327  4.05  4.07  2.31
+ 4  0.29 Premium   I      VS2      62.4    58   334  4.2   4.23  2.63
+ 5  0.31 Good      J      SI2      63.3    58   335  4.34  4.35  2.75
+ 6  0.24 Very Good J      VVS2     62.8    57   336  3.94  3.96  2.48
+ 7  0.24 Very Good I      VVS1     62.3    57   336  3.95  3.98  2.47
+ 8  0.26 Very Good H      SI1      61.9    55   337  4.07  4.11  2.53
+ 9  0.22 Fair      E      VS2      65.1    61   337  3.87  3.78  2.49
+10  0.23 Very Good H      VS1      59.4    61   338  4     4.05  2.39
+# … with 53,930 more rows</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="filter" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="filter"><span class="header-section-number">2.5</span> filter()</h2>
+<p>The <code>filter()</code> function lets you select rows (observations) from your data frame based on criteria you specify. Here I’ll look for all rows with a value of <code>G</code> for the <code>color</code> variable (I’ll also pipe the output to the <code>head()</code> function to view just the top of the output.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( color <span class="sc">==</span> <span class="st">"G"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11,292 × 10
+   carat cut       color clarity depth table price     x     y     z
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1  0.23 Very Good G     VVS2     60.4    58   354  3.97  4.01  2.41
+ 2  0.23 Ideal     G     VS1      61.9    54   404  3.93  3.95  2.44
+ 3  0.28 Ideal     G     VVS2     61.4    56   553  4.19  4.22  2.58
+ 4  0.31 Very Good G     SI1      63.3    57   553  4.33  4.3   2.73
+ 5  0.31 Premium   G     SI1      61.8    58   553  4.35  4.32  2.68
+ 6  0.24 Premium   G     VVS1     62.3    59   554  3.95  3.92  2.45
+ 7  0.7  Ideal     G     VS2      61.6    56  2757  5.7   5.67  3.5 
+ 8  0.78 Very Good G     SI2      63.8    56  2759  5.81  5.85  3.72
+ 9  0.74 Ideal     G     SI1      61.6    55  2760  5.8   5.85  3.59
+10  0.75 Premium   G     VS2      61.7    58  2760  5.85  5.79  3.59
+# … with 11,282 more rows</code></pre>
+</div>
+</div>
+<p>The syntax is fairly clear, just pass the column you want to think about and the condition to keep the rows. Multiple conditions can be used and all must be true to keep a row.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( color <span class="sc">==</span> <span class="st">"G"</span>, </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>          cut <span class="sc">==</span> <span class="st">"Ideal"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4,884 × 10
+   carat cut   color clarity depth table price     x     y     z
+   &lt;dbl&gt; &lt;ord&gt; &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1  0.23 Ideal G     VS1      61.9    54   404  3.93  3.95  2.44
+ 2  0.28 Ideal G     VVS2     61.4    56   553  4.19  4.22  2.58
+ 3  0.7  Ideal G     VS2      61.6    56  2757  5.7   5.67  3.5 
+ 4  0.74 Ideal G     SI1      61.6    55  2760  5.8   5.85  3.59
+ 5  0.75 Ideal G     SI1      62.2    55  2760  5.87  5.8   3.63
+ 6  0.71 Ideal G     VS2      62.4    54  2762  5.72  5.76  3.58
+ 7  0.64 Ideal G     VVS1     61.9    56  2766  5.53  5.56  3.43
+ 8  0.71 Ideal G     VS2      61.9    57  2771  5.73  5.77  3.56
+ 9  0.58 Ideal G     VVS1     61.5    55  2772  5.39  5.44  3.33
+10  0.72 Ideal G     SI1      61.8    56  2776  5.72  5.75  3.55
+# … with 4,874 more rows</code></pre>
+</div>
+</div>
+<p>To make more complex queries, you’ll need to combine comparisons and logical operators.</p>
+<section id="comparisons" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="comparisons"><span class="header-section-number">2.5.1</span> Comparisons</h3>
+<p>R provides the following comparison operators</p>
+<ul>
+<li><code>==</code> - strictly equal to</li>
+<li><code>!=</code> - not equal to</li>
+<li><code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code> - greater than, less than, greater or equal to, less or equal to</li>
+</ul>
+<p>These all work as you might expect. Except for <code>==</code>. Trying to use <code>==</code> on numbers with a decimal point is tricky because of rounding errors in the computer. See this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">49</span>) <span class="sc">*</span> <span class="dv">49</span> <span class="sc">==</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+<p>This statement is asking ‘is 1 divided by 49, multiplied by 49, equal to 1’. The computer says <code>FALSE</code> because the computer can’t store infinite numbers of decimal places. The rounding error is extremely small (down to the last 16th decimal place) but it is there. To deal with this rounding error we use the <code>near()</code> function, which checks numbers are the same to about the 8th decimal place.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">near</span>( (<span class="dv">1</span> <span class="sc">/</span> <span class="dv">49</span>) <span class="sc">*</span> <span class="dv">49</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+</section>
+<section id="logical-operators" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="logical-operators"><span class="header-section-number">2.5.2</span> Logical operators</h3>
+<p><code>filter()</code> uses combinations of R logical operators, these are <code>&amp;</code> for <code>and</code>, <code>|</code> for <code>or</code> and <code>!</code> for <code>not</code>. You can build filters with these. Let’s modify our query to find <code>color</code> <code>G</code> or <code>cut</code> <code>ideal</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( color <span class="sc">==</span> <span class="st">"G"</span> <span class="sc">|</span> cut <span class="sc">==</span> <span class="st">"Ideal"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 27,959 × 10
+   carat cut       color clarity depth table price     x     y     z
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+ 2  0.23 Ideal     J     VS1      62.8    56   340  3.93  3.9   2.46
+ 3  0.31 Ideal     J     SI2      62.2    54   344  4.35  4.37  2.71
+ 4  0.3  Ideal     I     SI2      62      54   348  4.31  4.34  2.68
+ 5  0.23 Very Good G     VVS2     60.4    58   354  3.97  4.01  2.41
+ 6  0.33 Ideal     I     SI2      61.8    55   403  4.49  4.51  2.78
+ 7  0.33 Ideal     I     SI2      61.2    56   403  4.49  4.5   2.75
+ 8  0.33 Ideal     J     SI1      61.1    56   403  4.49  4.55  2.76
+ 9  0.23 Ideal     G     VS1      61.9    54   404  3.93  3.95  2.44
+10  0.32 Ideal     I     SI1      60.9    55   404  4.45  4.48  2.72
+# … with 27,949 more rows</code></pre>
+</div>
+</div>
+<p>Note that the computer doesn’t read this like it’s English. Consider this</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( color <span class="sc">==</span> <span class="st">"G"</span> <span class="sc">|</span> <span class="st">"F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You might consider this to read <code>filter rows with color column equal to</code>G<code>or</code>F`. The computer doesn’t read it like this. It needs more explicit statements</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( color <span class="sc">==</span> <span class="st">"G"</span> <span class="sc">|</span> color <span class="sc">==</span> <span class="st">"F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20,834 × 10
+   carat cut       color clarity depth table price     x     y     z
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1  0.22 Premium   F     SI1      60.4    61   342  3.88  3.84  2.33
+ 2  0.23 Very Good G     VVS2     60.4    58   354  3.97  4.01  2.41
+ 3  0.23 Very Good F     VS1      60.9    57   357  3.96  3.99  2.42
+ 4  0.23 Very Good F     VS1      60      57   402  4     4.03  2.41
+ 5  0.23 Very Good F     VS1      59.8    57   402  4.04  4.06  2.42
+ 6  0.23 Good      F     VS1      58.2    59   402  4.06  4.08  2.37
+ 7  0.29 Premium   F     SI1      62.4    58   403  4.24  4.26  2.65
+ 8  0.24 Very Good F     SI1      60.9    61   404  4.02  4.03  2.45
+ 9  0.23 Ideal     G     VS1      61.9    54   404  3.93  3.95  2.44
+10  0.28 Ideal     G     VVS2     61.4    56   553  4.19  4.22  2.58
+# … with 20,824 more rows</code></pre>
+</div>
+</div>
+<p>Which can be cumbersome if you want to filter on one of many possible values. For that reason we have <code>%in%</code> , which works like</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( color  <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"G"</span>, <span class="st">"F"</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20,834 × 10
+   carat cut       color clarity depth table price     x     y     z
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1  0.22 Premium   F     SI1      60.4    61   342  3.88  3.84  2.33
+ 2  0.23 Very Good G     VVS2     60.4    58   354  3.97  4.01  2.41
+ 3  0.23 Very Good F     VS1      60.9    57   357  3.96  3.99  2.42
+ 4  0.23 Very Good F     VS1      60      57   402  4     4.03  2.41
+ 5  0.23 Very Good F     VS1      59.8    57   402  4.04  4.06  2.42
+ 6  0.23 Good      F     VS1      58.2    59   402  4.06  4.08  2.37
+ 7  0.29 Premium   F     SI1      62.4    58   403  4.24  4.26  2.65
+ 8  0.24 Very Good F     SI1      60.9    61   404  4.02  4.03  2.45
+ 9  0.23 Ideal     G     VS1      61.9    54   404  3.93  3.95  2.44
+10  0.28 Ideal     G     VVS2     61.4    56   553  4.19  4.22  2.58
+# … with 20,824 more rows</code></pre>
+</div>
+</div>
+<p>You can select anything not in a list given to <code>%in%</code> with a judicious <code>!</code> (not), again this is a bit weird if you translate directly from English, as the not goes first.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( <span class="sc">!</span> color <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"G"</span>, <span class="st">"F"</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 33,106 × 10
+   carat cut       color clarity depth table price     x     y     z
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+ 2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+ 3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+ 4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+ 5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+ 6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
+ 7  0.24 Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
+ 8  0.26 Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
+ 9  0.22 Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
+10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39
+# … with 33,096 more rows</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="mutate" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="mutate"><span class="header-section-number">2.6</span> mutate()</h2>
+<p>The <code>mutate()</code> function lets you add new columns based on values in other columns. Note that doing so to this data set makes it too big to print, so I’ll <code>select()</code> the appropriate columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">price_per_carat =</span> price <span class="sc">/</span> carat) <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(price, carat, price_per_carat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 3
+   price carat price_per_carat
+   &lt;int&gt; &lt;dbl&gt;           &lt;dbl&gt;
+ 1   326  0.23           1417.
+ 2   326  0.21           1552.
+ 3   327  0.23           1422.
+ 4   334  0.29           1152.
+ 5   335  0.31           1081.
+ 6   336  0.24           1400 
+ 7   336  0.24           1400 
+ 8   337  0.26           1296.
+ 9   337  0.22           1532.
+10   338  0.23           1470.
+# … with 53,930 more rows</code></pre>
+</div>
+</div>
+<p>You can refer to columns straight after creating them, so you can minimise <code>mutate()</code>s</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">price_per_carat =</span> price <span class="sc">/</span> carat,</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">depth_per_ppc =</span> depth <span class="sc">/</span> price_per_carat) <span class="sc">%&gt;%</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(depth_per_ppc, price_per_carat) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 2
+   depth_per_ppc price_per_carat
+           &lt;dbl&gt;           &lt;dbl&gt;
+ 1        0.0434           1417.
+ 2        0.0385           1552.
+ 3        0.0400           1422.
+ 4        0.0542           1152.
+ 5        0.0586           1081.
+ 6        0.0449           1400 
+ 7        0.0445           1400 
+ 8        0.0478           1296.
+ 9        0.0425           1532.
+10        0.0404           1470.
+# … with 53,930 more rows</code></pre>
+</div>
+</div>
+<section id="functions-in-mutate" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="functions-in-mutate"><span class="header-section-number">2.6.1</span> Functions in mutate()</h3>
+<p>You can create a new column with <code>mutate()</code> using pretty much any vectorized R function. It’s a bit complicated to explain what I mean by ‘vectorized’ so let’s start with some examples.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log_price =</span> <span class="fu">log</span>(price)) <span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>x, <span class="sc">-</span>y, <span class="sc">-</span>z) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 8
+   carat cut       color clarity depth table price log_price
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;     &lt;dbl&gt;
+ 1  0.23 Ideal     E     SI2      61.5    55   326      5.79
+ 2  0.21 Premium   E     SI1      59.8    61   326      5.79
+ 3  0.23 Good      E     VS1      56.9    65   327      5.79
+ 4  0.29 Premium   I     VS2      62.4    58   334      5.81
+ 5  0.31 Good      J     SI2      63.3    58   335      5.81
+ 6  0.24 Very Good J     VVS2     62.8    57   336      5.82
+ 7  0.24 Very Good I     VVS1     62.3    57   336      5.82
+ 8  0.26 Very Good H     SI1      61.9    55   337      5.82
+ 9  0.22 Fair      E     VS2      65.1    61   337      5.82
+10  0.23 Very Good H     VS1      59.4    61   338      5.82
+# … with 53,930 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">total_price =</span> <span class="fu">sum</span>(price)) <span class="sc">%&gt;%</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( <span class="sc">-</span>x, <span class="sc">-</span>y, <span class="sc">-</span>z) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 8
+   carat cut       color clarity depth table price total_price
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;       &lt;int&gt;
+ 1  0.23 Ideal     E     SI2      61.5    55   326   212135217
+ 2  0.21 Premium   E     SI1      59.8    61   326   212135217
+ 3  0.23 Good      E     VS1      56.9    65   327   212135217
+ 4  0.29 Premium   I     VS2      62.4    58   334   212135217
+ 5  0.31 Good      J     SI2      63.3    58   335   212135217
+ 6  0.24 Very Good J     VVS2     62.8    57   336   212135217
+ 7  0.24 Very Good I     VVS1     62.3    57   336   212135217
+ 8  0.26 Very Good H     SI1      61.9    55   337   212135217
+ 9  0.22 Fair      E     VS2      65.1    61   337   212135217
+10  0.23 Very Good H     VS1      59.4    61   338   212135217
+# … with 53,930 more rows</code></pre>
+</div>
+</div>
+<p>Observe how the same number is in all the rows in the last example, this highlights how this ‘vectorized’ function idea works.</p>
+<p>Briefly, vectorized functions work on whole columns at a time, not just single rows. So if it makes sense to treat each element of the column individually, the function will do that. Consider this column (here printed on its side) with the <code>log()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0000000 0.6931472 1.0986123</code></pre>
+</div>
+</div>
+<p>You get back a column of numbers the same length as you put in, each item logged. With the <code>sum()</code> function it makes sense to return the sum of all the numbers in the column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+</div>
+<p>So you get back a single number. The behaviour of <code>mutate()</code> then is akin to taking the whole column or columns you specify, apply whatever function you ask for and putting the resulting column in the dataframe. If the resulting column is of length one, that just gets repeated until it fits. That is why we get repeats of the same number in the <code>sum()</code> example and why that number is the sum of all the prices.</p>
+<p>If the result from the function isn’t the same length as the column or has length of one - the function will fail. Most common functions will work nicely though.</p>
+</section>
+<section id="if_else" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="if_else"><span class="header-section-number">2.6.2</span> if_else()</h3>
+<p>One final vectorized function is <code>if_else()</code>, this is useful when you want to add a column that annotates the data with an arbitrary value based on values. Let’s add a column called <code>cost</code> that can be <code>high</code> or <code>low</code> depending on the <code>price</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">cost =</span> <span class="fu">if_else</span>( price <span class="sc">&gt;</span> <span class="dv">335</span>, <span class="st">"high"</span>, <span class="st">"low"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( <span class="sc">-</span>x, <span class="sc">-</span>y, <span class="sc">-</span>z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 8
+   carat cut       color clarity depth table price cost 
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;
+ 1  0.23 Ideal     E     SI2      61.5    55   326 low  
+ 2  0.21 Premium   E     SI1      59.8    61   326 low  
+ 3  0.23 Good      E     VS1      56.9    65   327 low  
+ 4  0.29 Premium   I     VS2      62.4    58   334 low  
+ 5  0.31 Good      J     SI2      63.3    58   335 low  
+ 6  0.24 Very Good J     VVS2     62.8    57   336 high 
+ 7  0.24 Very Good I     VVS1     62.3    57   336 high 
+ 8  0.26 Very Good H     SI1      61.9    55   337 high 
+ 9  0.22 Fair      E     VS2      65.1    61   337 high 
+10  0.23 Very Good H     VS1      59.4    61   338 high 
+# … with 53,930 more rows</code></pre>
+</div>
+</div>
+<p>The <code>if_else()</code> function then just adds the first value (“high”) if the condition is ‘true’ else it puts the second value.</p>
+</section>
+</section>
+<section id="summarize-and-group_by" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="summarize-and-group_by"><span class="header-section-number">2.7</span> summarize() and group_by()</h2>
+<p>The <code>summarize()</code> function is a reductive function. It reduces entire dataframes to a single row, and returns an entirely new dataframe.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="at">mean_price =</span> <span class="fu">mean</span>(price) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  mean_price
+       &lt;dbl&gt;
+1      3933.</code></pre>
+</div>
+</div>
+<p><code>summarize()</code> is best used with <code>group_by()</code> which helps split dataframes into subsets. The <code>summarize()</code> function will run once for each subset created by <code>group_by()</code>. Let’s find the mean price for every colour of diamonds. We’ll do this by grouping the <code>diamonds</code> dataframe on <code>color</code>, then summarising.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(color) <span class="sc">%&gt;%</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_price =</span> <span class="fu">mean</span>(price) ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 2
+  color mean_price
+  &lt;ord&gt;      &lt;dbl&gt;
+1 D          3170.
+2 E          3077.
+3 F          3725.
+4 G          3999.
+5 H          4487.
+6 I          5092.
+7 J          5324.</code></pre>
+</div>
+</div>
+<p>This is where the power of dplyr starts to be obvious. Once we’ve got our dataframe into shape with the <code>select()</code>, <code>filter()</code> and <code>mutate()</code> functions, we can start to compute new information with <code>group_by()</code> and <code>summarize()</code> and some of the helper functions.</p>
+<p>Let’s group by two things, <code>color</code> and <code>cut</code>, and get the mean and standard deviation of <code>price</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(color, cut) <span class="sc">%&gt;%</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( </span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_price =</span> <span class="fu">mean</span>(price),</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(price)</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'color'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 35 × 4
+# Groups:   color [7]
+   color cut       mean_price    sd
+   &lt;ord&gt; &lt;ord&gt;          &lt;dbl&gt; &lt;dbl&gt;
+ 1 D     Fair           4291. 3286.
+ 2 D     Good           3405. 3175.
+ 3 D     Very Good      3470. 3524.
+ 4 D     Premium        3631. 3712.
+ 5 D     Ideal          2629. 3001.
+ 6 E     Fair           3682. 2977.
+ 7 E     Good           3424. 3331.
+ 8 E     Very Good      3215. 3408.
+ 9 E     Premium        3539. 3795.
+10 E     Ideal          2598. 2956.
+# … with 25 more rows</code></pre>
+</div>
+</div>
+<p>Note how every combination of <code>color</code> and <code>cut</code> is made into subsets.</p>
+<section id="helpful-summarize-functions" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="helpful-summarize-functions"><span class="header-section-number">2.7.1</span> Helpful summarize() functions</h3>
+<p>There are numerous helpful summary functions. We’ve already seen <code>mean()</code> , <code>sum()</code> and <code>sd()</code>.</p>
+<p>The function <code>n()</code> counts the number of items in a group. It doesn’t need a column name to work on.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(color) <span class="sc">%&gt;%</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( </span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">count =</span> <span class="fu">n</span>()</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 2
+  color count
+  &lt;ord&gt; &lt;int&gt;
+1 D      6775
+2 E      9797
+3 F      9542
+4 G     11292
+5 H      8304
+6 I      5422
+7 J      2808</code></pre>
+</div>
+</div>
+<p>Related is <code>n_distinct()</code> which counts the number of unique values in a group. This one needs to know which column of things you want to use. Let’s see how many observations there are for each <code>cut</code> and how many different <code>color</code>s are observed in each <code>cut</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cut) <span class="sc">%&gt;%</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( </span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">items =</span> <span class="fu">n</span>(),</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">unique_colors =</span> <span class="fu">n_distinct</span>(color)</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  cut       items unique_colors
+  &lt;ord&gt;     &lt;int&gt;         &lt;int&gt;
+1 Fair       1610             7
+2 Good       4906             7
+3 Very Good 12082             7
+4 Premium   13791             7
+5 Ideal     21551             7</code></pre>
+</div>
+</div>
+<p>There are other helpful summary functions, here’s a non-exhaustive list</p>
+<ul>
+<li><code>max()</code> or <code>min()</code> - maximum or minimum value in a column</li>
+<li><code>median()</code> - median value in a column</li>
+<li><code>IQR()</code> - interquartile range (distance) between 25th and 75th percentile</li>
+<li><code>first()</code> or <code>last()</code> - first or last values in a column</li>
+</ul>
+</section>
+</section>
+<section id="arrange" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="arrange"><span class="header-section-number">2.8</span> arrange()</h2>
+<p>The <code>arrange()</code> function is a straightforward function that helps you arrange the final table from <code>summarize()</code> a bit more nicely. It simply orders the rows in a way that you specify.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 10
+   carat cut       color clarity depth table price     x     y     z
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+ 2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+ 3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+ 4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+ 5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+ 6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
+ 7  0.24 Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
+ 8  0.26 Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
+ 9  0.22 Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
+10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39
+# … with 53,930 more rows</code></pre>
+</div>
+</div>
+<p>To sort biggest first, use <code>desc()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(price)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 10
+   carat cut       color clarity depth table price     x     y     z
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1  2.29 Premium   I     VS2      60.8    60 18823  8.5   8.47  5.16
+ 2  2    Very Good G     SI1      63.5    56 18818  7.9   7.97  5.04
+ 3  1.51 Ideal     G     IF       61.7    55 18806  7.37  7.41  4.56
+ 4  2.07 Ideal     G     SI2      62.5    55 18804  8.2   8.13  5.11
+ 5  2    Very Good H     SI1      62.8    57 18803  7.95  8     5.01
+ 6  2.29 Premium   I     SI1      61.8    59 18797  8.52  8.45  5.24
+ 7  2.04 Premium   H     SI1      58.1    60 18795  8.37  8.28  4.84
+ 8  2    Premium   I     VS1      60.8    59 18795  8.13  8.02  4.91
+ 9  1.71 Premium   F     VS2      62.3    59 18791  7.57  7.53  4.7 
+10  2.15 Ideal     G     SI2      62.6    54 18791  8.29  8.35  5.21
+# … with 53,930 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="missing-values" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="missing-values"><span class="header-section-number">2.9</span> Missing Values</h2>
+<p>Many (many!) datasets will have some missing values at some points. These are encoded in R as <code>NA</code>. They need to be dealt with explicitly as they mess up lots of calculations.</p>
+<p>Look at the toy dataframe <code>incomplete</code> below</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>incomplete</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  group size
+1     A 10.4
+2     B   NA
+3     C  8.0
+4     A  6.0
+5     B   NA
+6     C   NA</code></pre>
+</div>
+</div>
+<p>When we try to <code>summarize()</code> we get stuck</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>incomplete <span class="sc">%&gt;%</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( group ) <span class="sc">%&gt;%</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_size =</span> <span class="fu">mean</span>(size))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  group mean_size
+  &lt;chr&gt;     &lt;dbl&gt;
+1 A           8.2
+2 B          NA  
+3 C          NA  </code></pre>
+</div>
+</div>
+<p>The groups with any <code>NA</code> can’t be calculated. We need to tell our helper function to remove <code>NA</code> before we work with it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>incomplete <span class="sc">%&gt;%</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( group ) <span class="sc">%&gt;%</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_size =</span> <span class="fu">mean</span>(size, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  group mean_size
+  &lt;chr&gt;     &lt;dbl&gt;
+1 A           8.2
+2 B         NaN  
+3 C           8  </code></pre>
+</div>
+</div>
+<p>This works! Though because the group <code>B</code> only had <code>NA</code> in it the formula for mean fails because we can’t divide by <code>0</code> and we get <code>NaN</code> (not a number).</p>
+<p>You might think you can use <code>filter()</code> to get rid of any rows with NA in, but you get a weird result</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>incomplete <span class="sc">%&gt;%</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(size <span class="sc">!=</span> <span class="cn">NA</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( group ) <span class="sc">%&gt;%</span></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_size =</span> <span class="fu">mean</span>(size))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 2
+# … with 2 variables: group &lt;chr&gt;, mean_size &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>By definition <code>NA</code> means <code>Not available</code>, which is a nice way of saying <code>don't know</code>, so, strictly, <code>x == NA</code> means “is <code>x</code> equal to something we don’t know the value of?” To which the answer can only be <code>don't know</code>, for which R uses <code>NA</code>. The result is that any comparison with <code>NA</code> in it is <code>NA</code>. <code>filter()</code> doesn’t know whether any row passes so throws it out. You get no rows for <code>group_by()</code> to group.</p>
+<p>If you want to check something is an <code>NA</code>, you can use <code>is.na()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>incomplete <span class="sc">%&gt;%</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span> <span class="fu">is.na</span>(size)) <span class="sc">%&gt;%</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( group ) <span class="sc">%&gt;%</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_size =</span> <span class="fu">mean</span>(size))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  group mean_size
+  &lt;chr&gt;     &lt;dbl&gt;
+1 A           8.2
+2 C           8  </code></pre>
+</div>
+</div>
+<p>Note that you lose the information for the <code>B</code> group, which may be important.</p>
+<p>You may want to pair these operations with an <code>n()</code> column to give you an idea of how many values you use to get your answer.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>incomplete <span class="sc">%&gt;%</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( group ) <span class="sc">%&gt;%</span></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_size =</span> <span class="fu">mean</span>(size, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_size =</span> <span class="fu">n</span>()</span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  group mean_size sample_size
+  &lt;chr&gt;     &lt;dbl&gt;       &lt;int&gt;
+1 A           8.2           2
+2 B         NaN             2
+3 C           8             2</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>incomplete <span class="sc">%&gt;%</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span> <span class="fu">is.na</span>(size)) <span class="sc">%&gt;%</span></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( group ) <span class="sc">%&gt;%</span></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_size =</span> <span class="fu">mean</span>(size),</span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_size =</span> <span class="fu">n</span>()</span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  group mean_size sample_size
+  &lt;chr&gt;     &lt;dbl&gt;       &lt;int&gt;
+1 A           8.2           2
+2 C           8             1</code></pre>
+</div>
+</div>
+<p>With a more complicated call, you can explicitly get the number of <code>NA</code>s.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>incomplete <span class="sc">%&gt;%</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( group ) <span class="sc">%&gt;%</span></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_size =</span> <span class="fu">mean</span>(size, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_size =</span> <span class="fu">n</span>(),</span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">nas =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(size))</span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  group mean_size sample_size   nas
+  &lt;chr&gt;     &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+1 A           8.2           2     0
+2 B         NaN             2     2
+3 C           8             2     1</code></pre>
+</div>
+</div>
+</section>
+<section id="quiz" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="quiz"><span class="header-section-number">2.10</span> Quiz</h2>
+<ol type="1">
+<li><p>Load the package <code>nycflights13</code> which is a tidy data set of flight information out of New York. Look at the <code>flights</code> table that has been loaded and note the column names and types.</p></li>
+<li><p>The individual planes are identified by their <code>tailnum</code>. Which plane has the worst on-time record?</p></li>
+<li><p>What time of day should you fly to avoid delays as much as possible?</p></li>
+<li><p>For each destination compute the total minutes of delay?</p></li>
+<li><p>Find all destinations that have at least two carriers.</p></li>
+</ol>
+<p>(These exercises are taken from pg 75 of <a href="http://r4ds.had.co.nz/">R for Data Science</a> - check there for more challenges.)</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01-tidy-data.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tidy Data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./03-joining.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Combining Datasets</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
