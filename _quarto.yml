@@ -1,0 +1,37 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Wrangling data with 'tidyverse' "
+  author: "Dan MacLean"
+  date: "May 2022"
+  search: true
+  downloads: [pdf]
+  sharing: [twitter, facebook]
+  chapters: 
+    - index.qmd
+    - part: "Background"
+      chapters:
+        - 01-tidy-data.qmd
+    - part: "Working with tidy data in `dplyr`"
+      chapters:
+        - 02-dplyr-verbs.qmd
+        - 03-joining.qmd
+        - 04-dplyr-ggplot.qmd
+    - part: "Making messy data tidy with `tidyr`"
+      chapters:
+        - 05-tidyr.qmd
+        - 06-readr.qmd
+  appendices:
+    - prerequisites.qmd
+    - r-fundamentals.qmd
+    - acknowledgements.qmd
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+comments:
+  hypothesis: true
