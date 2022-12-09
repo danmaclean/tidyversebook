@@ -164,6 +164,8 @@ table5 %>%
 
 ## Quiz
 
-Tidying data is hard! And it needs you to know your data quite well, which naturally takes time. Rather than quiz questions here, a worked example will give good benefit, so let's try one of those. Do the Case Study on page 163 of R for Data Science. If you don't have the print edition it is available online here [Case Study for Tidy Data](http://r4ds.had.co.nz/tidy-data.html#case-study).
+1. Examine the `table1` and `table4a` datasets. Combine  `table4a` to `table1` to create two new columns. Ensure the columns make sense and retain data integrity.
+
+2. Tidying data is hard! And it needs you to know your data quite well, which naturally takes time. Rather than quiz questions here, a worked example will give good benefit, so let's try one of those. Do the Case Study on page 163 of R for Data Science. If you don't have the print edition it is available online here [Case Study for Tidy Data](http://r4ds.had.co.nz/tidy-data.html#case-study).
 
 

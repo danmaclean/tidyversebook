@@ -115,4 +115,6 @@ bind_cols(band_members, data_4_rows)
 
 ## Quiz
 
-1. Examine the `table1` and `table4a` datasets. Combine  `table4a` to `table1` to create two new columns. Ensure the columns make sense and retain data integrity.
+The quiz for this section is mixed in with the quiz for section 5. When you get that far, do the quiz there.
+
+
