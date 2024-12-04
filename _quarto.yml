@@ -31,6 +31,10 @@ book:
 format:
   html:
     theme: cosmo
+    other-links:
+      - text: Data Exploration and Visualisation Chatbot
+        href: https://tsl-bioinformatics.shinyapps.io/datavixexp_chatbot/
+        target: _blank
   pdf:
     documentclass: scrreprt
 comments:
