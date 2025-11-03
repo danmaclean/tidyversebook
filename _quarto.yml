@@ -5,7 +5,7 @@ project:
 book:
   title: "Wrangling data with 'tidyverse' "
   author: "Dan MacLean"
-  date: "May 2022"
+  date: "November 2025"
   search: true
   downloads: [pdf]
   sharing: [twitter, facebook]
@@ -31,10 +31,6 @@ book:
 format:
   html:
     theme: cosmo
-    other-links:
-      - text: Data Exploration and Visualisation Chatbot
-        href: https://tsl-bioinformatics.shinyapps.io/datavixexp_chatbot/
-        target: _blank
   pdf:
     documentclass: scrreprt
 comments:
